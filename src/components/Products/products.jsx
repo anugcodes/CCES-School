@@ -10,6 +10,9 @@ import {
   CardContent,
   CardActions,
 } from "@mui/material";
+
+import ServiceCard from "../Servicecard/serviceCard";
+import Divider from "@mui/material/Divider"
 import { css } from "@emotion/react";
 
 import productImage from "../../assets/shoe.jpg";
@@ -31,7 +34,7 @@ export default function Products() {
       justify-content: center;
       flex-wrap: wrap;
       background: white;
-      padding: 0 2rem 0 1rem;
+      // padding: 2rem 1rem;
       border-radius: 2rem;
     `,
     cardItem: css`
@@ -41,11 +44,11 @@ export default function Products() {
     `,
 
     mainC: css`
-      // padding: 3rem 5rem;
-      background: #f0f2f2;
+      padding: 2rem;
+      // background: #f0f2f2;
 
       @media (max-width: 550px) {
-        padding: 3rem 1rem;
+        padding: 3rem 0rem;
       }
     `,
 
@@ -59,8 +62,8 @@ export default function Products() {
   return (
     <Box sx={styles.mainC}>
       <Box sx={{width: '100%'}}>
-        <Stack direction={{xs: 'column', md: 'row'}} spacing={2}>
-        <Stack sx={styles.category}>
+        <Stack direction={{xs: 'column', md: 'row'}} spacing={{xs: 1, md: 2}}>
+        <Stack sx={styles.category} spacing={{xs: 2, md: 1}}>
         <Typography variant="h5" sx={{color:'black'}}>Collections</Typography>
         <Stack direction={{xs: 'row', md: 'column'}} spacing={{xs: 2, md: 1}}>
         <Typography variant="body1" sx={css`
@@ -105,9 +108,10 @@ export default function Products() {
         `}>Sarees</Typography>
         </Stack>
         </Stack>
+        <Divider sx={{borderColor: '#d2eff7', borderWidth: '0.1rem'}} variant="middle"/>
         <Grid container spacing={{xs: 1, sm: 2, md: 3}} sx={styles.cardContainer}>
             {products.map((products, index) => (
-              <Grid item xs={6} sm={4} md={3} key={index} sx={styles.cardItem}>
+              <Grid item xs={6} sm={4} md={'auto'} key={index} sx={styles.cardItem}>
                 <ServiceCard products={products} />
               </Grid>
             ))}
@@ -118,45 +122,45 @@ export default function Products() {
   );
 }
 
-function ServiceCard({ products }) {
-  const styles = {
-    card: css`
-      width: 16rem;
-      max-width: 30rem;
-      &:hover {
-        background: #d1e7e8;
-        cursor: pointer;
-        box-shadow: #c5d1d1 0px 3px 8px;;
-      }
+// function ServiceCard({ products }) {
+//   const styles = {
+//     card: css`
+//       width: 20rem;
+//       max-width: 30rem;
+//       &:hover {
+//         background: #d1e7e8;
+//         cursor: pointer;
+//         box-shadow: #c5d1d1 0px 3px 8px;;
+//       }
 
-      /* @media (min-width: 1100px) {
-        min-width: 15rem;
-      } */
-    `,
-  };
-  return (
-    <>
-      <Card sx={styles.card}>
-        <CardMedia
-          sx={{ height: 160 }}
-          image={products.image}
-          title="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
-            {products.Name}
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            {products.price}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {products.details}
-          </Typography>
-        </CardContent>
-      </Card>
-    </>
-  );
-}
+//       @media (min-width: 1100px) {
+//         width: 15rem;
+//       }
+//     `,
+//   };
+//   return (
+//     <>
+//       <Card sx={styles.card}>
+//         <CardMedia
+//           sx={{ height: 180 }}
+//           image={products.image}
+//           title="green iguana"
+//         />
+//         <CardContent>
+//           <Typography gutterBottom variant="h6" component="div">
+//             {products.Name}
+//           </Typography>
+//           <Typography variant="body1" color="text.secondary">
+//             {products.price}
+//           </Typography>
+//           <Typography variant="body2" color="text.secondary">
+//             {products.details}
+//           </Typography>
+//         </CardContent>
+//       </Card>
+//     </>
+//   );
+// }
 
 const products = [
   {
