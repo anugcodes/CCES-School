@@ -14,6 +14,7 @@ import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
 import Avatar from '@mui/material/Avatar';
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -92,6 +93,7 @@ export default function Navbar() {
                   align-items: center;
                 `}
               >
+              <Link to='/'>
                 <Typography
                   variant="h6"
                   sx={css`
@@ -107,6 +109,7 @@ export default function Navbar() {
                 >
                   Ankit Kumar Sahu
                 </Typography>
+                </Link>
               </Box>
             </Button>
             <IconButton
@@ -121,12 +124,8 @@ export default function Navbar() {
 
             <Stack direction="row" spacing={1} sx={styles.link}>
                 <Button></Button>
-                <Button sx={styles.link} onClick={() => setOpen(!open)}>
-                  Home
-                </Button>
-                <Button sx={styles.link} onClick={() => setOpen(!open)}>
-                  About
-                </Button>
+                <Link to="/products" sx={styles.link}>Products</Link>
+                <Link to="/category" sx={styles.link}>Categories</Link>
                 <Button sx={styles.link} onClick={() => setOpen(!open)}>
                   Projects
                 </Button>

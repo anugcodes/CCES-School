@@ -1,26 +1,25 @@
 import ProductsPage from "./pages/ProductListing/productListing";
+import Home from "./pages/Home/home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar/navbar";
-import Products from "./components/Products/products";
-// import UserProfile from "./pages/profile";
+import UserProfile from "./pages/Profile/profile";
+import CategoryPage from "./pages/Category/category";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Navbar />
-                <Products />
-              </>
-            }
-          />
-          <Route path="/profile" element={<UserProfile />} />
-        </Routes>
-      </BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Home />
+                </>
+              }
+            />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/category" element={<CategoryPage />} />
+            <Route path="/profile" element={<UserProfile />} />
+          </Routes>
     </>
   );
 }
