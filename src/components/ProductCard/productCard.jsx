@@ -6,16 +6,16 @@ import { useState } from "react";
 import { useNavigate} from 'react-router-dom';
 
 const ProductCard = ({ products }) => {
-  const [cart, setCart] = useState("Add To Cart");
   const navigate = new useNavigate();
 
   const navigateToProduct = () => {
-    navigate('/');
+    navigate('/product');
+    console.log("Clicked")
   }
 
   return (
     <>
-      <Card isPressable isHoverable>
+      <Card isPressable isHoverable css={{ w: "100%", h: "400px" }}>
         <Card.Body css={{ p: 0 }}>
           <Card.Image
             src={products.image}
@@ -46,9 +46,7 @@ const ProductCard = ({ products }) => {
                 <Text css={{ color: "white" }}>{products.details}</Text>
               </Row>
               <Row justify="center">
-                <Button css={{ w: "100%" }} onClick={() => {
-                  setCart("Added To The Cart")
-                }} color="gradient" ghost>{cart}</Button>
+                <Button css={{ w: "100%" }} color="gradient" ghost onClick={navigateToProduct()}>View Product</Button>
               </Row>
             </Col>
           </Row>
