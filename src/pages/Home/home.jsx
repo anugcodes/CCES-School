@@ -8,9 +8,6 @@ export default function Home() {
         <>
         <Navbar />
         <Product />
-        <Box>
-            <Typography variant="h3">HOME</Typography>
-        </Box>
         </>
     )
 }

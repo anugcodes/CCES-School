@@ -8,11 +8,10 @@ import {
   Rating,
   TextField,
   Button,
-  Divider,
   InputAdornment,
 } from "@mui/material";
 
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import ProductCard from "../ProductCard/productCard";
 
 import { useState } from "react";
 
@@ -35,7 +34,55 @@ const Product = () => {
     `,
     details: css`
       padding: 3rem 0;
-    `
+    `,
+
+    text: css`
+      color: #87888b;
+      font-weight: bold;
+      padding-bottom: 1rem;
+    `,
+
+    buy: css`
+      background: skyblue;
+      width: 50%;
+      top: 1rem;
+      padding: 1rem;
+      color: white;
+      font-weight: bold;
+
+      &:hover {
+        color: black;
+        background: orange;
+      }
+    `,
+
+    mainContent: css`
+      background: #fbf4f4;
+      padding: 2rem;
+      border-radius: 1rem;
+    `,
+    mainBox: css`
+      // background: #fbf4f4;
+      padding: 2rem 0;
+
+      @media (max-width: 900px) {
+        padding-top: 0;
+      }
+    `,
+
+    productDetail: css`
+      padding: 1rem;
+    `,
+    cardItem: css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    `,
+    cardContainer: css`
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    `,
   };
 
   const label = (value) => {
@@ -51,35 +98,43 @@ const Product = () => {
   };
 
   return (
-    <Box sx={{paddingTop:'2rem'}}>
-      <Container maxWidth="lg">
+    <Box sx={styles.mainBox}>
+      <Container maxWidth="lg" sx={styles.mainContent}>
         <Stack>
           <Grid container maxWidth={"lg"}>
-            <Stack spacing={3} direction={{ xs: "column", md: "row" }}>
+            <Stack
+              spacing={3}
+              direction={{ xs: "column", sm: "row", md: "row" }}
+            >
               <Grid item sm={12} md={4}>
-                <Card
-                  css={{ w: "100%", h: "400px", boxShadow: "none" }}
-                  variant="bordered"
+                <Stack direction={"row"}>
+                  <Card
+                    css={{ w: "100%", h: "400px", boxShadow: "none" }}
+                    variant="bordered"
+                  >
+                    <Card.Body css={{ p: 0 }}>
+                      <Card.Image
+                        src={Image}
+                        objectFit="contain"
+                        width="100%"
+                        height="100%"
+                        alt={"shoe"}
+                        css={{}}
+                      />
+                    </Card.Body>
+                  </Card>
+                </Stack>
+                <Stack
+                  direction={"row"}
+                  justifyContent={"space-around"}
+                  spacing={1}
                 >
-                  <Card.Body css={{ p: 0 }}>
-                    <Card.Image
-                      src={Image}
-                      objectFit="contain"
-                      width="100%"
-                      height="100%"
-                      alt={"shoe"}
-                    />
-                  </Card.Body>
-                </Card>
+                  <Button sx={styles.buy}>Buy Now</Button>
+                  <Button sx={styles.buy}>Add To Cart</Button>
+                </Stack>
               </Grid>
 
-              <Grid
-                sm={12}
-                md={8}
-                alignContent={"center"}
-                display={"flex"}
-                flexWrap={"wrap"}
-              >
+              <Grid sm={8} md={8} xs={12}>
                 <Stack spacing={1}>
                   <Typography sx={styles.productName}>Product1</Typography>
                   <Stack direction={"row"} spacing={1}>
@@ -112,7 +167,9 @@ const Product = () => {
                       Special PriceGet extra ₹20 off on 5 item(s) (price
                       inclusive of cashback/coupon)T&C
                     </Typography>
-                    <Typography variant="h5" sx={{paddingTop: '1rem'}}>Available Offers</Typography>
+                    <Typography variant="h5" sx={{ paddingTop: "1rem" }}>
+                      Available Offers
+                    </Typography>
                     <Stack spacing={1}>
                       <Typography variant="body1">
                         Eligible for Flipkart Pay Later
@@ -130,89 +187,109 @@ const Product = () => {
                 </Stack>
               </Grid>
             </Stack>
-            
-            <Grid container maxWidth={"lg"} rowSpacing={2} columnSpacing={3} sx={styles.details}>
-              <Grid
-                sm={12}
-                md={6}
-                direction={"row"}
-                display={"flex"}
-                justifyContent={"space-evenly"}
-                alignItems={"center"}
-                sx={{padding: '1rem 0'}}
-              >
-                <Typography>Delivery</Typography>
+
+            <Grid container xs={12} sx={styles.details} md={12}>
+              <Grid md={6} sm={6} xs={12} spacing={2} sx={styles.productDetail}>
+                <Typography sx={styles.text}>Delivery</Typography>
                 <TextField
                   id="standard-search"
-                  placeholder="pincode"
+                  placeholder="Pincode"
                   type="text"
                   variant="standard"
                   InputProps={{
-                    startAdornment: <InputAdornment position="start"><LocationOnIcon /></InputAdornment>,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Button
+                          sx={css`
+                            &:hover {
+                              background: none;
+                              cursor: pointer;
+                            }
+                          `}
+                        >
+                          Check
+                        </Button>
+                      </InputAdornment>
+                    ),
                   }}
                 />
+                <Typography fontWeight={"bold"}>
+                  Delivery in 2 Days, Thursday
+                </Typography>
               </Grid>
-              <Grid
-                sm={12}
-                md={6}
-                direction={"row"}
-                display={"flex"}
-                justifyContent={"space-evenly"}
-                sx={{padding: '1rem 0'}}
-              >
-                <Typography>Highlights</Typography>
+              <Grid md={6} sm={6} xs={12} spacing={2} sx={styles.productDetail}>
+                <Typography sx={styles.text}>Highlights</Typography>
                 <Stack>
-                <ul style={{ listStyleType: "circle" }}>
-                <li>Ideal For: Men & Women</li>
-                <li>Color: Black</li>
-                </ul>
+                  <ul style={{ listStyleType: "circle" }}>
+                    <li>Ideal For: Men & Women</li>
+                    <li>Color: Black</li>
+                  </ul>
                 </Stack>
               </Grid>
-              <Grid
-                xs={12}
-                md={6}
-                direction={"row"}
-                display={"flex"}
-                justifyContent={"space-evenly"}
-                alignItems={"center"}
-                sx={{padding: '1rem 0'}}
-              >
-                <Typography>Services</Typography>
-                <Stack>
-                <Typography>Cash On Delivery Available</Typography>
+              <Grid md={6} sm={6} xs={12} spacing={2} sx={styles.productDetail}>
+                <Typography sx={styles.text}>Services</Typography>
+                <Stack spacing={1}>
+                  <Typography>Cash On Delivery Available</Typography>
+                  <Typography>Cash On Delivery Available</Typography>
+                  <Typography>Cash On Delivery Available</Typography>
                 </Stack>
               </Grid>
-              <Grid
-                xs={12}
-                md={6}
-                display={"flex"}
-                justifyContent={"space-evenly"}
-                sx={{padding: '1rem 0'}}
-              >
-                <Typography>Seller</Typography>
+              <Grid md={6} sm={6} xs={12} spacing={2} sx={styles.productDetail}>
+                <Typography sx={styles.text}>Seller</Typography>
                 <Stack>
-                  <a style={{paddingLeft: '1rem'}}>SYGA</a>
+                  <a style={{ paddingLeft: "1rem" }}>SYGA</a>
                   <ul style={{ listStyleType: "circle" }}>
                     <li>No Return Applicable</li>
                   </ul>
-                  <a style={{paddingLeft: '1rem'}}>See other details</a>
+                  <a style={{ paddingLeft: "1rem" }}>See other details</a>
                 </Stack>
               </Grid>
             </Grid>
-            <Grid md={12} xs={12} height={"10vh"}>
-              <Container maxWidth={"lg"}>
-                <Stack direction={"row"} spacing={4}>
-                  <Typography>Description</Typography>
-                  <Typography>
-                    Perfect For Styling Hair Designed For All Hair Lengths 100%
-                    Brand New and High Quality. Hair styling comb set. Each comb
-                    has its own styling needs. Ideal for styling or just combing
-                    your hair. Durable, Anti-Static Hair Cutting Comb. Perfect
-                    for Hair Stylist to Use on All kind of Hair Style. Works
-                    well with hair styling and chemical treatments.
-                  </Typography>
-                </Stack>
-              </Container>
+
+            <Grid md={12} xs={12}>
+              <Stack direction={"row"} spacing={4}>
+                <Typography
+                  fontWeight={"bold"}
+                  color={"#87888b"}
+                  paddingLeft={"1rem"}
+                >
+                  Description
+                </Typography>
+                <Typography>
+                  Perfect For Styling Hair Designed For All Hair Lengths 100%
+                  Brand New and High Quality. Hair styling comb set. Each comb
+                  has its own styling needs. Ideal for styling or just combing
+                  your hair. Durable, Anti-Static Hair Cutting Comb. Perfect for
+                  Hair Stylist to Use on All kind of Hair Style. Works well with
+                  hair styling and chemical treatments.
+                </Typography>
+              </Stack>
+            </Grid>
+
+            <Typography
+              fontSize={{ xs: "1.5rem", sm: "2rem" }}
+              fontWeight={"bold"}
+              padding={"2rem 0"}
+            >
+              Related Products
+            </Typography>
+            <Grid
+              container
+              spacing={{ xs: 1, sm: 2, md: 3 }}
+              sx={styles.cardContainer}
+            >
+              {products.map((products, index) => (
+                <Grid
+                  item
+                  xs={6}
+                  sm={3}
+                  md={3}
+                  key={index}
+                  sx={styles.cardItem}
+                >
+                  <ProductCard products={products} />
+                </Grid>
+              ))}
             </Grid>
           </Grid>
         </Stack>
@@ -220,5 +297,36 @@ const Product = () => {
     </Box>
   );
 };
+
+const products = [
+  {
+    Name: "Product1",
+    image: Image,
+    details:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque vitae",
+    price: "Rs.1200",
+  },
+  {
+    Name: "Product2",
+    image: shirt,
+    details:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque vitae",
+    price: "Rs. 1200",
+  },
+  {
+    Name: "Product3",
+    image: Image,
+    details:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque vitae",
+    price: "Rs. 1200",
+  },
+  {
+    Name: "Product4",
+    image: shirt,
+    details:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque vitae",
+    price: "Rs. 1200",
+  },
+];
 
 export default Product;
