@@ -5,7 +5,6 @@ export default function CategoryPage() {
 
     return(
         <>
-            <Navbar />
             <Product />
         </>
     )

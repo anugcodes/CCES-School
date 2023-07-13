@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 
 import ProductCard from "../ProductCard/productCard";
+import ProductImageList from "../productImagesList/productImage";
+import CarouselWithButton from "../productCorousel/corousel.jsx";
 
 import { useState } from "react";
 
@@ -19,6 +21,7 @@ import { css } from "@emotion/react";
 
 import Image from "../../assets/shoe.jpg";
 import shirt from "../../assets/tshirt.jpg";
+import top from "../../assets/top.jpg"
 
 const Product = () => {
   const [rating, setRating] = useState(4.4);
@@ -100,30 +103,14 @@ const Product = () => {
   return (
     <Box sx={styles.mainBox}>
       <Container maxWidth="lg" sx={styles.mainContent}>
-        <Stack>
+        <Stack direction={"row"}>
           <Grid container maxWidth={"lg"}>
             <Stack
               spacing={3}
               direction={{ xs: "column", sm: "row", md: "row" }}
             >
-              <Grid item sm={12} md={4}>
-                <Stack direction={"row"}>
-                  <Card
-                    css={{ w: "100%", h: "400px", boxShadow: "none" }}
-                    variant="bordered"
-                  >
-                    <Card.Body css={{ p: 0 }}>
-                      <Card.Image
-                        src={Image}
-                        objectFit="contain"
-                        width="100%"
-                        height="100%"
-                        alt={"shoe"}
-                        css={{}}
-                      />
-                    </Card.Body>
-                  </Card>
-                </Stack>
+              <Grid item sm={12} md={4} direction={"row"}>
+                  <CarouselWithButton imageUrls={imageUrls} />
                 <Stack
                   direction={"row"}
                   justifyContent={"space-around"}
@@ -328,5 +315,7 @@ const products = [
     price: "Rs. 1200",
   },
 ];
+
+const imageUrls = [shirt, Image, top];
 
 export default Product;
