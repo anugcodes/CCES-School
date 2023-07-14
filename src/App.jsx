@@ -1,6 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+
+// home page
 import Landing from "./pages/Landing";
+
+// My Account
+import MyAccountLayout from "./components/myaccount/myAccountLayout";
+import MyAccountPage from "./components/myaccount/myAccount";
+import UserProfile from "./components/myaccount/profile";
+import UserAddress from "./components/myaccount/address";
+
 
 function App() {
   return (
@@ -8,6 +18,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<Landing />} />
+          <Route path="/myaccount" element={<MyAccountLayout />} >
+            <Route index element={<MyAccountPage />} />
+            <Route path="profile" element={<UserProfile />} />
+            <Route path="addresses" element={<UserAddress />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
