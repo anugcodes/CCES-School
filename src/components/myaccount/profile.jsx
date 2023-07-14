@@ -2,10 +2,11 @@
 /** @jsxImportSource @emotion/react */
 
 import React from 'react';
-import { Container,Stack, Typography ,TextField,ToggleButton,ToggleButtonGroup} from '@mui/material';
+import { Container,Stack, Typography ,TextField,ToggleButton,ToggleButtonGroup,Button} from '@mui/material';
 import {BiChevronLeft} from 'react-icons/bi';
 import {Link } from 'react-router-dom';
 import { css } from '@emotion/react';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
 export default function UserProfile() {
@@ -33,6 +34,11 @@ export default function UserProfile() {
                     <TextField  label="Email" variant="standard" />
                     <TextField  label="Password" variant="standard" />
                     <TextField  label="Phone" variant="standard" />
+                    <DatePicker
+                        label="Date of Birth"
+                        slotProps={{ textField: { variant: 'standard' } }}
+                        fullWidth
+                        />
                     <div>
                         <Typography  color='#777' fontWeight='light'>Gender</Typography>
                         <ToggleButtonGroup
@@ -47,9 +53,8 @@ export default function UserProfile() {
                         <ToggleButton value="Female">Female</ToggleButton>
                     </ToggleButtonGroup>
                     </div>
+                    <Button sx={css`max-width: 220px;border-radius: 0;padding:1rem .5rem; `} variant={'contained'}>Save Changes</Button>
                 </Stack>
-                
-
            </div>
 
         </Container>
