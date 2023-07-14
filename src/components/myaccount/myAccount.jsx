@@ -69,8 +69,8 @@ const subSections = [
     description: "Edit personal info, change password, etc.",
   },
   {
-    title: "My Addresses",
-    link: "/myaccount/addresses",
+    title: "My Address",
+    link: "/myaccount/address",
     description: "Edit add or remove addresses",
   },
   {

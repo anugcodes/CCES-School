@@ -21,7 +21,7 @@ function App() {
           <Route path="/myaccount" element={<MyAccountLayout />} >
             <Route index element={<MyAccountPage />} />
             <Route path="profile" element={<UserProfile />} />
-            <Route path="addresses" element={<UserAddress />} />
+            <Route path="address" element={<UserAddress />} />
           </Route>
         </Routes>
       </BrowserRouter>
