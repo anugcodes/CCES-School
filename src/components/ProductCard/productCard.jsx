@@ -3,21 +3,22 @@ import { Card, Text, Row, Button, Col, Spacer } from "@nextui-org/react";
 import { css } from "@emotion/react";
 
 import { useState } from "react";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ products }) => {
   const navigate = new useNavigate();
 
   const navigateToProduct = () => {
-    navigate('/product');
-    console.log("Clicked")
-  }
+    navigate("/product");
+    console.log("Clicked");
+  };
 
   return (
     <>
       <Card isPressable isHoverable css={{ w: "100%", h: "400px" }}>
         <Card.Body css={{ p: 0 }}>
           <Card.Image
+            showSkeleton
             src={products.image}
             objectFit="contain"
             width="100%"
@@ -44,9 +45,6 @@ const ProductCard = ({ products }) => {
               </Row>
               <Row justify="center">
                 <Text css={{ color: "white" }}>{products.details}</Text>
-              </Row>
-              <Row justify="center">
-                <Button css={{ w: "100%" }} color="gradient" ghost onClick={navigateToProduct()}>View Product</Button>
               </Row>
             </Col>
           </Row>

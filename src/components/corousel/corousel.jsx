@@ -21,7 +21,7 @@ const CarouselWithButton = ({ imageUrls }) => {
   return (
 <Grid>
       <Card css={{ w: '100%', h: '400px', boxShadow: 'none' }} variant="bordered">
-        <Card.Body css={{ p: 0}}>
+        <Card.Body css={{ p: 0 }}>
           <Card.Image
             src={imageUrls[selectedIndex]}
             objectFit="contain"
@@ -57,9 +57,9 @@ const CarouselWithButton = ({ imageUrls }) => {
           <div
             key={index}
             style={{
-              width: '10px',
-              height: '10px',
-              borderRadius: '50%',
+              width: '13px',
+              height: '3px',
+              borderRadius: '10%',
               background: index === selectedIndex ? 'blue' : 'gray',
               margin: '0 5px',
               cursor: 'pointer',

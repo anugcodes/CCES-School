@@ -11,17 +11,16 @@ import {
   InputAdornment,
 } from "@mui/material";
 
-import ProductCard from "../ProductCard/productCard";
-import ProductImageList from "../productImagesList/productImage";
-import CarouselWithButton from "../productCorousel/corousel.jsx";
+import ProductCard from "../components/ProductCard/productCard";
+import CarouselWithButton from "../components/corousel/corousel.jsx";
 
 import { useState } from "react";
 
 import { css } from "@emotion/react";
 
-import Image from "../../assets/shoe.jpg";
-import shirt from "../../assets/tshirt.jpg";
-import top from "../../assets/top.jpg"
+import Image from "../assets/shoe.jpg";
+import shirt from "../assets/tshirt.jpg";
+import top from "../assets/top.jpg";
 
 const Product = () => {
   const [rating, setRating] = useState(4.4);
@@ -32,7 +31,7 @@ const Product = () => {
       font-weight: bolder;
     `,
     price: css`
-      padding: 1rem 0;
+      padding: 0.5rem 0;
       align-items: center;
     `,
     details: css`
@@ -106,22 +105,14 @@ const Product = () => {
         <Stack direction={"row"}>
           <Grid container maxWidth={"lg"}>
             <Stack
-              spacing={3}
+              spacing={4}
               direction={{ xs: "column", sm: "row", md: "row" }}
             >
               <Grid item sm={12} md={4} direction={"row"}>
-                  <CarouselWithButton imageUrls={imageUrls} />
-                <Stack
-                  direction={"row"}
-                  justifyContent={"space-around"}
-                  spacing={1}
-                >
-                  <Button sx={styles.buy}>Buy Now</Button>
-                  <Button sx={styles.buy}>Add To Cart</Button>
-                </Stack>
+                <CarouselWithButton imageUrls={imageUrls} />
               </Grid>
 
-              <Grid sm={8} md={8} xs={12}>
+              <Grid sm={6} md={6} xs={12} display={"flex"} alignItems={"center"}>
                 <Stack spacing={1}>
                   <Typography sx={styles.productName}>Product1</Typography>
                   <Stack direction={"row"} spacing={1}>
@@ -133,49 +124,60 @@ const Product = () => {
                     />
                     <Typography>{label(rating)}</Typography>
                   </Stack>
-                  <Stack sx={styles.price} direction={"row"} spacing={2}>
+                  <Stack sx={styles.price} direction={"row"} spacing={1}>
                     <Typography
                       sx={{ fontSize: "1.7rem", fontWeight: "bolder" }}
                     >
                       <span>&#8377;</span>165
                     </Typography>
-                    <Typography sx={{ textDecoration: "line-through" }}>
+                    <Typography sx={{ textDecoration: "line-through", color: 'gray' }}>
                       <span>&#8377;</span>600
                     </Typography>
                     <Typography sx={{ color: "green", fontWeight: "bold" }}>
                       10% off
                     </Typography>
                   </Stack>
-                  <Stack spacing={1}>
-                    <Typography variant="body1" fontSize={"1.4rem"}>
-                      Coupons For You
-                    </Typography>
-                    <Typography variant="body1">
-                      Special PriceGet extra ₹20 off on 5 item(s) (price
-                      inclusive of cashback/coupon)T&C
-                    </Typography>
-                    <Typography variant="h5" sx={{ paddingTop: "1rem" }}>
-                      Available Offers
-                    </Typography>
-                    <Stack spacing={1}>
-                      <Typography variant="body1">
-                        Eligible for Flipkart Pay Later
-                      </Typography>
-                      <Typography variant="body1">
-                        Buy this product & get Rs.50 off on your next purchase
-                        of Fans
-                      </Typography>
-                      <Typography variant="body1">
-                        Buy this product & get Rs.100 off on your next purchase
-                        of Fans
-                      </Typography>
-                    </Stack>
+                  <Typography>Nikon Z50 Mirrorless Digital Camera with 16-50mm Lens, Rechargeable Lithium-ion Battery, Battery Charger, Camera Strap, Body Cap, Eye Cup</Typography>
+                  <Stack
+                    direction={"row"}
+                    justifyContent={"space-around"}
+                    spacing={1}
+                  >
+                    <Button sx={styles.buy}>Buy Now</Button>
+                    <Button sx={styles.buy}>Add To Cart</Button>
                   </Stack>
                 </Stack>
               </Grid>
             </Stack>
 
             <Grid container xs={12} sx={styles.details} md={12}>
+              <Grid md={12} style={{ padding: "1rem" }}>
+                <Stack spacing={1}>
+                  <Typography variant="body1" fontSize={"1.4rem"}>
+                    Coupons For You
+                  </Typography>
+                  <Typography variant="body1">
+                    Special PriceGet extra ₹20 off on 5 item(s) (price inclusive
+                    of cashback/coupon)T&C
+                  </Typography>
+                  <Typography variant="h5" sx={{ paddingTop: "1rem" }}>
+                    Available Offers
+                  </Typography>
+                  <Stack spacing={1}>
+                    <Typography variant="body1">
+                      Eligible for Flipkart Pay Later
+                    </Typography>
+                    <Typography variant="body1">
+                      Buy this product & get Rs.50 off on your next purchase of
+                      Fans
+                    </Typography>
+                    <Typography variant="body1">
+                      Buy this product & get Rs.100 off on your next purchase of
+                      Fans
+                    </Typography>
+                  </Stack>
+                </Stack>
+              </Grid>
               <Grid md={6} sm={6} xs={12} spacing={2} sx={styles.productDetail}>
                 <Typography sx={styles.text}>Delivery</Typography>
                 <TextField
@@ -252,7 +254,6 @@ const Product = () => {
                 </Typography>
               </Stack>
             </Grid>
-
             <Typography
               fontSize={{ xs: "1.5rem", sm: "2rem" }}
               fontWeight={"bold"}
