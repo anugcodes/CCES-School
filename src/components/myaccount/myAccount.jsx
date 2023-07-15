@@ -33,7 +33,7 @@ export default function MyAccountPage() {
                       css={css`                    
                         border: 1px solid #ccc;
                         padding: 1rem;
-                        border-radius: 1rem;
+                        border-radius: .5rem;
                         cursor: pointer;
                         transition: all 0.3s ease-in-out;
                         &:hover {
