@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 /** @jsxImportSource @emotion/react */
@@ -7,7 +8,6 @@ import {
   Stack,
   Typography,
   Grid,
-  Card,
   Button,
   Divider,
   TextField,
@@ -25,6 +25,9 @@ import { BiChevronLeft } from "react-icons/bi";
 import { css } from "@emotion/react";
 import { BiPlus } from "react-icons/bi";
 
+
+import BackToAccount from "./backtoaccount";
+
 export default function UserAddress() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,39 +37,10 @@ export default function UserAddress() {
     <div>
       <Container maxWidth="md">
         {/* back to my account page link */}
-        <Link
-          to="/myaccount"
-          style={{
-            textDecoration: "none",
-            color: "#777",
-            maxWidth: "200px",
-            display: "block",
-            padding: "2rem 0",
-          }}
-        >
-          <Stack direction={"row"} alignItems={"center"}>
-            <BiChevronLeft
-              css={css`
-                font-size: 1.5rem;
-              `}
-            />
-            <Typography
-              variant={{ xs: "subtitle2", md: "subtitle1" }}
-              fontWeight="light"
-            >
-              Back to My Account
-            </Typography>
-          </Stack>
-        </Link>
+        <BackToAccount />
 
         {/* page heading - My Address */}
-        <Typography
-          variant="h4"
-          fontWeight="bold"
-          color="#000"
-          gutterBottom
-          sx={{ marginBottom: "1.5rem" }}
-        >
+        <Typography variant="h4" fontWeight="bold" color="#000" gutterBottom>
           My Address
         </Typography>
 
@@ -91,40 +65,7 @@ export default function UserAddress() {
                 {/* address cards */}
                 {user_addresses.map((address, index) => (
                   <Grid item xs="12" sm="4" key={index}>
-                    <div
-                      css={css`
-                        padding: 1rem;
-                        border-radius: 0.5rem;
-                        border: 1px solid #ccc;
-                        &:hover {
-                          border: 1px solid #999;
-                        }
-                      `}
-                    >
-                      <Stack direction={"column"} spacing={1}>
-                        <Typography
-                          variant="subtitle1"
-                          fontWeight="bold"
-                          color="#000"
-                        >
-                          {address.name}
-                        </Typography>
-                        <Typography
-                          variant="subtitle2"
-                          fontWeight="normal"
-                          color="#000"
-                        >
-                          {address.phone}
-                        </Typography>
-                        <Typography
-                          variant="subtitle2"
-                          fontWeight="normal"
-                          color="#000"
-                        >
-                          {address.city}
-                        </Typography>
-                      </Stack>
-                    </div>
+                    <AddressCard address={address} />
                   </Grid>
                 ))}
               </Grid>
@@ -413,5 +354,62 @@ const AddAddressForm = () => {
         </Container>
       </div>
     </>
+  );
+};
+
+const AddressCard = ({ address }) => {
+  return (
+    <div
+      css={css`
+        padding: .75rem;
+        border-radius: 0.25rem;
+        border: 1px solid #ccc;
+        &:hover {
+          border: 1px solid #999;
+        }
+      `}
+    >
+      <Stack direction={"column"} spacing={1}>
+        <Typography variant="subtitle1" fontWeight="bold" color="#000">
+          {address.name}
+        </Typography>
+        <Typography variant="body2" fontWeight="normal" color="#555">
+          {address.address.addressLine1} {address.address.addressLine2} {address.address.landmark}
+        </Typography>
+
+        <Typography variant="body2"  color="#777">
+          {address.address.city} {address.address.state}, {address.address.pincode}
+          <div>Contact Number: {address.phone}</div>         
+        </Typography>
+        
+        
+        {/* address edit and delete controls */}
+        <Stack direction={"row"} spacing={2} alignItems={"flex-end"}>
+          <span
+            css={css`
+              cursor: pointer;
+              font-weight: bold;
+              text-transform: capitalize;
+              color: #222;
+            `}
+            onClick={() => console.log("edit clicked")}
+          >
+            Edit
+          </span>
+          {/* <span>|</span> */}
+          <span
+            css={css`
+              cursor: pointer;
+              font-weight: bold;
+              text-transform: capitalize;
+              color: red;
+            `}
+            onClick={() => console.log("Delete clicked")}
+          >
+            Delete
+          </span>
+        </Stack>
+      </Stack>
+    </div>
   );
 };

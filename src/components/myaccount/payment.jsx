@@ -2,9 +2,9 @@
 /** @jsxImportSource @emotion/react */
 
 import { Container, Stack, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
 import { css } from "@emotion/react";
-import { BiChevronLeft, BiCreditCard } from "react-icons/bi";
+import {  BiCreditCard } from "react-icons/bi";
+import BackToAccount from "./backtoaccount";
 
 export default function UserPayment() {
   return (
@@ -12,30 +12,7 @@ export default function UserPayment() {
       <div>
         <Container maxWidth="md">
           {/* back to my account page link */}
-          <Link
-            to="/myaccount"
-            style={{
-              textDecoration: "none",
-              color: "#777",
-              maxWidth: "200px",
-              display: "block",
-              padding: "2rem 0",
-            }}
-          >
-            <Stack direction={"row"} alignItems={"center"}>
-              <BiChevronLeft
-                css={css`
-                  font-size: 1.5rem;
-                `}
-              />
-              <Typography
-                variant={{ xs: "subtitle2", md: "subtitle1" }}
-                fontWeight="light"
-              >
-                Back to My Account
-              </Typography>
-            </Stack>
-          </Link>
+          <BackToAccount />
 
           {/* page heading - My Address */}
           <Typography

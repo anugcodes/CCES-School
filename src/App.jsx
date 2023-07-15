@@ -12,6 +12,7 @@ import UserProfile from "./components/myaccount/profile";
 import UserAddress from "./components/myaccount/address";
 import UserPayment from "./components/myaccount/payment";
 import UserProductOrders from "./components/myaccount/orders";
+import AdminLayout from "./components/admin/adminLayout";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="payments" element={<UserPayment />} />
             <Route path="orders" element={<UserProductOrders />} />
           </Route>
+          <Route path="/admin" element={<AdminLayout />} />
         </Routes>
       </BrowserRouter>
     </>
