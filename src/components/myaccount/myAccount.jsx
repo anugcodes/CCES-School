@@ -22,32 +22,33 @@ export default function MyAccountPage() {
           <Grid container spacing={2}>
             {subSections.map((section, i) => (
               <Grid item key={i} xs={12} sm={6} md={4}>
-                <div
-                  css={css`
-                    padding: 1.25rem 1rem;
-                    border: 1px solid #ccc;
-                    border-radius: 1rem;
-                    cursor: pointer;
-                    transition: all 0.3s ease-in-out;
-                    &:hover {
-                      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-                    }
-                  `}
-                >
-                  <Link
+                
+                <Link
                     to={section.link}
                     css={css`
                       text-decoration: none;
                     `}
                   >
-                    <Typography variant="h6" color={"#000"}>
+                    <div
+                      css={css`                    
+                        border: 1px solid #ccc;
+                        padding: 1rem;
+                        border-radius: 1rem;
+                        cursor: pointer;
+                        transition: all 0.3s ease-in-out;
+                        &:hover {
+                          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                        }
+                      `}
+                    >
+                  <Typography variant="h6" color={"#000"}>
                       {section.title}
                     </Typography>
                     <Typography variant="body2" color={"#555"}>
                       {section.description}
                     </Typography>
-                  </Link>
                 </div>
+                  </Link>
               </Grid>
             ))}
           </Grid>

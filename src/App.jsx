@@ -10,6 +10,8 @@ import MyAccountLayout from "./components/myaccount/myAccountLayout";
 import MyAccountPage from "./components/myaccount/myAccount";
 import UserProfile from "./components/myaccount/profile";
 import UserAddress from "./components/myaccount/address";
+import UserPayment from "./components/myaccount/payment";
+import UserProductOrders from "./components/myaccount/orders";
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
             <Route index element={<MyAccountPage />} />
             <Route path="profile" element={<UserProfile />} />
             <Route path="address" element={<UserAddress />} />
+            <Route path="payments" element={<UserPayment />} />
+            <Route path="orders" element={<UserProductOrders />} />
           </Route>
         </Routes>
       </BrowserRouter>
