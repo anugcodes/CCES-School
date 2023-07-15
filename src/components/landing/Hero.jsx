@@ -1,5 +1,5 @@
 import React from 'react'
-// import '../../css/landing.css'
+import '../../css/landing.css'
 import { EffectFade, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
