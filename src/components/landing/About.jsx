@@ -14,7 +14,11 @@ function About() {
                     <Text className='fw-bold' color='error' size={55}>Us</Text>
                 </div>
                 <div
+<<<<<<< HEAD
                     className="slanted-content m-4 text-center"
+=======
+                    // className="slanted-content m-4 text-center"
+>>>>>>> ankit-dev
                     data-aos="fade"
                     data-aos-duration="200"
                 >
@@ -26,7 +30,11 @@ function About() {
                     <Grid sm>
                         <Card
                             css={{ mw: "330px", $$cardColor: '$colors$gradient', p: "$3" }}
+<<<<<<< HEAD
                             data-aos='flip-left'
+=======
+                            // data-aos='flip-left'
+>>>>>>> ankit-dev
                             data-aos-duration='1500'
                         >
                             <Card.Header>
@@ -44,7 +52,11 @@ function About() {
                     <Grid sm>
                         <Card
                             css={{ mw: "330px", $$cardColor: '$colors$gradient', p: "$3" }}
+<<<<<<< HEAD
                             data-aos='flip-right'
+=======
+                            // data-aos='flip-right'
+>>>>>>> ankit-dev
                             data-aos-duration='1500'
                         >
                             <Card.Header>
@@ -61,7 +73,11 @@ function About() {
                     <Grid sm>
                         <Card
                             css={{ mw: "330px", $$cardColor: '$colors$gradient', p: "$3" }}
+<<<<<<< HEAD
                             data-aos='flip-left'
+=======
+                            // data-aos='flip-left'
+>>>>>>> ankit-dev
                             data-aos-duration='1500'
                         >
                             <Card.Header>
