@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,6 +15,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import {css} from "@emotion/react"
 
 const pages = ['Home', 'Men', 'Women', 'Accessories'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -111,7 +114,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            nude.
+            nude<span css={css`color: red;`}>.</span>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
