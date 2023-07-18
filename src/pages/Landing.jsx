@@ -1,32 +1,17 @@
-import React from 'react'
-import BarNav from '../components/landing/BarNav'
-import Hero from '../components/landing/Hero'
-import Products from '../components/landing/Products'
-import FooterHero from '../components/landing/FooterHero'
-import About from '../components/landing/About'
-import Category from '../components/landing/Category'
-<<<<<<< HEAD
-=======
-import "../css/landing.css"
->>>>>>> ankit-dev
+import TopCategory from "../components/landing/TopCategory"
+import Bestseller from "../components/landing/Bestseller"
+import Trending from "../components/landing/Trending"
+import TopHeading from "../components/landing/topHeading"
 
-function Landing() {
-    return (
+const Landing = () => {
+    return(
         <>
-<<<<<<< HEAD
-            <BarNav />
-=======
->>>>>>> ankit-dev
-            <Hero />
-            <Products />
-            <About />
-            <Category />
-<<<<<<< HEAD
-            <FooterHero />
-=======
->>>>>>> ankit-dev
+            <TopHeading />
+            <Trending />
+            <TopCategory />
+            <Bestseller />
         </>
     )
 }
 
-export default Landing;
+export default Landing
