@@ -6,12 +6,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ products }) => {
-  const navigate = new useNavigate();
-
-  const navigateToProduct = () => {
-    navigate("/product");
-    console.log("Clicked");
-  };
 
   return (
     <>

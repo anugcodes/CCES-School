@@ -22,7 +22,7 @@ import { useEffect, useRef } from "react";
 
 
 
-const Bestseller = () => {
+const NewArrival = () => {
   let swiperRef = useRef();
   useEffect(() => {
     if (swiperRef.current) {
@@ -36,10 +36,10 @@ const Bestseller = () => {
 
   const styles = {
     mainText: css`
-    padding: 1rem 0;
-    text-align: center;
-    font-size: 3rem;
-    font-family: Lilita One;
+      padding: 1rem 0;
+      text-align: center;
+      font-size: 3rem;
+      font-family: Lilita One;
     `,
     cards: css`
       display: flex;
@@ -52,7 +52,7 @@ const Bestseller = () => {
   return (
     <>
       <Typography textAlign={"center"} sx={styles.mainText}>
-        Our Bestseller
+        New Arrivals
       </Typography>
       <Grid container maxWidth={"xl"} paddingBottom={"1rem"}>
       <Grid item md={12} xs={12}>
@@ -132,4 +132,4 @@ const products = [
   },
 ];
 
-export default Bestseller;
+export default NewArrival;

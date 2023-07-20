@@ -32,10 +32,11 @@ const Trending = () => {
       width: 100%;
     `,
     textStyle: css`
-      font-size: 1.8rem;
-      font-weight: bold;
-      text-align: center;
-      padding: 1rem 0;
+      
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 3rem;
+    font-family: Lilita One;
     `,
     productBox: css`
       transition: 0.3s ease;

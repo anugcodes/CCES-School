@@ -13,6 +13,7 @@ import UserAddress from "./components/myaccount/address";
 import UserPayment from "./components/myaccount/payment";
 import UserProductOrders from "./components/myaccount/orders";
 import AdminLayout from "./components/admin/adminLayout";
+import UserCart from "./components/myaccount/myCart";
 
 // product pages
 import Category from "./pages/Category";
@@ -36,6 +37,7 @@ function App() {
               <Route path="address" element={<UserAddress />} />
               <Route path="payments" element={<UserPayment />} />
               <Route path="orders" element={<UserProductOrders />} />
+              <Route path="cart" element={<UserCart />} />
             </Route>
             <Route path="/admin" element={<AdminLayout />} />
             <Route path="*" element={<h1>Not Found</h1>} />

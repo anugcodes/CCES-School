@@ -1,92 +1,88 @@
-import React from "react";
-import {
-  FaEnvelope,
-  FaFacebookSquare,
-  FaInstagramSquare,
-  // FaLocationPin,
-  FaMapPin,
-  FaPhone,
-  // FaSearchLocation,
-  FaTwitterSquare,
-} from "react-icons/fa";
+import { Grid, Box, Typography, Stack, TextField, Button } from "@mui/material"
+import { css } from "@emotion/react"
 
-function FooterHero() {
-  return (
-    <>
-      <footer className="footer mt-5 pt-5 pb-3 px-3">
-        {/* <div className="waves">
-                    <div className="wave" id="wave1"></div>
-                    <div className="wave" id="wave2"></div>
-                    <div className="wave" id="wave3"></div>
-                    <div className="wave" id="wave4"></div>
-                </div> */}
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-5 col-xs-12 about-company">
-              <h2>
-                nude<span className="text-danger">.</span>
-              </h2>
-              <p className="pr-5 text-white">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                ac ante mollis quam tristique convallis{" "}
-              </p>
-              <p className="my-3 mb-5">
-                <a href="#" className="mx-2">
-                  <FaFacebookSquare size={40} />
-                </a>
-                <a href="#" className="mx-2">
-                  <FaInstagramSquare size={40} />
-                </a>
-                <a href="#" className="mx-2">
-                  <FaTwitterSquare size={40} />
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-3 col-xs-12 links my-2">
-              <h3 className="mt-lg-0 mt-sm-3">Our Products</h3>
-              <ul className="m-0 p-0 mb-0">
-                <li className="text-danger">
-                  - <a href="#">Lorem ipsum</a>
-                </li>
-                <li className="text-danger">
-                  - <a href="#">Nam mauris velit</a>
-                </li>
-                <li className="text-danger">
-                  - <a href="#">Etiam vitae mauris</a>
-                </li>
-                <li className="text-danger">
-                  - <a href="#">Fusce scelerisque</a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-lg-4 col-xs-12 location my-2">
-              <h3 className="mt-lg-0 mt-sm-4">Location</h3>
-              <p>
-                <FaMapPin size={20} />
-                &nbsp;&nbsp;22, Lorem ipsum dolor, consectetur adipiscing
-              </p>
-              <p className="mb-0">
-                <FaPhone size={20} />
-                &nbsp;&nbsp;+91 7008297411
-              </p>
-              <p>
-                <FaEnvelope size={20} />
-                &nbsp;&nbsp;info@hsdf.com
-              </p>
-            </div>
-          </div>
-          <div className="row mt-5">
-            <div className="col copyright">
-              <p className="">
-                <small className="text-white-50">
-                  © 2019. All Rights Reserved.
-                </small>
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </>
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import PinterestIcon from '@mui/icons-material/Pinterest';
+
+
+const FooterHero = () => {
+
+  const styles = {
+    mainContainer: css`
+      background: #0d0e0e;
+      color: white;
+      display: flex;
+      justify-content: center;
+      padding: 5rem 0;
+      // box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    `,
+    mainStack: css`
+      display: flex;
+      justify-content: space-between;
+    `,
+    title: css`
+      font-size: 2rem;
+      font-weight: bolder;
+      color: yellow;
+      letter-spacing: 0.5rem;
+    `,
+    secondaryTitles: css`
+      font-size: 1.2rem;
+      color: yellow;
+      font-weight: bold;
+      letter-spacing: .2rem;
+    `
+  }
+
+  return(
+  <Box sx={styles.mainContainer}>
+    <Grid container maxWidth={"lg"} spacing={3}>
+        <Grid item md={12} xs={12}>
+          <Typography sx={styles.title}>nude.</Typography>
+        </Grid>
+        <Grid item md={12} xs={12}>
+          <Stack sx={styles.mainStack} direction={{sm: 'row', xs: 'column'}} spacing={{xs: 2, sm: 0}}>
+            <Stack spacing={{sm: 3, xs: 0}}>
+              <Typography sx={styles.secondaryTitles}>CUSTOMER SERVICES</Typography>
+              <Stack>
+              <Typography>Contact Us</Typography>
+              <Typography>Track Order</Typography>
+              <Typography>Return Order</Typography>
+              <Typography>Cancel Order</Typography>
+              </Stack>
+            </Stack>
+            <Stack spacing={{sm: 3, xs: 0}}>
+              <Typography sx={styles.secondaryTitles}>COMPANY</Typography>
+              <Stack>
+              <Typography>About Us</Typography>
+              <Typography>We're Hiring</Typography>
+              <Typography>Terms & Conditions</Typography>
+              <Typography>Privacy Policy</Typography>
+              <Typography>Blog</Typography>
+              </Stack>
+            </Stack>
+            <Stack spacing={{sm: 3, xs: 0}}>
+              <Typography sx={styles.secondaryTitles}>CONNECT WITH US</Typography>
+              <Stack direction={'row'} spacing={2}>
+                <FacebookIcon />
+                <TwitterIcon />
+                <InstagramIcon />
+                <PinterestIcon />
+              </Stack>
+            </Stack>
+            <Stack spacing={{sm: 3, xs: 2}}>
+              <Typography sx={styles.secondaryTitles}>KEEP UP TO DATE</Typography>
+              <Stack direction={"row"}>
+                <TextField label="Email" placeholder="Enter Your Email" variant="standard" sx={{color: 'white'}} color="success" error={true} size="small"/>
+                <Button sx={{background: 'yellow', borderRadius: 'none', color: 'black'}} size="small">SUBSCRIBE</Button>
+              </Stack>
+            </Stack>
+          </Stack>
+        </Grid>
+    </Grid>
+  </Box>
   );
 }
 

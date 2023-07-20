@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 import { css } from "@emotion/react";
 
-import ProductCard from "../productCard/productCard";
+import ProductCard from "../ProductCard/productCard";
 
 import productImage from "../../assets/shoe.jpg";
 import shirtImage from "../../assets/tshirt.jpg";

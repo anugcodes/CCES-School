@@ -256,4 +256,5 @@ const products = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque vitae",
     price: "Rs. 1200",
   },
+  
 ];
