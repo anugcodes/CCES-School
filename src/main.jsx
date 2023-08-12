@@ -9,7 +9,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { ContextProvider } from "./contextProvider/MyContext.jsx";
 
 // register Swiper custom elements
 register();
@@ -20,9 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <NextUIProvider>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <ContextProvider>
         <App />
-    </ContextProvider>
       </LocalizationProvider>
     </NextUIProvider>
   </React.StrictMode>
