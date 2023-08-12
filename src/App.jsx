@@ -23,27 +23,7 @@ import Product from "./pages/product";
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <>
-            <Route path="/" element={<HomePageLayout/>}>
-              <Route index element={<Landing />} />
-              <Route path="category" element={<Category />} />
-              <Route path="product" element={<Product />} />
-            </Route>
-            <Route path="/myaccount" element={<MyAccountLayout />}>
-              <Route index element={<MyAccountPage />} />
-              <Route path="profile" element={<UserProfile />} />
-              <Route path="address" element={<UserAddress />} />
-              <Route path="payments" element={<UserPayment />} />
-              <Route path="orders" element={<UserProductOrders />} />
-              <Route path="cart" element={<UserCart />} />
-            </Route>
-            <Route path="/admin" element={<AdminLayout />} />
-            <Route path="*" element={<h1>Not Found</h1>} />
-          </>
-        </Routes>
-      </BrowserRouter>
+      
     </>
   );
 }
