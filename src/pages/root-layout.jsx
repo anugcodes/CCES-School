@@ -7,6 +7,7 @@ export default function RootLayout() {
     <div>
         <Navbar />
         <Outlet />
+        <div style={{height:"100vh",background:"blue",}}></div>
     </div>
   )
 }

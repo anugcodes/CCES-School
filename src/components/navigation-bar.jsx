@@ -8,9 +8,13 @@ import "../css/navigation-bar.css";
 
 export default function Navbar() {
   return (
-    <div style={{ background: "#efefef" }}>
+    <div style={{
+      position:"sticky",
+      top:"0",
+      zIndex: "2",
+    }}>
       <Container maxWidth="lg">
-        <Stack direction="row" spacing={2} justifyContent={"space-between"}>
+        <Stack direction="row" spacing={2} justifyContent={"space-between"} >
           <Stack direction={"row"} spacing={3} alignItems={"center"}>
             <Typography variant="h4">Nude.</Typography>
             <div className="links-container">
