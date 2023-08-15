@@ -16,7 +16,7 @@ const WhyChoose = () => {
       `}
     >
       <Box className="whyMainContainer">
-        <Grid className="container" container maxWidth={"lg"}>
+        <Grid className="container" container maxWidth={"lg"} sx={{paddingBottom: '5vh'}}>
           <Grid className="text" item md={10}>
             <Typography
               className="whyHeading"

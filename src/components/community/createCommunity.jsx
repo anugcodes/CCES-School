@@ -21,16 +21,16 @@ const Community = () => {
     justify-content: center;
       `}>
         <Grid container maxWidth={"lg"}>
-          <Grid item md={10}>
+          <Grid item md={12}>
             <Typography
               sx={css`
                 font-size: 4rem;
                 font-weight: bold;
                 color: #007bff;
-                padding-top: 15vh;
+                padding-top: 5vh;
               `}
             >
-              Why join us?
+              Create your own community
             </Typography>
             <Typography
               sx={css`
@@ -39,11 +39,7 @@ const Community = () => {
                 padding-top: 2vh;
               `}
             >
-              Be the architect of your safe space. With our platform, you have
-              the power to build and customize your very own community from the
-              ground up. Unleash your passions, expertise, and unique vision to
-              create a welcoming haven for like-minded individuals. Whether
-              you're passionate about art, gaming, technology
+              Be the architect of your safe space. With our platform, you have the power to build and customize your very own community from the ground up. Unleash your passions, expertise, and unique vision to create a welcoming haven for like-minded individuals. Whether you're passionate about art, gaming, technology, wellness, or any other topic close to your heart, our system gives you the tools to foster meaningful connections and empower those who join. Start crafting your community today and embark on an exciting journey of empowerment, belonging, and shared experiences
             </Typography>
           </Grid>
           <Grid item sx={css`
