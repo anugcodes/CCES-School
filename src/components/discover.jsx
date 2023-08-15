@@ -19,13 +19,10 @@ const Discover = () => {
 
   const styles = {
     mainContainer: css`
-      height: 100vh;
-      width: 100vw;
       background: url(${Background});
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-    //   overflow-y: hidden;
     `,
     gridContainer: css`
       background: linear-gradient(
@@ -33,15 +30,13 @@ const Discover = () => {
         rgba(253, 251, 252, 0.8744747899159664) 70%,
         rgba(183, 205, 253, 0.87) 70%
       );
-      width: 100%;
-      height: 100vh;
       display: flex;
       justify-content: center;
-      padding-top: 10vh;
     `,
     gridItemText: css`
       text-align: end;
       word-wrap: break-word;
+      padding: 10vh 0;
     `,
 
     headingText: css`
@@ -97,11 +92,20 @@ const Discover = () => {
               }}
             />
           </Grid>
-          <Grid item md={12} direction={"row"} display={"flex"} columnGap={3}>
-              <CardBox />
-              <CardBox />
+          <Stack direction={"row"}>
+          <Grid item md={3}>
               <CardBox />
           </Grid>
+          <Grid item md={3}>
+              <CardBox />
+          </Grid>
+          <Grid item md={3}>
+              <CardBox />
+          </Grid>
+          <Grid item md={3}>
+              <CardBox />
+          </Grid>
+          </Stack>
         </Grid>
       </Box>
     </Box>

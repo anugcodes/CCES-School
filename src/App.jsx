@@ -1,11 +1,20 @@
 import React from "react";
-import Discover from "./components/discover";
-
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import RootLayout from "./pages/root-layout";
+import HomePage from "./pages/home-page";
 function App() {
   return (
     <>
-      <Discover />
+      <BrowserRouter>
+        <Routes>
+          <>
+            <Route path="/" element={<RootLayout />}>
+              <Route index element={<HomePage />} />
+            </Route>
+            <Route path="*" element={<h1>Not Found</h1>} />
+          </>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

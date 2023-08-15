@@ -1,0 +1,12 @@
+.heading-first-letter{
+    font-size: 4.5rem;
+    /* font-weight: 800;
+    color: #007bff; */
+}
+
+.image {
+    width: 30vw;
+    z-index: 2;
+    filter: drop-shadow(5px 5px 5px #222);
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+}
