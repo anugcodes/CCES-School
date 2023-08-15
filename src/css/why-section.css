@@ -1,0 +1,23 @@
+.whyMainContainer {
+    background: linear-gradient(90deg, rgba(253,251,252,0.8744747899159664) 70%, rgba(253,205,183,0.87) 70%);
+    display: flex;
+    justify-content: center;
+    display: flex;
+    justify-content: center;
+}
+
+.whyHeading {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.text {
+    padding-bottom: 10vh;
+}
+
+.whyText {
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding-top: 2vh;
+}

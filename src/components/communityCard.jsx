@@ -13,7 +13,7 @@ import { css } from "@emotion/react";
 
 import { useState } from "react";
 
-import image from "../assets/bracelet.jpg";
+import image from "../assets/whatsapp.jpg";
 
 const CardBox = () => {
   const [hovered, setHovered] = useState(false);
@@ -24,11 +24,11 @@ const CardBox = () => {
       position: relative;
       overflow: hidden;
       transition: all 0.5s ease-in-out;
-      transform: translateY(${hovered ? "-100px" : "0"});
+      transform: translateY(${hovered ? "-110px" : "0"});
       background-color: ${hovered ? "#0033ff" : "#ff6666"};
       color: white;
-      // box-shadow: ${hovered ? "none" : "rgba(0, 0, 0, 0.45) 20px 0px 20px -20px"};
       margin: 3vh 1vw;
+      border-radius: 1rem;
 
       &:hover {
         box-shadow: ${hovered ? "none" : "rgba(0, 0, 0, 0.45) 20px 0px 20px -20px"};
@@ -37,9 +37,15 @@ const CardBox = () => {
           filter: drop-shadow(5px 5px 5px #222);
         }
 
-        .number {
+        .number, .member {
           text-align: end;
           color: #fafafa;
+        }
+
+        .button {
+          display: block;
+          text-align: center;
+          border-top: 2px solid #fafafa;
         }
       }
 
@@ -48,8 +54,26 @@ const CardBox = () => {
       }
 
       .number {
+        font-weight: bolder;
+        font-size: 1.4rem;
+        line-height: 1.1rem;
+        padding-top: 1rem;
+      }
+
+      .buttonBox {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .button {
+        display: none;
+        color: white;
         font-weight: bold;
-        font-size: 1.3rem;
+        width: 80%;
+        border-top: none;
+        transition: border-top 0.5s;
+        font-size: 1.2rem;
       }
     `,
     content: css`
@@ -92,17 +116,21 @@ const CardBox = () => {
             <Typography
               variant="body2"
               color="text.secondary"
-              className="number"
             >
-              17.1k+
+              
+              <Typography
+              className="number">17.1k+</Typography>
+              <Typography className="member">Members</Typography>
             </Typography>
           </CardContent>
         </div>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <div className="buttonBox">
+        <Button size="small" color="primary" className="button">
           Share
         </Button>
+        </div>
       </CardActions>
     </Card>
   );

@@ -6,6 +6,8 @@ import "../css/home-page.css";
 
 import { Link } from "react-router-dom";
 import Discover from "../components/discover";
+import WhyChoose from "../components/why";
+import Community from "../components/community/createCommunity";
 export default function HomePage() {
   return (
     <>
@@ -20,9 +22,9 @@ export default function HomePage() {
             background: "rgba(255,255,255,0.7)",
             minHeight: "90vh",
             padding: "2rem 0",
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <Container maxWidth="lg">
@@ -89,26 +91,13 @@ export default function HomePage() {
       >
         <Box
           sx={{
-            background: `linear-gradient(
-              90deg,
-              rgba(253, 251, 252, 0.8744747899159664) 70%,
-              rgba(183, 205, 253, 0.87) 70%
-            )`,
+            background: `linear-gradient(90deg, rgba(253,251,252,0.8744747899159664) 70%, rgba(253,205,183,0.87) 70%)`,
             minHeight: "100vh",
             position: "relative",
-            display: 'flex',
-            alignItems: 'center'
+            display: "flex",
+            alignItems: "center",
           }}
-        >{/*
-          <Box
-            sx={{
-              minWidth: "400px",
-              position: "absolute",
-              right: "0",
-              background: "#feb6b5",
-              height: "100vh",
-            }}
-          ></Box>*/}
+        >
           <Container maxWidth="lg">
             <Box>
               <Stack
@@ -117,7 +106,11 @@ export default function HomePage() {
                 alignItems={"center"}
                 sx={{ height: "100%" }}
               >
-                <Stack direction={"column"} spacing={2} className="contentImageStack">
+                <Stack
+                  direction={"column"}
+                  spacing={2}
+                  className="contentImageStack"
+                >
                   <Typography
                     variant="h2"
                     sx={{
@@ -152,11 +145,7 @@ export default function HomePage() {
                   </Link>
                 </Stack>
                 <div className="imageContainer">
-                <img
-                  src={HomePlant}
-                  alt="who are we"
-                  className="image"
-                />
+                  <img src={HomePlant} alt="who are we" className="image" />
                 </div>
               </Stack>
             </Box>
@@ -164,7 +153,8 @@ export default function HomePage() {
         </Box>
       </Box>
       <Discover />
-      <Discover />
+      <WhyChoose />
+      <Community />
     </>
   );
 }
