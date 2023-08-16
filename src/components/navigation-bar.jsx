@@ -3,26 +3,47 @@ import { Link } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import Box from "@mui/material/Box";
+
 import "../css/navigation-bar.css";
-import BrandImage from "../assets/Intruders.png"
+import BrandImage from "../assets/Intruders.png";
 
 export default function Navbar() {
   return (
-    <div style={{
-      position:"sticky",
-      top:"0",
-      zIndex: "2",
-      background: 'rgb(255,255,255,0.8)'
-    }}>
+    <div
+      style={{
+        position: "sticky",
+        top: "0",
+        zIndex: "2",
+        background: "rgb(255,255,255,0.7)",
+      }}
+    >
       <Container maxWidth="lg">
-        <Stack direction="row" spacing={2} justifyContent={"space-between"} >
-          <Stack direction={"row"} spacing={3} alignItems={"center"} width={"100%"} justifyContent={"space-between"}>
-            <img src={BrandImage} alt="" style={{
-              width: '7vw',
-              height: '100%'
-            }}/>
-            <div className="links-container">
+        <Stack direction="row" spacing={2} justifyContent={"space-between"}>
+          <Stack
+            direction={"row"}
+            spacing={3}
+            alignItems={"center"}
+            width={"100%"}
+            justifyContent={"space-between"}
+          >
+            <img
+              src={BrandImage}
+              alt=""
+              style={{
+                width: "100px",
+                maxWidth: "120px",
+              }}
+            />
+            <Box
+              className="links-container"
+              sx={{
+                display: { xs: "none", md: "flex" },
+                alignItems: "center",
+                minHeight: "4rem",
+                height: "100%",
+              }}
+            >
               <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
                 <Link to="/">Home</Link>
               </Typography>
@@ -35,7 +56,7 @@ export default function Navbar() {
               <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
                 <Link to="/">Contact Us</Link>
               </Typography>
-            </div>
+            </Box>
           </Stack>
         </Stack>
       </Container>

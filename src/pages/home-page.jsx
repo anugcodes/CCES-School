@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Discover from "../components/discover";
 import WhyChoose from "../components/why";
 import Community from "../components/community/createCommunity";
+
 export default function HomePage() {
   return (
     <>
@@ -49,7 +50,7 @@ export default function HomePage() {
                 <span className="heading-first-letter">E</span>mbrace{" "}
                 <span className="heading-first-letter">Y</span>our{" "}
                 <span className="heading-first-letter">Y</span>uthentic{" "}
-                <span className="heading-first-letter">S</span>elf .
+                <span className="heading-first-letter">S</span>elf
               </Typography>
               <Typography
                 variant="h4"
@@ -91,17 +92,18 @@ export default function HomePage() {
       >
         <Box
           sx={{
-            background: `linear-gradient(90deg, rgba(253,251,252,0.8744747899159664) 70%, rgba(253,205,183,0.87) 70%)`,
-            minHeight: "100vh",
+            background: `linear-gradient(90deg, rgba(253,251,252,0.92) 70%, rgba(253,205,183,0.87) 70%)`,
+            minHeight: { lg: "90vh", xs: "auto" },
             position: "relative",
             display: "flex",
             alignItems: "center",
+            padding: {xs:"2rem 0", lg:".5rem 0"},
           }}
         >
           <Container maxWidth="lg">
             <Box>
               <Stack
-                direction={"row"}
+                direction={{ md: "row", xs: "column" }}
                 spacing={2}
                 alignItems={"center"}
                 sx={{ height: "100%" }}

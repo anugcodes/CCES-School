@@ -12,19 +12,14 @@ import {
   createTheme,
 } from "@mui/material/styles";
 // responsive themes
-let theme = createTheme({
-  typography: {
-    fontFamily: ["Poppins", "sans-serif"].join(","),
-  },
-});
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
-
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <ThemeProvider theme={theme}>
-      <App />
+        <App />
       </ThemeProvider>
     </LocalizationProvider>
   </React.StrictMode>

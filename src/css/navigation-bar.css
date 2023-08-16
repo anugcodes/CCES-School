@@ -1,10 +1,10 @@
-.links-container {
+/* .links-container {
   margin-left: 1rem;
   display: flex;
   align-items: center;
   min-height: 5rem;
   height: 100%;
-}
+} */
 .links-container * {
   min-width: 8rem;
   text-align: center;
