@@ -9,11 +9,6 @@ import {
 import { css } from "@emotion/react";
 import { useState } from "react";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/pagination";
-
 // import "../css/discoverSwiper.css";
 
 import { Pagination } from "swiper/modules";
@@ -101,37 +96,19 @@ const Discover = () => {
               }}
             />
           </Grid>
-          <Swiper
-            slidesPerView={3}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Pagination]}
-            style={css`
-              background: transparent;
-            `}
-          >
+
           <Grid item md={3} xs={10}>
-              <SwiperSlide>
-                  <CardBox />
-                  </SwiperSlide>
-                </Grid>
-                <Grid item md={3} xs={10}>
-              <SwiperSlide>
-                  <CardBox />
-                  </SwiperSlide>
-                  </Grid>
-                  <Grid item md={3} xs={10}>
-                  <SwiperSlide>
-                  <CardBox />
-                  </SwiperSlide>
-                  </Grid>
-                  <Grid item md={3} xs={10}>
-                  <SwiperSlide>
-                  <CardBox />
-                  </SwiperSlide>
-                  </Grid>
-          </Swiper>
+            <CardBox />
+          </Grid>
+          <Grid item md={3} xs={10}>
+            <CardBox />
+          </Grid>
+          <Grid item md={3} xs={10}>
+            <CardBox />
+          </Grid>
+          <Grid item md={3} xs={10}>
+            <CardBox />
+          </Grid>
         </Grid>
       </Box>
     </Box>
