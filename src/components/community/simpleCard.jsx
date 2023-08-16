@@ -1,6 +1,5 @@
 import {
   Box,
-  Grid,
   Stack,
   Typography,
   Card,
@@ -9,6 +8,7 @@ import {
   TextField,
   MenuItem,
 } from "@mui/material";
+import { Input } from "@mui/material";
 import { css } from "@emotion/react";
 
 import { useState } from "react";
@@ -33,213 +33,184 @@ const CommunityCard = () => {
   const [selectedPlace, setPlace] = useState("select");
 
   const styles = {
-    cards: css`
-      height: 40vh;
-      background: #ff6670c5;
-      padding: 1vh 1vw;
-      border-radius: 1.5rem;
-    `,
-
-    number: css`
-      font-size: 3rem;
-      font-weight: bold;
-      padding-top: 2vh;
-      color: white;
-      font-family: Monomaniac One;
-    `,
-
-    text: css`
-      //   font-size: 1.2rem;
-      text-transform: uppercase;
-      color: white;
-      font-weight: 600;
-    `,
-
-    button: css`
-      background: #007bff;
-      width: 60%;
-      font-size: 0.8rem;
-      color: white;
-      border-radius: 0.8rem;
-      font-weight: bold;
-
-      &:hover {
-        background: red;
-      }
-    `,
-    form: css`
-      background-color: #ff6670c5;
-      padding: 3vh 3vw;
-      border-radius: 1.5rem;
-    `,
+    cards: {
+      position: "relative",
+      background: "#ff6670c5",
+      borderRadius: "1.5rem",
+      padding: ".5rem",
+      maxWidth: "280px",
+      "@media (max-width: 900px)": {
+        maxWidth: "480px",
+      },
+    },
+    button: {
+      color: "white",
+      background: "#007bff",
+      borderRadius: "0.8rem",
+      fontWeight: "bold",
+    },
   };
 
   return (
-    <Box sx={css`
-      padding: 7vh 0;
-    `}>
-      <Grid container maxWidth={"xl"}>
-        <Stack direction={{md : "row", xs: 'column'}} spacing={1} alignContent={"center"}>
-          <Grid item md={3} xs={12}>
-            <Card sx={styles.cards}>
-              <CardContent sx={{ height: "100%" }}>
-                <Stack justifyContent={"space-between"} height={"100%"}>
-                  <img
-                    src={sun}
-                    alt=""
-                    style={{
-                      width: "3vw",
-                    }}
-                  />
-                  <Box>
-                    <Typography sx={styles.number}>30</Typography>
-                    <Typography sx={styles.text}>Communities Built</Typography>
-                  </Box>
-                  <Button sx={styles.button}>See Details</Button>
-                </Stack>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item md={3} xs={12}>
-            <Card sx={styles.cards}>
-              <CardContent sx={{ height: "100%" }}>
-                <Stack justifyContent={"space-between"} height={"100%"}>
-                  <img
-                    src={recycle}
-                    alt=""
-                    style={{
-                      width: "3vw",
-                    }}
-                  />
-                  <Box>
-                    <Typography sx={styles.number}>40</Typography>
-                    <Typography sx={styles.text}>
-                      ENVIRONMENTAL PROJECTS
-                    </Typography>
-                  </Box>
-                  <Button sx={styles.button}>See Details</Button>
-                </Stack>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item md={3} xs={12}>
-            <Card sx={styles.cards}>
-              <CardContent sx={{ height: "100%" }}>
-                <Stack justifyContent={"space-between"} height={"100%"}>
-                  <img
-                    src={community}
-                    alt=""
-                    style={{
-                      width: "3vw",
-                    }}
-                  />
-                  <Box>
-                    <Typography sx={styles.number}>550</Typography>
-                    <Typography sx={styles.text}>
-                      Members from all around the world
-                    </Typography>
-                  </Box>
-                  <Button sx={styles.button}>See Details</Button>
-                </Stack>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item md={4} sx={styles.form} xs={12}>
-            <Stack justifyContent={"space-evenly"} height={"100%"}>
-              <Typography
-                sx={css`
-                  text-transform: uppercase;
-                  font-weight: bold;
-                  color: #007bff;
-                `}
-              >
-                Create your own community
-              </Typography>
+    <Box sx={{ paddingTop: "5rem" }}>
+      <Stack
+        direction={{ md: "row", xs: "column" }}
+        spacing={1}
+        alignContent={"center"}
+      >
+        <Card sx={styles.cards}>
+          <CardContent>
+            <Stack
+              direction={"column"}
+              spacing={1}
+              sx={{ height: "100%" }}
+              justifyContent={"space-evenly"}
+            >
+              <img
+                src={sun}
+                style={{
+                  maxWidth: "8rem",
+                }}
+              />
+              <Box>
+                <Typography
+                  variant="h1"
+                  sx={{ fontWeight: "bold", color: "white" }}
+                >
+                  30
+                </Typography>
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontWeight: "600",
+                    color: "white",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Communities Built
+                </Typography>
+              </Box>
+              <Button sx={styles.button}>See Details</Button>
+            </Stack>
+          </CardContent>
+        </Card>
+
+        {/* box form */}
+        <Box
+          item
+          md={4}
+          sx={{
+            background: "#ff6670c5",
+            padding: "2rem",
+            borderRadius: "1.5rem",
+            maxWidth: "360px",
+            "@media (max-width: 900px)": {
+              maxWidth: "480px",
+            },
+          }}
+        >
+          <Stack spacing={2} height={"100%"}>
+            <Typography
+              variant="h5"
+              sx={css`
+                text-transform: uppercase;
+                font-weight: bold;
+                color: #007bff;
+              `}
+            >
+              Create your own community
+            </Typography>
+            <TextField
+              // size="small"
+              placeholder="Full Name"
+              InputProps={{
+                style: {
+                  borderRadius: ".75rem",
+                  background: "white",
+                },
+              }}
+            />
+            <TextField
+              // size="small"
+              placeholder="Choose Your City"
+              select
+              value={selectedPlace}
+              InputProps={{
+                style: {
+                  borderRadius: ".75rem",
+                  background: "white",
+                },
+              }}
+            >
+              {places.map((place, index) => (
+                <MenuItem
+                  key={index}
+                  onClick={() => {
+                    setPlace(place.value);
+                    console.log(selectedPlace);
+                  }}
+                  value={place.value}
+                >
+                  {place.value}
+                </MenuItem>
+              ))}
+            </TextField>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontWeight: "bold",
+                color: "#007bff",
+              }}
+            >
+              Birth Date
+            </Typography>
+            <Stack direction={"row"} spacing={2}>
               <TextField
-                size="small"
-                placeholder="Full Name"
-                sx={css`
-                  background-color: white;
-                  border-radius: 0.3rem;
-                `}
+                // size="small"
+                placeholder="DD"
+                InputProps={{
+                  style: {
+                    borderRadius: ".75rem",
+                    background: "white",
+                  },
+                }}
               />
               <TextField
-                size="small"
-                placeholder="Choose Your City"
-                select
-                value={selectedPlace}
-                sx={css`
-                  background-color: white;
-                  border-radius: 0.3rem;
-                `}
-              >
-                {places.map((place, index) => (
-                  <MenuItem
-                    key={index}
-                    onClick={() => {
-                      setPlace(place.value);
-                      console.log(selectedPlace);
-                    }}
-                    value={place.value}
-                  >
-                    {place.value}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <Typography
-                sx={css`
-                  text-transform: uppercase;
-                  font-weight: bold;
-                  color: #007bff;
-                `}
-              >
-                Birth Date
-              </Typography>
-              <Stack direction={"row"} spacing={1}>
-                <TextField
-                  size="small"
-                  placeholder="DD"
-                  sx={css`
-                    background-color: white;
-                    border-radius: 0.3rem;
-                  `}
-                />
-                <TextField
-                  size="small"
-                  placeholder="MM"
-                  sx={css`
-                    background-color: white;
-                    border-radius: 0.3rem;
-                  `}
-                />
-                <TextField
-                  size="small"
-                  placeholder="YY"
-                  sx={css`
-                    background-color: white;
-                    border-radius: 0.3rem;
-                  `}
-                />
-              </Stack>
-              <Button
-                sx={css`
-                  background: #007bff;
-                  font-size: 0.8rem;
-                  color: white;
-                  border-radius: 0.8rem;
-                  font-weight: bold;
+                // size="small"
+                placeholder="MM"
+                InputProps={{
+                  style: {
+                    borderRadius: ".75rem",
+                    background: "white",
+                  },
+                }}
+              />
 
-                  &:hover {
-                    background: red;
-                  }
-                `}
-              >
-                Submit
-              </Button>
+              <TextField
+                // size="small"
+                placeholder="YY"
+                InputProps={{
+                  style: {
+                    borderRadius: ".75rem",
+                    background: "white",
+                  },
+                }}
+              />
             </Stack>
-          </Grid>
-        </Stack>
-      </Grid>
+            <Button
+              sx={{
+                width: "100%",
+                color: "white",
+                background: "#007bff",
+                borderRadius: "0.8rem",
+                fontWeight: "bold",
+              }}
+            >
+              Submit
+            </Button>
+          </Stack>
+        </Box>
+      </Stack>
     </Box>
   );
 };
