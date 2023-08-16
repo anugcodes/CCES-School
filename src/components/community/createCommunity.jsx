@@ -42,11 +42,7 @@ const Community = () => {
               Be the architect of your safe space. With our platform, you have the power to build and customize your very own community from the ground up. Unleash your passions, expertise, and unique vision to create a welcoming haven for like-minded individuals. Whether you're passionate about art, gaming, technology, wellness, or any other topic close to your heart, our system gives you the tools to foster meaningful connections and empower those who join. Start crafting your community today and embark on an exciting journey of empowerment, belonging, and shared experiences
             </Typography>
           </Grid>
-          <Grid item sx={css`
-            padding: 15vh 0 10vh 0;
-          `}>
             <CommunityCard />
-          </Grid>
         </Grid>
       </Box>
     </Box>

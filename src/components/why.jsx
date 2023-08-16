@@ -45,17 +45,17 @@ const WhyChoose = () => {
             </Typography>
           </Grid>
           <Grid className="cardContainer" item md={12}>
-            <Stack direction={"row"} spacing={3}>
-              <Grid item md={4}>
+            <Stack direction={{md: "row"}} spacing={{md: 3, xs: 2}} width={"100%"} alignItems={"center"}>
+              <Grid item md={4} xs={10}>
                 <CardData
                   backgroundColor={"blue"}
                   heading="Inclusive Community"
                 />
               </Grid>
-              <Grid item md={4}>
+              <Grid item md={4} xs={10}>
                 <CardData backgroundColor={"#ff6666"} />
               </Grid>
-              <Grid item md={4}>
+              <Grid item md={4} xs={10}>
                 <CardData backgroundColor={"blue"} />
               </Grid>
             </Stack>

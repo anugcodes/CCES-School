@@ -69,16 +69,18 @@ const CommunityCard = () => {
     `,
     form: css`
       background-color: #ff6670c5;
-      padding: 1vh 1.5vw;
+      padding: 3vh 3vw;
       border-radius: 1.5rem;
     `,
   };
 
   return (
-    <Box>
+    <Box sx={css`
+      padding: 7vh 0;
+    `}>
       <Grid container maxWidth={"xl"}>
-        <Stack direction={"row"} spacing={1}>
-          <Grid item md={3}>
+        <Stack direction={{md : "row", xs: 'column'}} spacing={1} alignContent={"center"}>
+          <Grid item md={3} xs={12}>
             <Card sx={styles.cards}>
               <CardContent sx={{ height: "100%" }}>
                 <Stack justifyContent={"space-between"} height={"100%"}>
@@ -98,7 +100,7 @@ const CommunityCard = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item md={3}>
+          <Grid item md={3} xs={12}>
             <Card sx={styles.cards}>
               <CardContent sx={{ height: "100%" }}>
                 <Stack justifyContent={"space-between"} height={"100%"}>
@@ -120,7 +122,7 @@ const CommunityCard = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item md={3}>
+          <Grid item md={3} xs={12}>
             <Card sx={styles.cards}>
               <CardContent sx={{ height: "100%" }}>
                 <Stack justifyContent={"space-between"} height={"100%"}>
@@ -142,7 +144,7 @@ const CommunityCard = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item md={4} sx={styles.form}>
+          <Grid item md={4} sx={styles.form} xs={12}>
             <Stack justifyContent={"space-evenly"} height={"100%"}>
               <Typography
                 sx={css`

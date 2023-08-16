@@ -9,6 +9,15 @@ import {
 import { css } from "@emotion/react";
 import { useState } from "react";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/pagination";
+
+// import "../css/discoverSwiper.css";
+
+import { Pagination } from "swiper/modules";
+
 import Background from "../assets/community.jpg";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
@@ -67,7 +76,7 @@ const Discover = () => {
             </Typography>
             <TextField
               id="outlined-start-adornment"
-              sx={{ m: 1, width: "70%", background: '#fafafa'}}
+              sx={{ m: 1, width: "70%", background: "#fafafa" }}
               size="small"
               value={search}
               onChange={(event) => {
@@ -92,20 +101,37 @@ const Discover = () => {
               }}
             />
           </Grid>
-          <Stack direction={"row"}>
-          <Grid item md={3}>
-              <CardBox />
-          </Grid>
-          <Grid item md={3}>
-              <CardBox />
-          </Grid>
-          <Grid item md={3}>
-              <CardBox />
-          </Grid>
-          <Grid item md={3}>
-              <CardBox />
-          </Grid>
-          </Stack>
+          <Swiper
+            slidesPerView={3}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            style={css`
+              background: transparent;
+            `}
+          >
+          <Grid item md={3} xs={10}>
+              <SwiperSlide>
+                  <CardBox />
+                  </SwiperSlide>
+                </Grid>
+                <Grid item md={3} xs={10}>
+              <SwiperSlide>
+                  <CardBox />
+                  </SwiperSlide>
+                  </Grid>
+                  <Grid item md={3} xs={10}>
+                  <SwiperSlide>
+                  <CardBox />
+                  </SwiperSlide>
+                  </Grid>
+                  <Grid item md={3} xs={10}>
+                  <SwiperSlide>
+                  <CardBox />
+                  </SwiperSlide>
+                  </Grid>
+          </Swiper>
         </Grid>
       </Box>
     </Box>

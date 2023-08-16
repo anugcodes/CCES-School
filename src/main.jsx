@@ -6,10 +6,26 @@ import "./index.css";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
+import {
+  ThemeProvider,
+  responsiveFontSizes,
+  createTheme,
+} from "@mui/material/styles";
+
+let theme = createTheme({
+  typography: {
+    fontFamily: ["Poppins", "sans-serif"].join(","),
+  },
+});
+
+theme = responsiveFontSizes(theme);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <ThemeProvider theme={theme}>
       <App />
+      </ThemeProvider>
     </LocalizationProvider>
   </React.StrictMode>
 );
