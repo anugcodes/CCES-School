@@ -4,11 +4,28 @@ import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { Menu, MenuItem, IconButton } from "@mui/material";
+import { useState } from "react";
+import MenuIcon from '@mui/icons-material/Menu';
+
+import {css} from "@emotion/react"
 
 import "../css/navigation-bar.css";
 import BrandImage from "../assets/Intruders.png";
 
 export default function Navbar() {
+
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+
   return (
     <div
       style={{
@@ -35,6 +52,81 @@ export default function Navbar() {
                 maxWidth: "120px",
               }}
             />
+            <Box
+              sx={{
+                display: { xs: "flex", md: "none" },
+                alignItems: "center",
+                minHeight: "4rem",
+                height: "100%",
+              }}
+            >
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+
+              <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              <MenuItem sx={css`
+                color: #70b4fc;
+                text-decoration: none;
+              `}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "600"}}>
+                Home
+              </Typography>
+              </MenuItem>
+
+              <MenuItem sx={css`
+                color: #70b4fc;
+                text-decoration: none;
+              `}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
+                About Us
+              </Typography>
+              </MenuItem>
+
+              <MenuItem sx={css`
+                color: #70b4fc;
+                text-decoration: none;
+              `}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
+                Gallary
+              </Typography>
+              </MenuItem>
+
+              <MenuItem sx={css`
+                color: #70b4fc;
+                text-decoration: none;
+              `}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
+                Contact Us
+              </Typography>
+              </MenuItem>
+              </Menu>
+            </Box>
+
             <Box
               className="links-container"
               sx={{

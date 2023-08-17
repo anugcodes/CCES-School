@@ -9,9 +9,6 @@ import {
 import { css } from "@emotion/react";
 import { useState } from "react";
 
-// import "../css/discoverSwiper.css";
-
-import { Pagination } from "swiper/modules";
 
 import Background from "../assets/community.jpg";
 import SearchIcon from "@mui/icons-material/Search";
@@ -41,26 +38,41 @@ const Discover = () => {
       text-align: end;
       word-wrap: break-word;
       padding: 10vh 0;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+
+      @media (width < 600px) {
+        padding-top: 5vh;
+        text-align: center;
+        padding-bottom: 0;
+      }
     `,
 
     headingText: css`
       letter-spacing: 0.2rem;
       font-weight: bold;
-      font-size: 3rem;
+      color: #0062ff;
     `,
     tagText: css`
-      font-size: 0.8rem;
       font-weight: bold;
       padding: 1.5vh 0;
     `,
+    container: css`
+    max-width: 1200px;
+      @media (width < 900px) {
+        display: flex;
+        justify-content: center;
+      }
+    `
   };
 
   return (
     <Box sx={styles.mainContainer}>
       <Box sx={styles.gridContainer}>
-        <Grid container maxWidth={"lg"}>
-          <Grid item md={4}></Grid>
-          <Grid item md={8} sx={styles.gridItemText}>
+        <Grid container maxWidth={"lg"} sx={styles.container}>
+          <Grid item md={2} xs={0}></Grid>
+          <Grid item md={10} xs={10} sx={styles.gridItemText}>
             <Typography variant="h2" sx={styles.headingText}>
               Discover Diverse Communities
             </Typography>
@@ -71,7 +83,7 @@ const Discover = () => {
             </Typography>
             <TextField
               id="outlined-start-adornment"
-              sx={{ m: 1, width: "70%", background: "#fafafa" }}
+              sx={{ m: 1, width: {md: "70%", xs: '100%'}, background: "#fafafa" }}
               size="small"
               value={search}
               onChange={(event) => {
@@ -96,19 +108,21 @@ const Discover = () => {
               }}
             />
           </Grid>
-
-          <Grid item md={3} xs={10}>
+          
+          <Stack direction={{md: 'row', xs: 'column', sm: 'row'}} alignItems={"center"} width={"100%"}>
+          <Grid item md={3} xs={10} sm={6}>
             <CardBox />
           </Grid>
-          <Grid item md={3} xs={10}>
+          <Grid item md={3} xs={10} sm={6}>
             <CardBox />
           </Grid>
-          <Grid item md={3} xs={10}>
+          <Grid item md={3} xs={10} sm={6}>
             <CardBox />
           </Grid>
-          <Grid item md={3} xs={10}>
+          <Grid item md={3} xs={10} sm={6}>
             <CardBox />
           </Grid>
+          </Stack>
         </Grid>
       </Box>
     </Box>

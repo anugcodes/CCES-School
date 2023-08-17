@@ -40,7 +40,7 @@ const CommunityCard = () => {
       padding: ".5rem",
       maxWidth: "280px",
       "@media (max-width: 900px)": {
-        maxWidth: "480px",
+        maxWidth: "480px"
       },
     },
     button: {
@@ -88,6 +88,78 @@ const CommunityCard = () => {
                   }}
                 >
                   Communities Built
+                </Typography>
+              </Box>
+              <Button sx={styles.button}>See Details</Button>
+            </Stack>
+          </CardContent>
+        </Card>
+        <Card sx={styles.cards}>
+          <CardContent>
+            <Stack
+              direction={"column"}
+              spacing={1}
+              sx={{ height: "100%" }}
+              justifyContent={"space-evenly"}
+            >
+              <img
+                src={recycle}
+                style={{
+                  maxWidth: "8rem",
+                }}
+              />
+              <Box>
+                <Typography
+                  variant="h1"
+                  sx={{ fontWeight: "bold", color: "white" }}
+                >
+                  40
+                </Typography>
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontWeight: "600",
+                    color: "white",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Environmental Projects
+                </Typography>
+              </Box>
+              <Button sx={styles.button}>See Details</Button>
+            </Stack>
+          </CardContent>
+        </Card>
+        <Card sx={styles.cards}>
+          <CardContent>
+            <Stack
+              direction={"column"}
+              spacing={1}
+              sx={{ height: "100%" }}
+              justifyContent={"space-evenly"}
+            >
+              <img
+                src={community}
+                style={{
+                  maxWidth: "8rem",
+                }}
+              />
+              <Box>
+                <Typography
+                  variant="h1"
+                  sx={{ fontWeight: "bold", color: "white" }}
+                >
+                  550
+                </Typography>
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontWeight: "600",
+                    color: "white",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Members from all over the world
                 </Typography>
               </Box>
               <Button sx={styles.button}>See Details</Button>
