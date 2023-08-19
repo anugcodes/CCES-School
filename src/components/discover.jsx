@@ -93,9 +93,8 @@ const Discover = () => {
             </Grid>
 
             <Stack
-              direction={{ md: "row", xs: "column", sm: "row" }}
+              direction={{ xs: "column", sm: "row" }}
               alignItems={"center"}
-              width={"100%"}
             >
               <Grid item md={3} xs={10} sm={6}>
                 <CardBox />

@@ -11,6 +11,8 @@ import {
 import { css } from "@emotion/react";
 
 import { useState } from "react";
+import CountUp from "react-countup";
+import VisibilitySensor from "react-visibility-sensor";
 
 import sun from "../../assets/beach.png";
 import community from "../../assets/people.png";
@@ -79,12 +81,16 @@ const CommunityCard = () => {
               }}
             />
             <Box>
-              <Typography
-                variant="h1"
-                sx={{ fontWeight: "bold", color: "white" }}
-              >
-                30
-              </Typography>
+              <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
+                {({ isVisible }) => (
+                  <Typography
+                    variant="h1"
+                    sx={{ fontWeight: "bold", color: "white" }}
+                  >
+                    {isVisible ? <CountUp end={30} /> : "0"}
+                  </Typography>
+                )}
+              </VisibilitySensor>
               <Typography
                 variant="h6"
                 sx={{
@@ -120,12 +126,16 @@ const CommunityCard = () => {
               }}
             />
             <Box>
-              <Typography
-                variant="h1"
-                sx={{ fontWeight: "bold", color: "white" }}
-              >
-                40
-              </Typography>
+              <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
+                {({ isVisible }) => (
+                  <Typography
+                    variant="h1"
+                    sx={{ fontWeight: "bold", color: "white" }}
+                  >
+                    {isVisible ? <CountUp end={40} /> : "0"}
+                  </Typography>
+                )}
+              </VisibilitySensor>
               <Typography
                 variant="h6"
                 sx={{
@@ -161,12 +171,17 @@ const CommunityCard = () => {
               }}
             />
             <Box>
-              <Typography
-                variant="h1"
-                sx={{ fontWeight: "bold", color: "white" }}
-              >
-                550
-              </Typography>
+              <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
+                {({ isVisible }) => (
+                  <Typography
+                    variant="h1"
+                    sx={{ fontWeight: "bold", color: "white" }}
+                  >
+                    {isVisible ? <CountUp end={550} /> : "0"}
+                  </Typography>
+                )}
+              </VisibilitySensor>
+
               <Typography
                 variant="h6"
                 sx={{

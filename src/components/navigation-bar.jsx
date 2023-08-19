@@ -7,8 +7,6 @@ import Box from "@mui/material/Box";
 import { Menu, MenuItem, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import { useLocation } from "react-router-dom";
-
 import { css } from "@emotion/react";
 
 import "../css/navigation-bar.css";
@@ -24,10 +22,6 @@ export default function Navbar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  const location = useLocation();
-
-  console.log(location);
 
   return (
     <div
@@ -59,7 +53,8 @@ export default function Navbar() {
               sx={{
                 display: { xs: "flex", md: "none" },
                 alignItems: "center",
-                minHeight: "4rem",
+                minHeight: "3rem",
+                maxHeight:"5rem",
                 height: "100%",
               }}
             >
@@ -148,16 +143,16 @@ export default function Navbar() {
               }}
             >
               <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
-                <Link to="/">Home</Link>
+                <a href="/">Home</a>
               </Typography>
               <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
-                <Link to="#about">About Us</Link>
+                <a href="#about">About Us</a>
               </Typography>
               <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
-                <Link to="/">Gallary</Link>
+                <a href="/">Gallary</a>
               </Typography>
               <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
-                <Link to="/">Contact Us</Link>
+                <a href="/">Contact Us</a>
               </Typography>
             </Box>
           </Stack>

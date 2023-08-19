@@ -119,6 +119,7 @@ export default function HomePage() {
 
       {/* second page- who are we */}
       <Box
+        id="about"
         sx={{
           background: `url(${Background})`,
           backgroundSize: "cover",
