@@ -15,16 +15,16 @@
 }
 
 /* styles for current page */
-.links-container > h6:first-child {
+/* .links-container > h6:first-child {
   display: flex;
   background: #007bff;
   height: 150%;
   align-items: center;
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
-}
+} */
 .links-container > h6:first-child > a {
-  color: white;
+  color: blue;
   font-size: 1.25rem;
   font-weight: 800;
   transform: translateY(25%);

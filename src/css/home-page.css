@@ -31,3 +31,12 @@
     filter: drop-shadow(5px 5px 5px #222);
     -webkit-filter: drop-shadow(5px 5px 5px #222);
 }
+
+.parallax-section {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  

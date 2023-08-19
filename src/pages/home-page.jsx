@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useEffect} from "react";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import Background from "../assets/crowdbg.jpg";
 import HomePlant from "../assets/homeplant.png";
@@ -8,8 +8,29 @@ import { Link } from "react-router-dom";
 import Discover from "../components/discover";
 import WhyChoose from "../components/why";
 import Community from "../components/community/createCommunity";
+import Footer from "../components/footer";
 
 export default function HomePage() {
+
+
+  useEffect(() => {
+    const parallaxSections = document.querySelectorAll(".parallax-section");
+    
+    const handleScroll = () => {
+      parallaxSections.forEach(section => {
+        const speed = section.getAttribute("data-speed") || 2; // Adjust the speed as needed
+        const yPos = -window.scrollY / speed;
+        section.style.backgroundPosition = `center ${yPos}px`;
+      });
+    };
+
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <Box
@@ -17,6 +38,7 @@ export default function HomePage() {
           background: `url(${Background})`,
           backgroundSize: "cover",
         }}
+        className="parallax-section"
       >
         <Box
           sx={{
@@ -89,6 +111,7 @@ export default function HomePage() {
           background: `url(${Background})`,
           backgroundSize: "cover",
         }}
+        className="parallax-section"
       >
         <Box
           sx={{
@@ -157,6 +180,7 @@ export default function HomePage() {
       <Discover />
       <WhyChoose />
       <Community />
+      <Footer />
     </>
   );
 }

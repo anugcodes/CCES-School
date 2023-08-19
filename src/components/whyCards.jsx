@@ -1,9 +1,10 @@
-import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 
 import Image from "../assets/community.jpg";
 
-const CardData = ({ backgroundColor, heading, details }) => {
+const CardData = ({ backgroundColor, heading, details, delay }) => {
   return (
+    <Box>
     <Card
       sx={{
         maxWidth: "560px",
@@ -13,6 +14,11 @@ const CardData = ({ backgroundColor, heading, details }) => {
         borderRadius: "1.25rem",
         background: `${backgroundColor}`,
       }}
+      data-aos="fade-up"
+      data-aos-easing="linear"
+      data-aos-duration="6000"
+      data-aos-offset="0"
+      data-aos-delay={`${delay}`}
     >
       <CardMedia component="img" width="60%" image={Image} alt="green iguana" />
       <CardContent>
@@ -24,6 +30,7 @@ const CardData = ({ backgroundColor, heading, details }) => {
         </Typography>
       </CardContent>
     </Card>
+    </Box>
   );
 };
 

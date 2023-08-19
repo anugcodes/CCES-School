@@ -53,6 +53,7 @@ const WhyChoose = () => {
                       heading={item.heading}
                       details={item.details}
                       backgroundColor={item.backgroundColor}
+                      delay={index*500}
                     />
                   </Box>
                 );

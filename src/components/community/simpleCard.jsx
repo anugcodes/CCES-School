@@ -30,7 +30,7 @@ const CommunityCard = () => {
     },
   ];
 
-  const [selectedPlace, setPlace] = useState("select");
+  const [selectedPlace, setPlace] = useState("");
 
   const styles = {
     cards: {
@@ -40,7 +40,9 @@ const CommunityCard = () => {
       padding: ".5rem",
       maxWidth: "280px",
       "@media (max-width: 900px)": {
-        maxWidth: "480px"
+        maxWidth: "480px",
+        left: "20%",
+        right: "50%",
       },
     },
     button: {
@@ -58,7 +60,12 @@ const CommunityCard = () => {
         spacing={1}
         alignContent={"center"}
       >
-        <Card sx={styles.cards}>
+        <Card
+          sx={styles.cards}
+          data-aos="fade-right"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+        >
           <CardContent>
             <Stack
               direction={"column"}
@@ -94,7 +101,13 @@ const CommunityCard = () => {
             </Stack>
           </CardContent>
         </Card>
-        <Card sx={styles.cards}>
+        <Card
+          sx={styles.cards}
+          data-aos="fade-right"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+          data-aos-delay="500"
+        >
           <CardContent>
             <Stack
               direction={"column"}
@@ -130,7 +143,13 @@ const CommunityCard = () => {
             </Stack>
           </CardContent>
         </Card>
-        <Card sx={styles.cards}>
+        <Card
+          sx={styles.cards}
+          data-aos="fade-right"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+          data-aos-delay="1000"
+        >
           <CardContent>
             <Stack
               direction={"column"}
@@ -180,6 +199,10 @@ const CommunityCard = () => {
               maxWidth: "480px",
             },
           }}
+          data-aos="fade-right"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+          data-aos-delay="1500"
         >
           <Stack spacing={2} height={"100%"}>
             <Typography
@@ -204,7 +227,7 @@ const CommunityCard = () => {
             />
             <TextField
               // size="small"
-              placeholder="Choose Your City"
+              helperText="Choose Your City"
               select
               value={selectedPlace}
               InputProps={{
@@ -212,6 +235,11 @@ const CommunityCard = () => {
                   borderRadius: ".75rem",
                   background: "white",
                 },
+              }}
+              SelectProps={{
+                displayEmpty: true, // This will allow displaying an empty item as a placeholder.
+                renderValue: (value) =>
+                  value === "" ? "Select a City" : value, // Custom rendering for the selected value.
               }}
             >
               {places.map((place, index) => (

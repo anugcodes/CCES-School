@@ -11,8 +11,6 @@ import { useState } from "react";
 
 
 import Background from "../assets/community.jpg";
-import SearchIcon from "@mui/icons-material/Search";
-import CloseIcon from "@mui/icons-material/Close";
 import CardBox from "./communityCard";
 
 const Discover = () => {
@@ -81,32 +79,6 @@ const Discover = () => {
               communities that cater to diverse interests, from art to tech,
               fostering meaningful connections
             </Typography>
-            <TextField
-              id="outlined-start-adornment"
-              sx={{ m: 1, width: {md: "70%", xs: '100%'}, background: "#fafafa" }}
-              size="small"
-              value={search}
-              onChange={(event) => {
-                setSearch(event.target.value);
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-                endAdornment: search ? (
-                  <InputAdornment position="end">
-                    <CloseIcon
-                      onClick={() => {
-                        setSearch("");
-                      }}
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </InputAdornment>
-                ) : null,
-              }}
-            />
           </Grid>
           
           <Stack direction={{md: 'row', xs: 'column', sm: 'row'}} alignItems={"center"} width={"100%"}>

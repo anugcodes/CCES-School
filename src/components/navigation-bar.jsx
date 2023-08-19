@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData, NavLink } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -8,10 +8,13 @@ import { Menu, MenuItem, IconButton } from "@mui/material";
 import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 
+import { useLocation } from "react-router-dom";
+
 import {css} from "@emotion/react"
 
 import "../css/navigation-bar.css";
 import BrandImage from "../assets/Intruders.png";
+import { ScrollLink } from "react-scroll";
 
 export default function Navbar() {
 
@@ -24,6 +27,10 @@ export default function Navbar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  const location = useLocation();
+
+  console.log(location)
 
 
   return (
@@ -116,7 +123,7 @@ export default function Navbar() {
               </Typography>
               </MenuItem>
 
-              <MenuItem sx={css`
+              <MenuItem sx={css` 
                 color: #70b4fc;
                 text-decoration: none;
               `}>
@@ -140,7 +147,7 @@ export default function Navbar() {
                 <Link to="/">Home</Link>
               </Typography>
               <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
-                <Link to="/">About Us</Link>
+                <Link to="#about">About Us</Link>
               </Typography>
               <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
                 <Link to="/">Gallary</Link>
