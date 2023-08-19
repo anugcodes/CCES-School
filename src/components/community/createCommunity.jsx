@@ -27,31 +27,41 @@ const Community = () => {
       >
         <Container maxWidth="lg">
           <Stack direction={"column"} spacing={2} sx={{ p: "3rem 0 5rem 0" }}>
-            <Typography
-              variant="h3"
-              sx={{
-                fontWeight: "normal",
-                color: "#007bff",
-              }}
+            <div
+              data-aos="fade-left"
+              data-aos-offset="200"
+              data-aos-delay="300"
+              data-aos-once="true"
+              data-aos-easing="ease-in-sine"
             >
-              Create your own community
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={css`
-                font-weight: bold;
-              `}
-            >
-              Be the architect of your safe space. With our platform, you have
-              the power to build and customize your very own community from the
-              ground up. Unleash your passions, expertise, and unique vision to
-              create a welcoming haven for like-minded individuals. Whether
-              you're passionate about art, gaming, technology, wellness, or any
-              other topic close to your heart, our system gives you the tools to
-              foster meaningful connections and empower those who join. Start
-              crafting your community today and embark on an exciting journey of
-              empowerment, belonging, and shared experiences
-            </Typography>
+              <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: "normal",
+                  color: "#007bff",
+                }}
+              >
+                Create your own community
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={css`
+                  font-weight: bold;
+                `}
+              >
+                Be the architect of your safe space. With our platform, you have
+                the power to build and customize your very own community from
+                the ground up. Unleash your passions, expertise, and unique
+                vision to create a welcoming haven for like-minded individuals.
+                Whether you're passionate about art, gaming, technology,
+                wellness, or any other topic close to your heart, our system
+                gives you the tools to foster meaningful connections and empower
+                those who join. Start crafting your community today and embark
+                on an exciting journey of empowerment, belonging, and shared
+                experiences
+              </Typography>
+            </div>
+
             <CommunityCard />
           </Stack>
         </Container>

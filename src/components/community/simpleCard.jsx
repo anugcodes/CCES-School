@@ -63,6 +63,7 @@ const CommunityCard = () => {
           sx={styles.cards}
           data-aos="fade-right"
           data-aos-offset="300"
+          data-aos-once="true"
           data-aos-easing="ease-in-sine"
         >
           <Stack
@@ -104,6 +105,7 @@ const CommunityCard = () => {
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
           data-aos-delay="500"
+          data-aos-once="true"
         >
           <Stack
             direction={"column"}
@@ -142,6 +144,7 @@ const CommunityCard = () => {
           sx={styles.cards}
           data-aos="fade-right"
           data-aos-offset="300"
+          data-aos-once="true"
           data-aos-easing="ease-in-sine"
           data-aos-delay="1000"
         >
@@ -196,6 +199,7 @@ const CommunityCard = () => {
           data-aos-offset="100"
           data-aos-easing="ease-in-sine"
           data-aos-delay="1500"
+          data-aos-once="true"
         >
           <Stack spacing={2} height={"100%"}>
             <Typography

@@ -5,10 +5,10 @@ import {
   Typography,
   TextField,
   InputAdornment,
+  Container,
 } from "@mui/material";
 import { css } from "@emotion/react";
 import { useState } from "react";
-
 
 import Background from "../assets/community.jpg";
 import CardBox from "./communityCard";
@@ -57,45 +57,61 @@ const Discover = () => {
       padding: 1.5vh 0;
     `,
     container: css`
-    max-width: 1200px;
+      // max-width: 1200px;
       @media (width < 900px) {
         display: flex;
         justify-content: center;
       }
-    `
+    `,
   };
 
   return (
     <Box sx={styles.mainContainer}>
       <Box sx={styles.gridContainer}>
-        <Grid container maxWidth={"lg"} sx={styles.container}>
-          <Grid item md={2} xs={0}></Grid>
-          <Grid item md={10} xs={10} sx={styles.gridItemText}>
-            <Typography variant="h2" sx={styles.headingText}>
-              Discover Diverse Communities
-            </Typography>
-            <Typography variant="body1" sx={styles.tagText}>
-              Connect, belong, and celebrate uniqueness. Explore inclusive
-              communities that cater to diverse interests, from art to tech,
-              fostering meaningful connections
-            </Typography>
+        <Container maxWidth="lg">
+          <Grid container maxWidth={"lg"} sx={styles.container}>
+            <Grid item md={2} xs={0}></Grid>
+            <Grid
+              item
+              md={10}
+              xs={10}
+              sx={styles.gridItemText}
+              data-aos="fade-right"
+              data-aos-offset="200"
+              data-aos-delay="200"
+              data-aos-once="true"
+              data-aos-easing="ease-in-sine"
+            >
+              <Typography variant="h2" sx={styles.headingText}>
+                Discover Diverse Communities
+              </Typography>
+              <Typography variant="body1" sx={styles.tagText}>
+                Connect, belong, and celebrate uniqueness. Explore inclusive
+                communities that cater to diverse interests, from art to tech,
+                fostering meaningful connections
+              </Typography>
+            </Grid>
+
+            <Stack
+              direction={{ md: "row", xs: "column", sm: "row" }}
+              alignItems={"center"}
+              width={"100%"}
+            >
+              <Grid item md={3} xs={10} sm={6}>
+                <CardBox />
+              </Grid>
+              <Grid item md={3} xs={10} sm={6}>
+                <CardBox />
+              </Grid>
+              <Grid item md={3} xs={10} sm={6}>
+                <CardBox />
+              </Grid>
+              <Grid item md={3} xs={10} sm={6}>
+                <CardBox />
+              </Grid>
+            </Stack>
           </Grid>
-          
-          <Stack direction={{md: 'row', xs: 'column', sm: 'row'}} alignItems={"center"} width={"100%"}>
-          <Grid item md={3} xs={10} sm={6}>
-            <CardBox />
-          </Grid>
-          <Grid item md={3} xs={10} sm={6}>
-            <CardBox />
-          </Grid>
-          <Grid item md={3} xs={10} sm={6}>
-            <CardBox />
-          </Grid>
-          <Grid item md={3} xs={10} sm={6}>
-            <CardBox />
-          </Grid>
-          </Stack>
-        </Grid>
+        </Container>
       </Box>
     </Box>
   );

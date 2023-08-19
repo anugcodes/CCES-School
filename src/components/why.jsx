@@ -27,7 +27,14 @@ const WhyChoose = () => {
             justifyContent={"center"}
             sx={{ p: "3rem 0" }}
           >
-            <Box className="text">
+            <Box
+              className="text"
+              data-aos="fade-right"
+              data-aos-offset="200"
+              data-aos-delay="200"
+              data-aos-once="true"
+              data-aos-easing="ease-in-sine"
+            >
               <Typography
                 variant="h2"
                 sx={{
@@ -53,7 +60,7 @@ const WhyChoose = () => {
                       heading={item.heading}
                       details={item.details}
                       backgroundColor={item.backgroundColor}
-                      delay={index*500}
+                      delay={index * 500}
                     />
                   </Box>
                 );

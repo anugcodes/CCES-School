@@ -15,6 +15,12 @@ import {
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
+import AOS from "aos";
+AOS.init({
+  debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+  throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+});
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <LocalizationProvider dateAdapter={AdapterDayjs}>

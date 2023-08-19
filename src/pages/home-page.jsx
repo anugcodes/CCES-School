@@ -1,4 +1,4 @@
-import {React, useEffect} from "react";
+import { React, useEffect } from "react";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import Background from "../assets/crowdbg.jpg";
 import HomePlant from "../assets/homeplant.png";
@@ -11,20 +11,15 @@ import Community from "../components/community/createCommunity";
 import Footer from "../components/footer";
 
 export default function HomePage() {
-
-
   useEffect(() => {
     const parallaxSections = document.querySelectorAll(".parallax-section");
-    
     const handleScroll = () => {
-      parallaxSections.forEach(section => {
+      parallaxSections.forEach((section) => {
         const speed = section.getAttribute("data-speed") || 2; // Adjust the speed as needed
         const yPos = -window.scrollY / speed;
         section.style.backgroundPosition = `center ${yPos}px`;
       });
     };
-
-
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -66,6 +61,11 @@ export default function HomePage() {
                   textAlign: "center",
                   textTransform: "uppercase",
                 }}
+                data-aos="fade-right"
+                data-aos-offset="200"
+                data-aos-delay="200"
+                data-aos-once="true"
+                data-aos-easing="ease-in-sine"
               >
                 <span className="heading-first-letter">W</span>elcome to{" "}
                 <span className="heading-first-letter">I</span>ntruder Community{" "}
@@ -74,32 +74,44 @@ export default function HomePage() {
                 <span className="heading-first-letter">Y</span>uthentic{" "}
                 <span className="heading-first-letter">S</span>elf
               </Typography>
-              <Typography
-                variant="h4"
-                sx={{
-                  textAlign: "center",
-                  color: "#007bff",
-                  fontWeight: "normal",
-                }}
-              >
-                Breaking Barriers, Embracing Diversity
-              </Typography>
-              <button
-                style={{
-                  padding: "1.5rem 6rem",
-                  border: "none",
-                  borderRadius: "2rem",
-                  background:
-                    "linear-gradient(50deg, #007bff 0%, #f86c6f 100%)",
-                }}
+              <Stack
+                direction="column"
+                alignItems="center"
+                spacing={1}
+                data-aos="fade-left"
+                data-aos-offset="200"
+                data-aos-delay="300"
+                data-aos-once="true"
+                data-aos-easing="ease-in-sine"
               >
                 <Typography
-                  variant="h5"
-                  sx={{ color: "#fff", fontWeight: "normal" }}
+                  variant="h4"
+                  sx={{
+                    textAlign: "center",
+                    color: "#007bff",
+                    fontWeight: "normal",
+                  }}
                 >
-                  Join Us
+                  Breaking Barriers, Embracing Diversity
                 </Typography>
-              </button>
+                <button
+                  style={{
+                    padding: "1.5rem 6rem",
+                    maxWidth: "320px",
+                    border: "none",
+                    borderRadius: "2rem",
+                    background:
+                      "linear-gradient(50deg, #007bff 0%, #f86c6f 100%)",
+                  }}
+                >
+                  <Typography
+                    variant="h5"
+                    sx={{ color: "#fff", fontWeight: "normal" }}
+                  >
+                    Join Us
+                  </Typography>
+                </button>
+              </Stack>
             </Stack>
           </Container>
         </Box>
@@ -120,7 +132,7 @@ export default function HomePage() {
             position: "relative",
             display: "flex",
             alignItems: "center",
-            padding: {xs:"2rem 0", lg:".5rem 0"},
+            padding: { xs: "2rem 0", lg: ".5rem 0" },
           }}
         >
           <Container maxWidth="lg">
@@ -135,6 +147,11 @@ export default function HomePage() {
                   direction={"column"}
                   spacing={2}
                   className="contentImageStack"
+                  data-aos="fade-right"
+                  data-aos-offset="300"
+                  data-aos-delay="200"
+                  data-aos-once="true"
+                  data-aos-easing="ease-in-sine"
                 >
                   <Typography
                     variant="h2"
@@ -170,7 +187,16 @@ export default function HomePage() {
                   </Link>
                 </Stack>
                 <div className="imageContainer">
-                  <img src={HomePlant} alt="who are we" className="image" />
+                  <img
+                    src={HomePlant}
+                    alt="who are we"
+                    className="image"
+                    data-aos="fade-left"
+                    data-aos-offset="300"
+                    data-aos-delay="200"
+                    data-aos-once="true"
+                    data-aos-easing="ease-in-sine"
+                  />
                 </div>
               </Stack>
             </Box>
