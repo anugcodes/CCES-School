@@ -6,18 +6,16 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Menu, MenuItem, IconButton } from "@mui/material";
 import { useState } from "react";
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
 
 import { useLocation } from "react-router-dom";
 
-import {css} from "@emotion/react"
+import { css } from "@emotion/react";
 
 import "../css/navigation-bar.css";
 import BrandImage from "../assets/Intruders.png";
-import { ScrollLink } from "react-scroll";
 
 export default function Navbar() {
-
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -30,8 +28,7 @@ export default function Navbar() {
 
   const location = useLocation();
 
-  console.log(location)
-
+  console.log(location);
 
   return (
     <div
@@ -79,58 +76,66 @@ export default function Navbar() {
               </IconButton>
 
               <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              <MenuItem sx={css`
-                color: #70b4fc;
-                text-decoration: none;
-              `}>
-              <Typography variant="subtitle1" sx={{ fontWeight: "600"}}>
-                Home
-              </Typography>
-              </MenuItem>
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
+              >
+                <MenuItem
+                  sx={css`
+                    color: #70b4fc;
+                    text-decoration: none;
+                  `}
+                >
+                  <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
+                    Home
+                  </Typography>
+                </MenuItem>
 
-              <MenuItem sx={css`
-                color: #70b4fc;
-                text-decoration: none;
-              `}>
-              <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
-                About Us
-              </Typography>
-              </MenuItem>
+                <MenuItem
+                  sx={css`
+                    color: #70b4fc;
+                    text-decoration: none;
+                  `}
+                >
+                  <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
+                    About Us
+                  </Typography>
+                </MenuItem>
 
-              <MenuItem sx={css`
-                color: #70b4fc;
-                text-decoration: none;
-              `}>
-              <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
-                Gallary
-              </Typography>
-              </MenuItem>
+                <MenuItem
+                  sx={css`
+                    color: #70b4fc;
+                    text-decoration: none;
+                  `}
+                >
+                  <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
+                    Gallary
+                  </Typography>
+                </MenuItem>
 
-              <MenuItem sx={css` 
-                color: #70b4fc;
-                text-decoration: none;
-              `}>
-              <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
-                Contact Us
-              </Typography>
-              </MenuItem>
+                <MenuItem
+                  sx={css`
+                    color: #70b4fc;
+                    text-decoration: none;
+                  `}
+                >
+                  <Typography variant="subtitle1" sx={{ fontWeight: "600" }}>
+                    Contact Us
+                  </Typography>
+                </MenuItem>
               </Menu>
             </Box>
 
