@@ -8,7 +8,6 @@ import {
   TextField,
   MenuItem,
 } from "@mui/material";
-import { Input } from "@mui/material";
 import { css } from "@emotion/react";
 
 import { useState } from "react";
@@ -37,12 +36,12 @@ const CommunityCard = () => {
       position: "relative",
       background: "#ff6670c5",
       borderRadius: "1.5rem",
-      padding: ".5rem",
+      padding: "1rem",
+      minWidth: "200px",
       maxWidth: "280px",
+      width: "100%",
       "@media (max-width: 900px)": {
         maxWidth: "480px",
-        left: "20%",
-        right: "50%",
       },
     },
     button: {
@@ -58,133 +57,127 @@ const CommunityCard = () => {
       <Stack
         direction={{ md: "row", xs: "column" }}
         spacing={1}
-        alignContent={"center"}
+        alignContent={"flex-start"}
       >
-        <Card
+        <Box
           sx={styles.cards}
           data-aos="fade-right"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
         >
-          <CardContent>
-            <Stack
-              direction={"column"}
-              spacing={1}
-              sx={{ height: "100%" }}
-              justifyContent={"space-evenly"}
-            >
-              <img
-                src={sun}
-                style={{
-                  maxWidth: "8rem",
+          <Stack
+            direction={"column"}
+            spacing={1}
+            sx={{ height: "100%" }}
+            justifyContent={"space-between"}
+          >
+            <img
+              src={sun}
+              style={{
+                maxWidth: "8rem",
+              }}
+            />
+            <Box>
+              <Typography
+                variant="h1"
+                sx={{ fontWeight: "bold", color: "white" }}
+              >
+                30
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: "600",
+                  color: "white",
+                  textTransform: "uppercase",
                 }}
-              />
-              <Box>
-                <Typography
-                  variant="h1"
-                  sx={{ fontWeight: "bold", color: "white" }}
-                >
-                  30
-                </Typography>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: "600",
-                    color: "white",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Communities Built
-                </Typography>
-              </Box>
-              <Button sx={styles.button}>See Details</Button>
-            </Stack>
-          </CardContent>
-        </Card>
-        <Card
+              >
+                Communities Built
+              </Typography>
+            </Box>
+            <Button sx={styles.button}>See Details</Button>
+          </Stack>
+        </Box>
+        <Box
           sx={styles.cards}
           data-aos="fade-right"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
           data-aos-delay="500"
         >
-          <CardContent>
-            <Stack
-              direction={"column"}
-              spacing={1}
-              sx={{ height: "100%" }}
-              justifyContent={"space-evenly"}
-            >
-              <img
-                src={recycle}
-                style={{
-                  maxWidth: "8rem",
+          <Stack
+            direction={"column"}
+            spacing={1}
+            sx={{ height: "100%" }}
+            justifyContent={"space-between"}
+          >
+            <img
+              src={recycle}
+              style={{
+                maxWidth: "8rem",
+              }}
+            />
+            <Box>
+              <Typography
+                variant="h1"
+                sx={{ fontWeight: "bold", color: "white" }}
+              >
+                40
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: "600",
+                  color: "white",
+                  textTransform: "uppercase",
                 }}
-              />
-              <Box>
-                <Typography
-                  variant="h1"
-                  sx={{ fontWeight: "bold", color: "white" }}
-                >
-                  40
-                </Typography>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: "600",
-                    color: "white",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Environmental Projects
-                </Typography>
-              </Box>
-              <Button sx={styles.button}>See Details</Button>
-            </Stack>
-          </CardContent>
-        </Card>
-        <Card
+              >
+                Environmental Projects
+              </Typography>
+            </Box>
+            <Button sx={styles.button}>See Details</Button>
+          </Stack>
+        </Box>
+        <Box
           sx={styles.cards}
           data-aos="fade-right"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
           data-aos-delay="1000"
         >
-          <CardContent>
-            <Stack
-              direction={"column"}
-              spacing={1}
-              sx={{ height: "100%" }}
-              justifyContent={"space-evenly"}
-            >
-              <img
-                src={community}
-                style={{
-                  maxWidth: "8rem",
+          <Stack
+            direction={"column"}
+            spacing={1}
+            sx={{ height: "100%" }}
+            justifyContent={"space-between"}
+          >
+            <img
+              src={community}
+              style={{
+                maxWidth: "8rem",
+              }}
+            />
+            <Box>
+              <Typography
+                variant="h1"
+                sx={{ fontWeight: "bold", color: "white" }}
+              >
+                550
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: "600",
+                  color: "white",
+                  textTransform: "uppercase",
                 }}
-              />
-              <Box>
-                <Typography
-                  variant="h1"
-                  sx={{ fontWeight: "bold", color: "white" }}
-                >
-                  550
-                </Typography>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: "600",
-                    color: "white",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Members from all over the world
-                </Typography>
-              </Box>
-              <Button sx={styles.button}>See Details</Button>
-            </Stack>
-          </CardContent>
-        </Card>
+              >
+                Members from all over the world
+              </Typography>
+            </Box>
+            <Button sx={styles.button}>See Details</Button>
+          </Stack>
+        </Box>
 
         {/* box form */}
         <Box
@@ -192,15 +185,15 @@ const CommunityCard = () => {
           md={4}
           sx={{
             background: "#ff6670c5",
-            padding: "2rem",
+            padding: "1rem",
+            width: "100%",
             borderRadius: "1.5rem",
-            maxWidth: "360px",
             "@media (max-width: 900px)": {
               maxWidth: "480px",
             },
           }}
           data-aos="fade-right"
-          data-aos-offset="300"
+          data-aos-offset="100"
           data-aos-easing="ease-in-sine"
           data-aos-delay="1500"
         >

@@ -26,7 +26,7 @@ const Community = () => {
         }}
       >
         <Container maxWidth="lg">
-          <Stack direction={"column"} spacing={2} sx={{ p: "3rem 0" }}>
+          <Stack direction={"column"} spacing={2} sx={{ p: "3rem 0 5rem 0" }}>
             <Typography
               variant="h3"
               sx={{
