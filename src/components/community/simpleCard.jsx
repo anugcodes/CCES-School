@@ -14,7 +14,7 @@ import { useState } from "react";
 import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 
-import sun from "../../assets/beach.png";
+import sun from "../../assets/sun.png";
 import community from "../../assets/people.png";
 import recycle from "../../assets/recycle-symbol.png";
 
@@ -55,7 +55,7 @@ const CommunityCard = () => {
   };
 
   return (
-    <Box sx={{paddingTop:"2.5rem"}}>
+    <Box sx={{ paddingTop: "2.5rem" }}>
       <Stack
         direction={{ md: "row", xs: "column" }}
         spacing={1}
