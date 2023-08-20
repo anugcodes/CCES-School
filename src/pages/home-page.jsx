@@ -124,7 +124,6 @@ export default function HomePage() {
           sx={{
             background: `url(${Background})`,
             backgroundSize: "cover",
-            // backgroundAttachment:"fixed"
           }}
           className="parallax-section"
         >
@@ -151,7 +150,7 @@ export default function HomePage() {
                     spacing={2}
                     className="contentImageStack"
                     data-aos="fade-right"
-                    data-aos-offset="300"
+                    data-aos-offset="200"
                     data-aos-delay="200"
                     data-aos-once="true"
                     data-aos-easing="ease-in-sine"
@@ -196,8 +195,8 @@ export default function HomePage() {
                       alt="who are we"
                       className="image"
                       data-aos="fade-left"
-                      data-aos-offset="300"
-                      data-aos-delay="200"
+                      data-aos-offset="200"
+                      data-aos-delay="300"
                       data-aos-once="true"
                       data-aos-easing="ease-in-sine"
                     />

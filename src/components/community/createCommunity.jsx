@@ -30,7 +30,7 @@ const Community = () => {
           <Stack direction={"column"} spacing={2} sx={{ p: "3rem 0 5rem 0" }}>
             <div
               data-aos="fade-left"
-              data-aos-offset="200"
+              data-aos-offset="500"
               data-aos-delay="300"
               data-aos-once="true"
               data-aos-easing="ease-in-sine"

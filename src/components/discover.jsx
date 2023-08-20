@@ -78,7 +78,7 @@ const Discover = () => {
               xs={10}
               sx={styles.gridItemText}
               data-aos="fade-right"
-              data-aos-offset="200"
+              data-aos-offset="400"
               data-aos-delay="200"
               data-aos-once="true"
               data-aos-easing="ease-in-sine"

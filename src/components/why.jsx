@@ -30,7 +30,7 @@ const WhyChoose = () => {
             <Box
               className="text"
               data-aos="fade-right"
-              data-aos-offset="200"
+              data-aos-offset="500"
               data-aos-delay="200"
               data-aos-once="true"
               data-aos-easing="ease-in-sine"
