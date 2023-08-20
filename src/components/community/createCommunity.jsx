@@ -11,6 +11,7 @@ const Community = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
+        backgroundAttachment:"fixed",
       }}
     >
       <Box
