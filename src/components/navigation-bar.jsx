@@ -54,7 +54,7 @@ export default function Navbar() {
                 display: { xs: "flex", md: "none" },
                 alignItems: "center",
                 minHeight: "3rem",
-                maxHeight:"5rem",
+                maxHeight: "4rem",
                 height: "100%",
               }}
             >
@@ -138,7 +138,7 @@ export default function Navbar() {
               sx={{
                 display: { xs: "none", md: "flex" },
                 alignItems: "center",
-                minHeight: "4rem",
+                maxHeight: "4rem",
                 height: "100%",
               }}
             >

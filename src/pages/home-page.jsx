@@ -130,11 +130,11 @@ export default function HomePage() {
           <Box
             sx={{
               background: `linear-gradient(90deg, rgba(253,251,252,0.92) 70%, rgba(253,205,183,0.87) 70%)`,
-              minHeight: { lg: "90vh", xs: "auto" },
+              minHeight: { lg: "70vh", xs: "auto" },
               position: "relative",
               display: "flex",
               alignItems: "center",
-              padding: { xs: "2rem 0", lg: ".5rem 0" },
+              padding: "3rem 0",
             }}
           >
             <Container maxWidth="lg">

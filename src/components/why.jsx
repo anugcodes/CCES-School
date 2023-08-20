@@ -7,12 +7,12 @@ import CardData from "./whyCards";
 const WhyChoose = () => {
   return (
     <Box
-      sx={{
-        background: `url(${Background})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+    // sx={{
+    //   background: `url(${Background})`,
+    //   backgroundSize: "cover",
+    //   backgroundPosition: "",
+    //   backgroundRepeat: "no-repeat",
+    // }}
     >
       <Box
         sx={{
@@ -25,7 +25,7 @@ const WhyChoose = () => {
             direction={"column"}
             spacing={3}
             justifyContent={"center"}
-            sx={{ p: "3rem 0" }}
+            sx={{ p: "5rem 0" }}
           >
             <Box
               className="text"

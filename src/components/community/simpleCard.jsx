@@ -55,7 +55,7 @@ const CommunityCard = () => {
   };
 
   return (
-    <Box sx={{ paddingTop: "5rem" }}>
+    <Box sx={{paddingTop:"2.5rem"}}>
       <Stack
         direction={{ md: "row", xs: "column" }}
         spacing={1}
@@ -105,6 +105,7 @@ const CommunityCard = () => {
             <Button sx={styles.button}>See Details</Button>
           </Stack>
         </Box>
+
         <Box
           sx={styles.cards}
           data-aos="fade-right"
@@ -211,7 +212,7 @@ const CommunityCard = () => {
             },
           }}
           data-aos="fade-right"
-          data-aos-offset="100"
+          data-aos-offset="300"
           data-aos-easing="ease-in-sine"
           data-aos-delay="1500"
           data-aos-once="true"

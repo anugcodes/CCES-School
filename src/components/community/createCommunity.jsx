@@ -11,7 +11,7 @@ const Community = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundAttachment:"fixed",
+        backgroundAttachment: "fixed",
       }}
     >
       <Box
@@ -21,13 +21,10 @@ const Community = () => {
             rgba(253, 251, 252, 0.8744747899159664) 70%,
             rgba(183, 205, 253, 0.87) 70%
           )`,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
         }}
       >
         <Container maxWidth="lg">
-          <Stack direction={"column"} spacing={2} sx={{ p: "3rem 0 5rem 0" }}>
+          <Stack direction={"column"} spacing={2} sx={{ p: "5rem 0" }}>
             <div
               data-aos="fade-left"
               data-aos-offset="500"
