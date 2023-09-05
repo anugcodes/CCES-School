@@ -10,6 +10,9 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import FormHelperText from "@mui/joy/FormHelperText";
 import Input from "@mui/joy/Input";
+import Button from "@mui/joy/Button";
+import Radio from "@mui/joy/Radio";
+import RadioGroup from "@mui/joy/RadioGroup";
 
 // sections headings data
 import sectionsjson from "../data/sections.json";
@@ -42,16 +45,20 @@ function FormSectionA() {
   const [a9, setA9] = useState("");
   const [a10, setA10] = useState("");
   const [a11, setA11] = useState("");
+  const [a19, setA19] = useState("");
+  const [a17, setA17] = useState("");
+  const [a12, setA12] = useState("");
+  const [a13, setA13] = useState("");
 
   return (
-    <Box>
+    <Box sx={{padding:"2.5rem"}}>
       <Container maxWidth="lg">
         <Stack direction="column" spacing={1} sx={{ padding: "0rem 0" }}>
-          <Typography level="h5" fontWeight={"bold"}>
+          <Typography level="h4" fontWeight={"semibold"}>
             Primary Information
           </Typography>
 
-          <div style={{ padding: "1rem" }}>
+          <div style={{ padding: "1rem",background:"#f4e7ff" }}>
             <Stack direction="column" spacing={2}>
               <Stack direction="row" spacing={2}>
                 <FormControl>
@@ -61,6 +68,18 @@ function FormSectionA() {
 
                 <FormControl>
                   <FormLabel>Name of Respondent</FormLabel>
+                  <Input placeholder="" />
+                </FormControl>
+              </Stack>
+
+              <Stack spacing={2}>
+                <FormControl>
+                  <FormLabel>Name of School</FormLabel>
+                  <Input placeholder="" />
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel>Address of School</FormLabel>
                   <Input placeholder="" />
                 </FormControl>
               </Stack>
@@ -200,12 +219,16 @@ function FormSectionA() {
                 </Select>
               </FormControl>
 
-              <DatePicker
-                placeholder={"Year of Establishment of the School"}
-                views={["year"]}
-                sx={fieldStyle}
-                slotProps={{ textField: { size: "small" } }}
-              />
+              <FormControl>
+                <FormLabel>Year of Establishment of School</FormLabel>
+                <DatePicker
+                  value={a10}
+                  onChange={(e) => setA10(e.target.value)}
+                  views={["year"]}
+                  sx={fieldStyle}
+                  slotProps={{ textField: { size: "small" } }}
+                />
+              </FormControl>
 
               <FormControl>
                 <FormLabel>Location of School</FormLabel>
@@ -219,13 +242,94 @@ function FormSectionA() {
                 </Select>
               </FormControl>
 
-              <button
-                onClick={() => {
-                  console.log(a6);
-                }}
-              >
-                submit
-              </button>
+              <FormControl>
+                <FormLabel>Name of Board</FormLabel>
+                <RadioGroup
+                  defaultValue=""
+                  name="radio-buttons-group"
+                  value={a12}
+                  onChange={(e) => setA12(e.target.value)}
+                >
+                  <Radio value="state" label="State" variant="outlined" />
+                  <Radio value="others" label="Others" variant="outlined" />
+                  {a12 == "others" && (
+                    <Input
+                      placeholder="specify,"
+                      sx={{ marginTop: ".75rem" }}
+                    />
+                  )}
+                </RadioGroup>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Number of Students enrolled in School</FormLabel>
+                <Stack direction="row" spacing={2}>
+                  <Input placeholder="Number of Boys" type="number" />
+                  <Input placeholder="Number of Girls" type="number" />
+                </Stack>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Number of Children with Special Needs:</FormLabel>
+                <Stack direction="row" spacing={2}>
+                  <Input placeholder="Number of Boys" type="number" />
+                  <Input placeholder="Number of Girls" type="number" />
+                </Stack>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Number of Teachers and Staff:</FormLabel>
+                <Stack direction="row" spacing={2}>
+                  <Input placeholder="Number of Male" type="number" />
+                  <Input placeholder="Number of Female" type="number" />
+                </Stack>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>
+                  Has the school developed Swachhata Action Plan (SAP)?
+                </FormLabel>
+                <Select
+                  value={a17}
+                  defaultValue={""}
+                  onChange={(e, newvalue) => setA17(newvalue)}
+                >
+                  <Option value={"yes"}>yes</Option>
+                  <Option value={"no"}>no</Option>
+                </Select>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>
+                  Is the school aware of the requirements of the Standard
+                  Operating Procedures (SOPs) for Sustaining Water, Sanitation &
+                  Hygiene in schools{" "}
+                  <span>
+                    (
+                    <a
+                      href="https://schooledn.py.gov.in/ssarmsa/pdf/SOP for WASH -
+                  14-10-2021.pdf"
+                    >
+                      https://schooledn.py.gov.in/ssarmsa/pdf/SOP for WASH -
+                      14-10-2021.pdf
+                    </a>
+                    )?
+                  </span>
+                </FormLabel>
+                <Select
+                  value={a19}
+                  defaultValue={""}
+                  onChange={(e, newvalue) => setA19(newvalue)}
+                >
+                  <Option value={"yes"}>yes</Option>
+                  <Option value={"no"}>no</Option>
+                </Select>
+              </FormControl>
+
+              <Stack direction={"row"} spacing={2}>
+                <Button>Save Changes</Button>
+                <Button color="warning" >Next</Button>
+              </Stack>
             </Stack>
           </div>
         </Stack>
