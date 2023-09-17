@@ -18,9 +18,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import sectionsjson from "../data/sections.json";
 
 import { Country, State, City } from "country-state-city";
-// console.log(Country.getAllCountries())
-// console.log(State.getStatesOfCountry('IN'))
-// console.log(City.getCitiesOfState('IN', 'DL'))
+
 
 export default function SurveyForm() {
   return (
