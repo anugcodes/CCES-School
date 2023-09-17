@@ -53,9 +53,9 @@ function FormSectionA() {
   const [a17, setA17] = useState("");
   const [a12, setA12] = useState("");
   //const [a13, setA13] = useState("");
-  const [state, setState] = useState("");
+  const [state, setState] = useState("Enter your state");
   const [cityList, setCityList] = useState([]);
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("Enter your city");
 
   const styles = {
     inputfield: {
@@ -75,7 +75,7 @@ function FormSectionA() {
               <Stack direction="row" spacing={2}>
                 <Select
                   value={state}
-                  defaultValue={""}
+                  defaultValue={"Select your state"}
                   // placeholder="Designation of Respondent"
                   onChange={(e) => {
                     console.log(e.target.value.name);
