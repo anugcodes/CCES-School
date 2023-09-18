@@ -8,8 +8,10 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+
 // form sections
 import SectionB1 from "../components/section-b1";
+import SectionB3 from "../components/section-b3";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -88,7 +90,7 @@ export default function SurveyForm() {
             expanded={expanded === "panel4"}
             onChange={handleChange("panel4")}
             heading="Sanitation"
-            // section_form={}
+            section_form={SectionB3}
           />
 
           {/* section B4: Handwashing with soap */}

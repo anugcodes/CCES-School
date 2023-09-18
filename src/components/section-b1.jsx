@@ -103,7 +103,7 @@ export default function SectionB1() {
 
 const BooleanField = ({ question, set_question, label }) => {
   return (
-    <FormControl sx={{ m: 1 }}>
+    <FormControl sx={{ m: 1 }} required>
       <FormLabel id="demo-customized-select-label">{label}</FormLabel>
       <Select
         variant="outlined"
