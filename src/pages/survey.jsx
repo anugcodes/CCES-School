@@ -7,8 +7,6 @@ import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 // form sections
 import SectionB1 from "../components/section-b1";
@@ -66,7 +64,7 @@ export default function SurveyForm() {
             expanded={expanded === "panel1"}
             onChange={handleChange("panel1")}
             heading="Primary Informaiton"
-            section_form={SectionB1}
+            // section_form={}
           />
 
           {/* section B1: Risk assessment, analysis, preventive measures, Plan */}
@@ -76,6 +74,70 @@ export default function SurveyForm() {
             heading="Risk assessment, analysis, preventive measures, Plan"
             section_form={SectionB1}
           />
+
+          {/* section B1: Water */}
+          <SectionAccordion
+            expanded={expanded === "panel3"}
+            onChange={handleChange("panel3")}
+            heading="Water"
+            // section_form={SectionB1}
+          />
+
+          {/* section B3: Sanitation */}
+          <SectionAccordion
+            expanded={expanded === "panel4"}
+            onChange={handleChange("panel4")}
+            heading="Sanitation"
+            // section_form={}
+          />
+
+          {/* section B4: Handwashing with soap */}
+          <SectionAccordion
+            expanded={expanded === "panel5"}
+            onChange={handleChange("panel5")}
+            heading="Handwashing with soap"
+            // section_form={}
+          />
+
+          {/* section B5: Waste Management */}
+          <SectionAccordion
+            expanded={expanded === "panel6"}
+            onChange={handleChange("panel6")}
+            heading="Waste Management"
+            // section_form={}
+          />
+
+          {/* section B6: Energy */}
+          <SectionAccordion
+            expanded={expanded === "panel7"}
+            onChange={handleChange("panel7")}
+            heading="Energy"
+            // section_form={}
+          />
+
+          {/* section B7: Environment */}
+          <SectionAccordion
+            expanded={expanded === "panel8"}
+            onChange={handleChange("panel8")}
+            heading="Environment"
+            // section_form={}
+          />
+
+          {/* section B8: O and M */}
+          <SectionAccordion
+            expanded={expanded === "panel9"}
+            onChange={handleChange("panel9")}
+            heading="O and M"
+            // section_form={}
+          />
+
+          {/* section B9: Capacity Building and Behaviour Change */}
+          <SectionAccordion
+            expanded={expanded === "panel10"}
+            onChange={handleChange("panel10")}
+            heading="Capacity Building and Behaviour Change"
+            // section_form={}
+          />
         </Stack>
       </Container>
     </div>
@@ -84,8 +146,6 @@ export default function SurveyForm() {
 
 const SectionAccordion = (props) => {
   const { onChange, expanded, heading, section_form, ...others } = props;
-  // console.log(onChange, expanded, heading, section_form);
-
   return (
     <Accordion
       expanded={expanded}
