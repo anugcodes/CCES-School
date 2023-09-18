@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import PropTypes from "prop-types";
 import { Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
@@ -54,6 +54,7 @@ export default function SurveyForm() {
   const [expanded, setExpanded] = useState("panel1");
 
   const handleChange = (panel) => (event, newExpanded) => {
+    console.log(panel, expanded);
     setExpanded(newExpanded ? panel : false);
   };
   return (
@@ -63,11 +64,16 @@ export default function SurveyForm() {
           {/* section A - primary Informaiton */}
           <SectionAccordion
             expanded={expanded === "panel1"}
-            onChange={() => {
-              handleChange("panel1");
-              console.log("clicked");
-            }}
+            onChange={handleChange("panel1")}
             heading="Primary Informaiton"
+            section_form={SectionB1}
+          />
+
+          {/* section B1: Risk assessment, analysis, preventive measures, Plan */}
+          <SectionAccordion
+            expanded={expanded === "panel2"}
+            onChange={handleChange("panel2")}
+            heading="Risk assessment, analysis, preventive measures, Plan"
             section_form={SectionB1}
           />
         </Stack>
@@ -78,13 +84,14 @@ export default function SurveyForm() {
 
 const SectionAccordion = (props) => {
   const { onChange, expanded, heading, section_form, ...others } = props;
-  console.log(onChange, expanded, heading, section_form);
+  // console.log(onChange, expanded, heading, section_form);
 
   return (
     <Accordion
       expanded={expanded}
-      onChange={(e) => onChange()}
+      onChange={onChange}
       TransitionProps={{ unmountOnExit: true }}
+      {...others}
     >
       <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
         <Stack
@@ -111,4 +118,12 @@ const SectionAccordion = (props) => {
       </AccordionDetails>
     </Accordion>
   );
+};
+
+SectionAccordion.propTypes = {
+  onChange: PropTypes.func,
+  expanded: PropTypes.bool,
+  heading: PropTypes.string,
+  section_form: PropTypes.func,
+  others: PropTypes.any,
 };
