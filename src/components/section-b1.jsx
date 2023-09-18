@@ -83,7 +83,7 @@ export default function SectionB1() {
         />
         <BooleanField
           question={b112}
-          set_question={set_b12}
+          set_question={set_b112}
           label="Does your school have a practice of conducting mock drills for disaster response?"
         />
         <BooleanField
