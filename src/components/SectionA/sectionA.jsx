@@ -10,7 +10,7 @@ import {
   RadioGroup,
   TextField,
   FormControlLabel,
-  Button
+  Button,
 } from "@mui/material";
 import { css } from "@emotion/react";
 import { useState } from "react";
@@ -32,7 +32,15 @@ const SectionA = () => {
   const [a19, setA19] = useState("");
   const [a17, setA17] = useState("");
   const [a12, setA12] = useState("");
-  //const [a13, setA13] = useState("");
+  const [a13, setA13] = useState("");
+  const [a14, setA14] = useState("");
+  const [a15, setA15] = useState("");
+  const [a16, setA16] = useState("");
+  // const [a17, setA17] = useState("");
+  const [a18, setA18] = useState("");
+  const [a20, setA20] = useState("");
+  const [a21, setA21] = useState("");
+  const [a22, setA22] = useState("");
   const [state, setState] = useState("Enter your state");
   const [cityList, setCityList] = useState([]);
   const [city, setCity] = useState("Enter your city");
@@ -44,18 +52,28 @@ const SectionA = () => {
       display: flex;
       justify-content: center;
     `,
+
+    bttn: css`
+      background: #110055;
+      color: #fafafa;
+      font-weight: bold;
+
+      &:hover {
+        background: green;
+        color: white;
+      };
+
+    `
   };
   return (
     <Box sx={styles.mainBox}>
       <Grid container maxWidth={"lg"} display={"flex"} flexDirection={"column"}>
-        <Typography variant="h3">Personal Information</Typography>
-
-        <Box sx={{ padding: "1rem", background: "#f4e7ff" }}>
-          <Stack direction={"column"} spacing={4}>
+        <Box sx={{ padding: "1rem" }}>
+          <Stack direction={"column"} spacing={6}>
             <Stack direction={"row"} spacing={4}>
               <Grid item md={6} xs={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">Select your state</Typography>
+                  <Typography variant="body1">Select your state</Typography>
                   <Select
                     value={state}
                     defaultValue={"Select your state"}
@@ -68,6 +86,7 @@ const SectionA = () => {
                       );
                     }}
                     fullWidth
+                    size="small"
                   >
                     {stateList.map((stateData, index) => (
                       <MenuItem value={stateData} key={index}>
@@ -80,21 +99,19 @@ const SectionA = () => {
 
               <Grid item md={6} xs={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">Select your city</Typography>
+                  <Typography variant="body1">Select your city</Typography>
                   <Select
-                    value={state}
-                    defaultValue={"Select your state"}
+                    value={city}
+                    defaultValue={"Select your City"}
                     // placeholder="Designation of Respondent"
                     onChange={(e) => {
                       console.log(e.target.value.name);
-                      setState(e.target.value);
-                      setCityList(
-                        City.getCitiesOfState("IN", e.target.value.isoCode)
-                      );
+                      setCity(e.target.value)
                     }}
                     fullWidth
+                    size="small"
                   >
-                    {stateList.map((stateData, index) => (
+                    {cityList.map((stateData, index) => (
                       <MenuItem value={stateData} key={index}>
                         {stateData.name}
                       </MenuItem>
@@ -107,8 +124,8 @@ const SectionA = () => {
             <Stack direction={"row"} spacing={4}>
               <Grid item md={6} xs={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">U-DISE Code</Typography>
-                  <TextField variant="standard" />
+                  <Typography variant="body1">U-DISE Code</Typography>
+                  <TextField variant="standard" onChange={(e) => setA1(e.target.value)}/>
                 </Stack>
               </Grid>
             </Stack>
@@ -116,14 +133,14 @@ const SectionA = () => {
             <Stack direction={"row"} spacing={4}>
               <Grid item md={6} xs={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">Name of school</Typography>
-                  <TextField variant="standard" />
+                  <Typography variant="body1">Name of school</Typography>
+                  <TextField variant="standard" onChange={(e) => setA2(e.target.value)}/>
                 </Stack>
               </Grid>
               <Grid item md={6} xs={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">Address of school</Typography>
-                  <TextField variant="standard" />
+                  <Typography variant="body1">Address of school</Typography>
+                  <TextField variant="standard" onChange={(e) => setA3(e.target.value)}/>
                 </Stack>
               </Grid>
             </Stack>
@@ -131,8 +148,8 @@ const SectionA = () => {
             <Stack direction={"row"} spacing={4}>
               <Grid item md={6} xs={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">Name of the respondent</Typography>
-                  <TextField variant="standard" />
+                  <Typography variant="body1">Name of the respondent</Typography>
+                  <TextField variant="standard" onChange={(e) => setA4(e.target.value)}/>
                 </Stack>
               </Grid>
               <Grid item md={6} xs={12}>
@@ -142,14 +159,14 @@ const SectionA = () => {
                   display={"flex"}
                   justifyContent={"center"}
                 >
-                  <Typography variant="h6">
+                  <Typography variant="body1">
                     Designation of Respondent
                   </Typography>
                   <Select
                     value={a4}
                     defaultValue={""}
                     // placeholder="Designation of Respondent"
-                    onChange={(e, newvalue) => setA4(newvalue)}
+                    onChange={(e) => setA4(e.target.value)}
                     size="small"
                   >
                     <MenuItem value={"Principal/Head Teacher"}>
@@ -169,8 +186,8 @@ const SectionA = () => {
             <Stack direction={"row"} spacing={4}>
               <Grid item md={4} xs={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">School Phone number:*</Typography>
-                  <TextField variant="standard" />
+                  <Typography variant="body1">School Phone number:*</Typography>
+                  <TextField variant="standard" onChange={(e) => setA5(e.target.value)}/>
                 </Stack>
               </Grid>
               <Grid item md={4} xs={12}>
@@ -180,8 +197,8 @@ const SectionA = () => {
                   display={"flex"}
                   justifyContent={"center"}
                 >
-                  <Typography variant="h6">Mobile No:*</Typography>
-                  <TextField variant="standard" />
+                  <Typography variant="body1">Mobile No:*</Typography>
+                  <TextField variant="standard" onChange={(e) => setA6(e.target.value)}/>
                 </Stack>
               </Grid>
               <Grid item md={4} xs={12}>
@@ -191,8 +208,8 @@ const SectionA = () => {
                   display={"flex"}
                   justifyContent={"center"}
                 >
-                  <Typography variant="h6">Email Id:*</Typography>
-                  <TextField variant="standard" />
+                  <Typography variant="body1">Email Id:*</Typography>
+                  <TextField variant="standard" onChange={(e) => setA7(e.target.value)}/>
                 </Stack>
               </Grid>
             </Stack>
@@ -200,14 +217,14 @@ const SectionA = () => {
             <Stack direction={"row"} spacing={4}>
               <Grid item md={4} xs={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">
+                  <Typography variant="body1">
                     School Management (Please select anyone)*
                   </Typography>
                   <Select
-                    value={a4}
+                    value={a8}
                     defaultValue={""}
                     // placeholder="Designation of Respondent"
-                    onChange={(e, newvalue) => setA4(newvalue)}
+                    onChange={(e) => setA8(e.target.value)}
                     size="small"
                   >
                     <MenuItem value={"Government schools"}>
@@ -252,12 +269,12 @@ const SectionA = () => {
                   display={"flex"}
                   justifyContent={"center"}
                 >
-                  <Typography variant="h6">School type (use)</Typography>
+                  <Typography variant="body1">School type (use)</Typography>
                   <Select
-                    value={a4}
+                    value={a9}
                     defaultValue={""}
                     // placeholder="Designation of Respondent"
-                    onChange={(e, newvalue) => setA4(newvalue)}
+                    onChange={(e, newvalue) => setA9(e.target.value)}
                     size="small"
                   >
                     <MenuItem value={"Residential"}>Residential</MenuItem>
@@ -274,12 +291,12 @@ const SectionA = () => {
                   display={"flex"}
                   justifyContent={"center"}
                 >
-                  <Typography variant="h6">Category of School</Typography>
+                  <Typography variant="body1">Category of School</Typography>
                   <Select
-                    value={a4}
+                    value={a10}
                     defaultValue={""}
                     // placeholder="Designation of Respondent"
-                    onChange={(e, newvalue) => setA4(newvalue)}
+                    onChange={(e, newvalue) => setA10(e.target.value)}
                     size="small"
                   >
                     <MenuItem value={"Primary only with grades 1-5"}>
@@ -331,12 +348,12 @@ const SectionA = () => {
             <Stack direction={"row"} spacing={4}>
               <Grid item md={4} xs={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">
+                  <Typography variant="body1">
                     Year of Establishment of School*
                   </Typography>
                   <DatePicker
-                    value={a10}
-                    onChange={(e) => setA10(e.target.value)}
+                    value={a11}
+                    onChange={(e) => setA11(e.target.value)}
                     views={["year"]}
                     sx={{ width: "100%" }}
                     slotProps={{ textField: { size: "small" } }}
@@ -350,12 +367,12 @@ const SectionA = () => {
                   display={"flex"}
                   justifyContent={"center"}
                 >
-                  <Typography variant="h6">Location of School*</Typography>
+                  <Typography variant="body1">Location of School*</Typography>
                   <Select
-                    value={a4}
+                    value={a12}
                     defaultValue={""}
                     // placeholder="Designation of Respondent"
-                    onChange={(e, newvalue) => setA4(newvalue)}
+                    onChange={(e) => setA12(e.target.value)}
                     size="small"
                   >
                     <MenuItem value={"Rural Area"}>Rural Area</MenuItem>
@@ -370,14 +387,14 @@ const SectionA = () => {
                   display={"flex"}
                   justifyContent={"center"}
                 >
-                  <Typography variant="h6">
+                  <Typography variant="body1">
                     School type (boys / girls)*
                   </Typography>
                   <Select
-                    value={a4}
+                    value={a13}
                     defaultValue={""}
                     // placeholder="Designation of Respondent"
-                    onChange={(e, newvalue) => setA4(newvalue)}
+                    onChange={(e, newvalue) => setA13(e.target.value)}
                     size="small"
                   >
                     <MenuItem value={"All boys' school"}>
@@ -393,14 +410,14 @@ const SectionA = () => {
             </Stack>
 
             <Stack direction={"row"} spacing={4}>
-              <Grid item md={6} xs={12}>
+              <Grid item md={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">Name of Board</Typography>
+                  <Typography variant="body1">Name of Board</Typography>
                   <RadioGroup
                     defaultValue=""
                     name="radio-buttons-group"
-                    value={a12}
-                    onChange={(e) => setA12(e.target.value)}
+                    value={a14}
+                    onChange={(e) => setA14(e.target.value)}
                   >
                     <Stack direction="row" spacing={2}>
                       <FormControlLabel
@@ -413,7 +430,7 @@ const SectionA = () => {
                         control={<Radio />}
                         label="Others specify board"
                       />
-                      {a12 == "others" && (
+                      {a14 == "others" && (
                         <Input
                           placeholder="specify,"
                           sx={{ marginTop: ".75rem", minWidth: "30%" }}
@@ -429,12 +446,12 @@ const SectionA = () => {
             <Stack direction={"row"} spacing={4}>
               <Grid item md={4} xs={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">
+                  <Typography variant="body1">
                     Number of Students enrolled in School
                   </Typography>
                   <Stack spacing={2}>
-                    <Input placeholder="Number of Boys" type="number" />
-                    <Input placeholder="Number of Girls" type="number" />
+                    <Input placeholder="Number of Boys" type="number" onChange={(e) => setA15(e.target.value)}/>
+                    <Input placeholder="Number of Girls" type="number" onChange={(e) => setA16(e.target.value)}/>
                   </Stack>
                 </Stack>
               </Grid>
@@ -445,12 +462,12 @@ const SectionA = () => {
                   display={"flex"}
                   justifyContent={"center"}
                 >
-                  <Typography variant="h6">
+                  <Typography variant="body1">
                     Number of Children with Special Needs:
                   </Typography>
                   <Stack spacing={2}>
-                    <Input placeholder="Number of Boys" type="number" />
-                    <Input placeholder="Number of Girls" type="number" />
+                    <Input placeholder="Number of Boys" type="number" onChange={(e) => setA17(e.target.value)}/>
+                    <Input placeholder="Number of Girls" type="number" onChange={(e) => setA18(e.target.value)}/>
                   </Stack>
                 </Stack>
               </Grid>
@@ -461,12 +478,12 @@ const SectionA = () => {
                   display={"flex"}
                   justifyContent={"center"}
                 >
-                  <Typography variant="h6">
+                  <Typography variant="body1">
                     Number of Teachers and Staff:
                   </Typography>
                   <Stack spacing={2}>
-                    <Input placeholder="Number of Male" type="number" />
-                    <Input placeholder="Number of Female" type="number" />
+                    <Input placeholder="Number of Male" type="number" onChange={(e) => setA19(e.target.value)}/>
+                    <Input placeholder="Number of Female" type="number" onChange={(e) => setA20(e.target.value)}/>
                   </Stack>
                 </Stack>
               </Grid>
@@ -475,15 +492,18 @@ const SectionA = () => {
             <Stack direction={"row"} spacing={4}>
               <Grid item md={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">Has the school developed Swachhata Action Plan (SAP)?*</Typography>
+                  <Typography variant="body1">
+                    Has the school developed Swachhata Action Plan (SAP)?*
+                  </Typography>
                   <Select
-                  value={a17}
-                  defaultValue={""}
-                  onChange={(e, newvalue) => setA17(newvalue)}
-                >
-                  <MenuItem value={"yes"}>yes</MenuItem>
-                  <MenuItem value={"no"}>no</MenuItem>
-                </Select>
+                    value={a21}
+                    defaultValue={""}
+                    onChange={(e, newvalue) => setA21(e.target.value)}
+                    size="small"
+                  >
+                    <MenuItem value={"yes"}>yes</MenuItem>
+                    <MenuItem value={"no"}>no</MenuItem>
+                  </Select>
                 </Stack>
               </Grid>
             </Stack>
@@ -491,38 +511,43 @@ const SectionA = () => {
             <Stack direction={"row"} spacing={4}>
               <Grid item md={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="h6">Is the school aware of the requirements of the Standard Operating Procedures (SOPs) for Sustaining Water, Sanitation & Hygiene in schools <span>
-                  (
-                  <a
-                    href="https://schooledn.py.gov.in/ssarmsa/pdf/SOP for WASH -
+                  <Typography variant="body1">
+                    Is the school aware of the requirements of the Standard
+                    Operating Procedures (SOPs) for Sustaining Water, Sanitation
+                    & Hygiene in schools{" "}
+                    <span>
+                      (
+                      <a
+                        href="https://schooledn.py.gov.in/ssarmsa/pdf/SOP for WASH -
                 14-10-2021.pdf"
+                      >
+                        https://schooledn.py.gov.in/ssarmsa/pdf/SOP for WASH -
+                        14-10-2021.pdf
+                      </a>
+                      )?
+                    </span>
+                    *
+                  </Typography>
+                  <Select
+                    value={a22}
+                    defaultValue={""}
+                    onChange={(e, newvalue) => setA22(e.target.value)}
+                    size="small"
                   >
-                    https://schooledn.py.gov.in/ssarmsa/pdf/SOP for WASH -
-                    14-10-2021.pdf
-                  </a>
-                  )?
-                </span>*</Typography>
-                <Select
-                value={a19}
-                defaultValue={""}
-                onChange={(e, newvalue) => setA19(newvalue)}
-              >
-                <MenuItem value={"yes"}>yes</MenuItem>
-                <MenuItem value={"no"}>no</MenuItem>
-              </Select>
+                    <MenuItem value={"yes"}>yes</MenuItem>
+                    <MenuItem value={"no"}>no</MenuItem>
+                  </Select>
                 </Stack>
               </Grid>
             </Stack>
 
             <Stack
-                direction={"row"}
-                spacing={2}
-                sx={{ button: { minWidth: "160px" } }}
-              >
-                <Button>Save Changes</Button>
-                <Button color="warning">Next</Button>
-              </Stack>
-
+              direction={"row"}
+              spacing={2}
+              sx={{ button: { minWidth: "160px" } }}
+            >
+              <Button color="success" sx={styles.bttn}>Save Changes</Button>
+            </Stack>
           </Stack>
         </Box>
       </Grid>
