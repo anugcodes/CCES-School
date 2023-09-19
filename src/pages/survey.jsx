@@ -13,6 +13,8 @@ import SectionB4 from "../components/section-b4";
 import SectionB5 from "../components/section-b5";
 import SectionB6 from "../components/section-b6";
 import SectionB7 from "../components/section-b7";
+import SectionB2 from "../components/section-b2";
+import SectionA from "../components/SectionA/sectionA";
 
 export default function SurveyForm() {
   const [expanded, setExpanded] = useState("sectionA");
@@ -56,7 +58,7 @@ export default function SurveyForm() {
             expanded={expanded === "sectionB2"}
             onChange={handleChange("sectionB2")}
             heading="Water"
-            // section_form={SectionB1}
+            section_form={SectionB2}
           />
 
           {/* section B3: Sanitation */}
