@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { PropTypes } from "prop-types";
 
-import { Stack } from "@mui/material";
+import Stack from "@mui/material/Stack";
 
-import { OptionForm } from "./section-b3";
+import OptionForm from "./option-form";
 
 export default function SecitonB6() {
   const [b61, set_b61] = useState("");
