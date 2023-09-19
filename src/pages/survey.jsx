@@ -14,6 +14,8 @@ import SectionB1 from "../components/section-b1";
 import SectionB3 from "../components/section-b3";
 import SectionB5 from "../components/section-b5";
 import SectionB7 from "../components/section-b7";
+import SectionB2 from "../components/section-b2";
+import SectionA from "../components/SectionA/sectionA";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -76,7 +78,7 @@ export default function SurveyForm() {
             expanded={expanded === "panel1"}
             onChange={handleChange("panel1")}
             heading="Primary Informaiton"
-            // section_form={}
+            section_form={SectionA}
           />
 
           {/* section B1: Risk assessment, analysis, preventive measures, Plan */}
@@ -92,7 +94,7 @@ export default function SurveyForm() {
             expanded={expanded === "panel3"}
             onChange={handleChange("panel3")}
             heading="Water"
-            // section_form={SectionB1}
+            section_form={SectionB2}
           />
 
           {/* section B3: Sanitation */}
