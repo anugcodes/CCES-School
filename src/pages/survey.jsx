@@ -10,9 +10,11 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
 // form sections
+import SectionA from "../components/SectionA/sectionA";
 import SectionB1 from "../components/section-b1";
 import SectionB3 from "../components/section-b3";
 import SectionB5 from "../components/section-b5";
+import SectionB6 from "../components/section-b6";
 import SectionB7 from "../components/section-b7";
 
 const Accordion = styled((props) => (
@@ -76,7 +78,7 @@ export default function SurveyForm() {
             expanded={expanded === "panel1"}
             onChange={handleChange("panel1")}
             heading="Primary Informaiton"
-            // section_form={}
+            section_form={SectionA}
           />
 
           {/* section B1: Risk assessment, analysis, preventive measures, Plan */}
@@ -124,7 +126,7 @@ export default function SurveyForm() {
             expanded={expanded === "panel7"}
             onChange={handleChange("panel7")}
             heading="Energy"
-            // section_form={}
+            section_form={SectionB6}
           />
 
           {/* section B7: Environment */}
