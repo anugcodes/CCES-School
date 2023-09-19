@@ -98,16 +98,93 @@ export default function SectionB3() {
         />
 
         <OptionForm
-          question={b33}
-          set_question={set_b33}
-          label="hello"
+          question={b311}
+          set_question={set_b311}
+          label="Who supervises the cleaning and maintenance of the toilets in the school? "
+          options={[
+            "No one in particular",
+            "Teachers/ staff",
+            "Child cabinet/ responsibility of particular class/section as per roster",
+            "Team of teachers, staff and child cabinet members",
+          ]}
+        />
+
+        <OptionForm
+          question={b312}
+          set_question={set_b312}
+          label="Does the school do timely upkeeping/maintenance of fitting and fixtures of toilets?"
           options={["yes", "No"]}
         />
 
         <OptionForm
-          question={b33}
-          set_question={set_b33}
-          label="hello"
+          question={b313}
+          set_question={set_b313}
+          label="Are any toilets in the school prone to the impact of climate/natural hazards (as floods/ drought/seasonal water scarcity etc)?"
+          options={["yes", "No"]}
+        />
+
+        <OptionForm
+          question={b314}
+          set_question={set_b314}
+          label="Has the school taken appropriate measures to ensure disaster-resilient toilets in view of the local hazard/disaster vulnerability context (e.g., elevated infrastructures in flood-prone areas)?"
+          options={["yes", "No"]}
+        />
+        <OptionForm
+          question={b315}
+          set_question={set_b315}
+          label="Does the school (with onsite sanitation facility) ensure that the toilet pits are at a safe distance from main water source?"
+          options={["yes", "No"]}
+        />
+
+        <OptionForm
+          question={b316}
+          set_question={set_b316}
+          label=" Does the school have separate dustbins with lid and with specific colours for disposal of menstrual waste?"
+          options={["yes", "No"]}
+        />
+
+        <OptionForm
+          question={b317}
+          set_question={set_b317}
+          label="Which of the following option is used by the school for safe treatment/ disposal of sanitary waste? "
+          options={[
+            "No specific measures",
+            "Disposed in a manual incinerator",
+            "Deep burial pit",
+            "Disposed in an electric Incinerator",
+          ]}
+        />
+
+        <OptionForm
+          question={b318}
+          set_question={set_b318}
+          label="What is the main mechanism for disposal of toilet waste / faecal sludge? "
+          options={[
+            "No specific measure / sludge released in open",
+            "Open drain or septic tanks without cover or broken cover",
+            "Leach pits with sturdy and solid cover (prevents contact with flies/accidental overspill)",
+            "Septic tank/bio-toilets/ sewer line with sturdy and solid cover ",
+          ]}
+        />
+
+        <OptionForm
+          question={b319}
+          set_question={set_b319}
+          label="In case option a. or b, in the last question (number 3.18), has the school planned for specific for open drain, broken cover."
+          options={["yes", "No"]}
+        />
+
+        <OptionForm
+          question={b320}
+          set_question={set_b320}
+          label="Does the school have scheduled desludging of the faecal matter (preferably before monsoon), in coordination with nearby service provider?"
+          options={["yes", "No"]}
+        />
+
+        <OptionForm
+          question={b321}
+          set_question={set_b321}
+          label="Has the school cleared/demolished/disposed of the old dilapidated non-usable toilet blocks with appropriate permission from officials?"
           options={["yes", "No"]}
         />
       </Stack>
@@ -115,7 +192,7 @@ export default function SectionB3() {
   );
 }
 
-const OptionForm = ({ question, set_question, label, options }) => {
+export const OptionForm = ({ question, set_question, label, options }) => {
   return (
     <FormControl sx={{ m: 1 }} required>
       <FormLabel id="demo-customized-select-label">{label}</FormLabel>
@@ -127,11 +204,7 @@ const OptionForm = ({ question, set_question, label, options }) => {
       >
         {options.map((option, index) => (
           <MenuItem key={index} value={option.trim().toLowerCase()}>
-            {option
-            //   .split(" ")
-            //   .map((w) => w[0].toUpperCase() + w.substring(1).toLowerCase())
-            //   .join(" ")}
-            }
+            {option}
           </MenuItem>
         ))}
       </Select>

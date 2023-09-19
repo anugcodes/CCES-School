@@ -12,6 +12,8 @@ import Stack from "@mui/material/Stack";
 // form sections
 import SectionB1 from "../components/section-b1";
 import SectionB3 from "../components/section-b3";
+import SectionB5 from "../components/section-b5";
+import SectionB7 from "../components/section-b7";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -106,7 +108,7 @@ export default function SurveyForm() {
             expanded={expanded === "panel6"}
             onChange={handleChange("panel6")}
             heading="Waste Management"
-            // section_form={}
+            section_form={SectionB5}
           />
 
           {/* section B6: Energy */}
@@ -122,7 +124,7 @@ export default function SurveyForm() {
             expanded={expanded === "panel8"}
             onChange={handleChange("panel8")}
             heading="Environment"
-            // section_form={}
+            section_form={SectionB7}
           />
 
           {/* section B8: O and M */}
