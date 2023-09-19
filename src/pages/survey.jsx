@@ -13,7 +13,8 @@ import SectionB5 from "../components/section-b5";
 import SectionB6 from "../components/section-b6";
 import SectionB7 from "../components/section-b7";
 import SectionB2 from "../components/section-b2";
-import SectionA from "../components/SectionA/sectionA";
+import SectionB8 from "../components/section-b8";
+import SectionB9 from "../components/section-b9";
 
 export default function SurveyForm() {
   const [expanded, setExpanded] = useState("panel1");
@@ -104,7 +105,7 @@ export default function SurveyForm() {
             expanded={expanded === "panel9"}
             onChange={handleChange("panel9")}
             heading="O and M"
-            // section_form={}
+            section_form={SectionB8}
           />
 
           {/* section B9: Capacity Building and Behaviour Change */}
@@ -112,7 +113,7 @@ export default function SurveyForm() {
             expanded={expanded === "panel10"}
             onChange={handleChange("panel10")}
             heading="Capacity Building and Behaviour Change"
-            // section_form={}
+            section_form={SectionB9}
           />
         </Stack>
       </Container>
