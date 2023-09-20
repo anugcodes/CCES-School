@@ -4,9 +4,9 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import PropTypes from "prop-types";
 
-const OptionForm = ({ question, set_question, label, options }) => {
+const OptionForm = ({ question, set_question, label, options, ...others }) => {
   return (
-    <FormControl sx={{ m: 1 }} required>
+    <FormControl sx={{ m: 1 }} {...others} required>
       <FormLabel id="demo-customized-select-label">{label}</FormLabel>
       <Select
         variant="outlined"
@@ -28,6 +28,7 @@ OptionForm.propTypes = {
   set_question: PropTypes.func,
   label: PropTypes.string,
   options: PropTypes.array,
+  others: PropTypes.any,
 };
 
 export default OptionForm;

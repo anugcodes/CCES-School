@@ -44,13 +44,20 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 // main accrodion component
 const SectionAccordion = (props) => {
-  const { onChange, expanded, heading, section_form, ...others } = props;
+  const {
+    sectionId,
+    onChange,
+    expanded,
+    heading,
+    section_form,
+    formStatus,
+    ...others
+  } = props;
   return (
     <Accordion
       expanded={expanded}
       onChange={onChange}
       TransitionProps={{ unmountOnExit: true }}
-      {...others}
       sx={{
         "& .MuiAccordionSummary-root": {
           background: expanded ? "#fda" : "white",
@@ -65,7 +72,12 @@ const SectionAccordion = (props) => {
           sx={{ width: "100%", marginLeft: ".5rem" }}
         >
           <Typography>{heading}</Typography>
-          <Typography variant="subtitle2">pending</Typography>
+          <Typography
+            variant="subtitle2"
+            color={formStatus[sectionId] === true ? "green" : "red"}
+          >
+            {formStatus[sectionId] === true ? "success" : "pending"}
+          </Typography>
         </Stack>
       </AccordionSummary>
       <AccordionDetails>
@@ -77,7 +89,7 @@ const SectionAccordion = (props) => {
             lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
         ) : (
-          section_form()
+          section_form({ ...others })
         )}
       </AccordionDetails>
     </Accordion>
@@ -85,10 +97,12 @@ const SectionAccordion = (props) => {
 };
 
 SectionAccordion.propTypes = {
+  sectionId: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   expanded: PropTypes.bool.isRequired,
   heading: PropTypes.string.isRequired,
   section_form: PropTypes.func,
+  formStatus: PropTypes.object,
   others: PropTypes.any,
 };
 
