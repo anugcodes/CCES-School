@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import { PropTypes } from "prop-types";
+import Stack from "@mui/material/Stack";
+import TextFieldComponent from "./text-field";
 
-import {
-  FormControl,
-  FormLabel,
-  Stack,
-  Select,
-  MenuItem,
-  Input,
-} from "@mui/material";
+import OptionForm from "./option-form";
 
 export default function SectionB2() {
   const [b21, set_b21] = useState("");
@@ -78,10 +72,11 @@ export default function SectionB2() {
             "Overhead storage tank with drinking water taps",
           ]}
         />
-        <BooleanField
+        <OptionForm
           label="Does the water stored in the school adequate to meet the requirement of water for all purposes?"
           question={b24}
           set_question={set_b24}
+          options={["Yes", "No"]}
         />
         <OptionForm
           question={b25}
@@ -93,10 +88,11 @@ export default function SectionB2() {
             "Tested twice or more times in a year",
           ]}
         />
-        <BooleanField
+        <OptionForm
           question={b26}
           set_question={set_b26}
           label="Whether testing reports available with the school?"
+          options={["Yes", "No"]}
         />
         <OptionForm
           question={b27}
@@ -104,19 +100,23 @@ export default function SectionB2() {
           label="Whether the school has taken any measures for reducing contamination to ensure water quality?"
           options={["water treatment", "safe storage", "safe handling"]}
         />
-        <InputField
+        <TextFieldComponent
+          question={b28}
           set_question={set_b28}
           label="How many functional drinking water points are there in the school?"
+          type="number"
         />
-        <BooleanField
+        <OptionForm
           question={b29}
           set_question={set_b29}
           label="Do all the drinking water points have proper platforms/ floor and safe drainage arrangements?"
+          options={["Yes", "No"]}
         />
-        <BooleanField
+        <OptionForm
           question={b210}
           set_question={set_b210}
           label="Are all water sources of the school secured during the flood situation/cyclone ?"
+          options={["Yes", "No"]}
         />
         <OptionForm
           question={b211}
@@ -151,15 +151,17 @@ export default function SectionB2() {
             "Yes, both rainwater storage and groundwater recharge system",
           ]}
         />
-        <InputField
+        {/* <TextFieldComponent
+          question={b214}
           set_question={set_b214}
           label="If school has a storage structure/ tank for the RWH? What is the capacity in litres?"
-          place="In Liters"
-        />
-        <BooleanField
+          type="number"
+        /> */}
+        <OptionForm
           question={b215}
           set_question={set_b215}
           label="Whether the school use rainwater for drinking water and other purposes (wherever applicable)?"
+          options={["Yes", "No"]}
         />
         <OptionForm
           question={b216}
@@ -172,7 +174,7 @@ export default function SectionB2() {
             "quarterly",
             " bi-monthly",
             "monthly",
-            "weekly"
+            "weekly",
           ]}
         />
         <OptionForm
@@ -188,7 +190,7 @@ export default function SectionB2() {
             "Water-efficient kitchen and laundry equipment",
             "Native and drought-resistant plants",
             "Drip/ sprinklers techniques",
-            "Any other please mention"
+            "Any other please mention",
           ]}
         />
         <OptionForm
@@ -201,15 +203,17 @@ export default function SectionB2() {
             "both monitoring and instant repair mechanism",
           ]}
         />
-        <BooleanField
+        <OptionForm
           question={b219}
           set_question={set_b219}
           label="Is the school (including campus, building, classrooms, etc.) located above the flood levels?"
+          options={["Yes", "No"]}
         />
-        <BooleanField
+        <OptionForm
           question={b220}
           set_question={set_b220}
           label="Are the school premises free of water logging?"
+          options={["Yes", "No"]}
         />
         <OptionForm
           question={b221}
@@ -221,86 +225,22 @@ export default function SectionB2() {
             "Water reuse in the kitchen garden",
             "Soak pit/ Leach pit/ Magic pit",
             "Closed drainage channel",
-            "Storage and safe conveyance to a treatment plant"
+            "Storage and safe conveyance to a treatment plant",
           ]}
         />
-        <BooleanField
+        <OptionForm
           question={b222}
           set_question={set_b222}
           label="Has the school done a water budgeting exercise with the students of the appropriate age, last year?"
+          options={["Yes", "No"]}
         />
-        <BooleanField
+        <OptionForm
           question={b223}
           set_question={set_b223}
           label="Has the school conducted local awareness drives on water conservation and management drive in the community/ locality?"
+          options={["Yes", "No"]}
         />
       </Stack>
     </div>
   );
 }
-
-export const OptionForm = ({ question, set_question, label, options }) => {
-  return (
-    <FormControl sx={{ m: 1 }} required>
-      <FormLabel id="demo-customized-select-label">{label}</FormLabel>
-      <Select
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-      >
-        {options.map((option, index) => (
-          <MenuItem key={index} value={option.trim().toLowerCase()}>
-            {option}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-  );
-};
-OptionForm.propTypes = {
-  question: PropTypes.string,
-  set_question: PropTypes.func,
-  label: PropTypes.string,
-  options: PropTypes.array,
-};
-
-const BooleanField = ({ question, set_question, label }) => {
-  return (
-    <FormControl sx={{ m: 1 }} required>
-      <FormLabel id="demo-customized-select-label">{label}</FormLabel>
-      <Select
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-      >
-        <MenuItem value={"yes"}>Yes</MenuItem>
-        <MenuItem value={"no"}>No</MenuItem>
-      </Select>
-    </FormControl>
-  );
-};
-BooleanField.propTypes = {
-  question: PropTypes.string,
-  set_question: PropTypes.func,
-  label: PropTypes.string,
-};
-
-const InputField = ({ set_question, label, place }) => {
-  return (
-    <FormControl sx={{ m: 1 }} required>
-      <FormLabel id="demo-customized-select-label">{label}</FormLabel>
-      <Input
-        placeholder={place}
-        onChange={(e) => set_question(e.target.value)}
-      />
-    </FormControl>
-  );
-};
-
-InputField.propTypes = {
-  set_question: PropTypes.func,
-  label: PropTypes.string,
-  place: PropTypes.string,
-};

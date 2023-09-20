@@ -22,20 +22,36 @@ import SectionB7 from "../components/section-b7";
 import SectionB2 from "../components/section-b2";
 import SectionB8 from "../components/section-b8";
 import SectionB9 from "../components/section-b9";
+import Section1 from "../components/SAP/section-1";
 
-export default function SurveyForm() {
+export default function SurveyForm({ form_tab }) {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [formStatus_cces, set_formStatus_cces] = useState({
+    sectionA: false,
+    sectionB1: false,
+    sectionB2: false,
+    sectionB3: false,
+    sectionB4: false,
+    sectionB5: false,
+    sectionB6: false,
+    sectionB7: false,
+    sectionB8: false,
+    sectionB9: false,
+  });
 
   // state variable for accordion
   const [expanded, setExpanded] = useState("sectionA");
   // state variable for tabs
-  const [tab, set_tab] = useState(0);
+  const [tab, set_tab] = useState(form_tab);
 
   const handleChange = (panel) => (event, newExpanded) => {
     console.log(panel, expanded);
     setExpanded(newExpanded ? panel : false);
   };
+
+  console.log(!(tab === 1));
 
   return (
     <div>
@@ -48,7 +64,7 @@ export default function SurveyForm() {
               aria-label="basic tabs"
             >
               <Tab label="CCES" />
-              <Tab label="SAP" />
+              <Tab label="SAP" /* disabled={!(tab === 1)} */ />
             </Tabs>
           </Box>
           <CustomTabPanel value={tab} index={0}>
@@ -141,7 +157,7 @@ export default function SurveyForm() {
                   expanded={expanded === "sectionA"}
                   onChange={handleChange("sectionA")}
                   heading="Primary Informaiton"
-                  section_form={SectionA}
+                  section_form={Section1}
                 />
 
                 {/* section B1: Risk assessment, analysis, preventive measures, Plan */}
@@ -149,7 +165,7 @@ export default function SurveyForm() {
                   expanded={expanded === "sectionB1"}
                   onChange={handleChange("sectionB1")}
                   heading="Risk assessment, analysis, preventive measures, Plan"
-                  section_form={SectionB1}
+                  section_form={Section1}
                 />
 
                 {/* section B1: Water */}
@@ -157,7 +173,7 @@ export default function SurveyForm() {
                   expanded={expanded === "sectionB2"}
                   onChange={handleChange("sectionB2")}
                   heading="Water"
-                  section_form={SectionB2}
+                  section_form={Section1}
                 />
 
                 {/* section B3: Sanitation */}
@@ -165,7 +181,7 @@ export default function SurveyForm() {
                   expanded={expanded === "sectionB3"}
                   onChange={handleChange("sectionB3")}
                   heading="Sanitation"
-                  section_form={SectionB3}
+                  section_form={Section1}
                 />
 
                 {/* section B4: Handwashing with soap */}
@@ -173,7 +189,7 @@ export default function SurveyForm() {
                   expanded={expanded === "sectionB4"}
                   onChange={handleChange("sectionB4")}
                   heading="Handwashing with soap"
-                  section_form={SectionB4}
+                  section_form={Section1}
                 />
 
                 {/* section B5: Waste Management */}
@@ -181,7 +197,7 @@ export default function SurveyForm() {
                   expanded={expanded === "sectionB5"}
                   onChange={handleChange("sectionB5")}
                   heading="Waste Management"
-                  section_form={SectionB5}
+                  section_form={Section1}
                 />
 
                 {/* section B6: Energy */}
@@ -189,7 +205,7 @@ export default function SurveyForm() {
                   expanded={expanded === "sectionB6"}
                   onChange={handleChange("sectionB6")}
                   heading="Energy"
-                  section_form={SectionB6}
+                  section_form={Section1}
                 />
 
                 {/* section B7: Environment */}
@@ -197,7 +213,7 @@ export default function SurveyForm() {
                   expanded={expanded === "sectionB7"}
                   onChange={handleChange("sectionB7")}
                   heading="Environment"
-                  section_form={SectionB7}
+                  section_form={Section1}
                 />
 
                 {/* section B8: O and M */}
@@ -205,7 +221,7 @@ export default function SurveyForm() {
                   expanded={expanded === "sectionB8"}
                   onChange={handleChange("sectionB8")}
                   heading="O and M"
-                  section_form={SectionB8}
+                  section_form={Section1}
                 />
 
                 {/* section B9: Capacity Building and Behaviour Change */}
@@ -213,7 +229,7 @@ export default function SurveyForm() {
                   expanded={expanded === "sectionB9"}
                   onChange={handleChange("sectionB9")}
                   heading="Capacity Building and Behaviour Change"
-                  // section_form={}
+                  section_form={Section1}
                 />
               </Stack>
             </CustomTabPanel>
