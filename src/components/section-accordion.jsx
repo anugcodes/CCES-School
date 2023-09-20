@@ -18,6 +18,7 @@ const Accordion = styled((props) => (
   "&:before": {
     display: "none",
   },
+  "& .MuiAccordionSummary-root": {},
 }));
 
 const AccordionSummary = styled((props) => (
@@ -33,9 +34,6 @@ const AccordionSummary = styled((props) => (
   flexDirection: "row-reverse",
   "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
     transform: "rotate(90deg)",
-  },
-  "& .MuiAccordionSummary-content": {
-    marginLeft: theme.spacing(1),
   },
 }));
 
@@ -53,13 +51,18 @@ const SectionAccordion = (props) => {
       onChange={onChange}
       TransitionProps={{ unmountOnExit: true }}
       {...others}
+      sx={{
+        "& .MuiAccordionSummary-root": {
+          background: expanded ? "#fda" : "white",
+        },
+      }}
     >
       <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
         <Stack
           direction="row"
           justifyContent={"space-between"}
           alignItems={"center"}
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", marginLeft: ".5rem" }}
         >
           <Typography>{heading}</Typography>
           <Typography variant="subtitle2">pending</Typography>
@@ -82,9 +85,9 @@ const SectionAccordion = (props) => {
 };
 
 SectionAccordion.propTypes = {
-  onChange: PropTypes.func,
-  expanded: PropTypes.bool,
-  heading: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  expanded: PropTypes.bool.isRequired,
+  heading: PropTypes.string.isRequired,
   section_form: PropTypes.func,
   others: PropTypes.any,
 };

@@ -1,5 +1,6 @@
-import { Button, Box, Container } from "@mui/material";
 import React from "react";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 export default function Home() {
   return (
