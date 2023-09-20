@@ -20,6 +20,8 @@ import SectionB5 from "../components/section-b5";
 import SectionB6 from "../components/section-b6";
 import SectionB7 from "../components/section-b7";
 import SectionB2 from "../components/section-b2";
+import SectionB8 from "../components/section-b8";
+import SectionB9 from "../components/section-b9";
 
 export default function SurveyForm() {
   const location = useLocation();
@@ -115,31 +117,29 @@ export default function SurveyForm() {
                 section_form={SectionB7}
               />
 
-              {/* section B8: O and M */}
-              <SectionAccordion
-                expanded={expanded === "sectionB8"}
-                onChange={handleChange("sectionB8")}
-                heading="O and M"
-                // section_form={}
-              />
+          {/* section B8: O and M */}
+          <SectionAccordion
+            expanded={expanded === "sectionB8"}
+            onChange={handleChange("sectionB8")}
+            heading="O and M"
+            section_form={SectionB8}
+          />
 
-              {/* section B9: Capacity Building and Behaviour Change */}
-              <SectionAccordion
-                expanded={expanded === "sectionB9"}
-                onChange={handleChange("sectionB9")}
-                heading="Capacity Building and Behaviour Change"
-                // section_form={}
-              />
-            </Stack>
-          </CustomTabPanel>
-          <CustomTabPanel value={tab} index={1}>
-            Sap form
-          </CustomTabPanel>
+          {/* section B9: Capacity Building and Behaviour Change */}
+          <SectionAccordion
+            expanded={expanded === "sectionB9"}
+            onChange={handleChange("sectionB9")}
+            heading="Capacity Building and Behaviour Change"
+            // section_form={}
+          />
+        </Stack>
+        </CustomTabPanel>
         </Box>
       </Container>
     </div>
   );
 }
+
 SurveyForm.propTypes = {
   form_tab: PropTypes.number.isRequired,
 };
