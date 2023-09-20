@@ -17,6 +17,9 @@ import { useState } from "react";
 import { State, City } from "country-state-city";
 import { DatePicker } from "@mui/x-date-pickers";
 
+import TextFieldComponent from "../text-field";
+import OptionForm from "../option-form";
+
 const SectionA = () => {
   const [a1, setA1] = useState("");
   const [a2, setA2] = useState("");
@@ -61,9 +64,8 @@ const SectionA = () => {
       &:hover {
         background: green;
         color: white;
-      };
-
-    `
+      }
+    `,
   };
   return (
     <Box sx={styles.mainBox}>
@@ -106,7 +108,7 @@ const SectionA = () => {
                     // placeholder="Designation of Respondent"
                     onChange={(e) => {
                       console.log(e.target.value.name);
-                      setCity(e.target.value)
+                      setCity(e.target.value);
                     }}
                     fullWidth
                     size="small"
@@ -121,26 +123,31 @@ const SectionA = () => {
               </Grid>
             </Stack>
 
-            <Stack direction={"row"} spacing={4}>
-              <Grid item md={6} xs={12}>
-                <Stack direction={"column"} spacing={1}>
-                  <Typography variant="body1">U-DISE Code</Typography>
-                  <TextField variant="standard" onChange={(e) => setA1(e.target.value)}/>
-                </Stack>
-              </Grid>
-            </Stack>
+            <TextFieldComponent
+              label="U-DISE Code"
+              question={a1}
+              set_question={setA1}
+              type="text"
+              required
+            />
 
             <Stack direction={"row"} spacing={4}>
               <Grid item md={6} xs={12}>
                 <Stack direction={"column"} spacing={1}>
                   <Typography variant="body1">Name of school</Typography>
-                  <TextField variant="standard" onChange={(e) => setA2(e.target.value)}/>
+                  <TextField
+                    variant="standard"
+                    onChange={(e) => setA2(e.target.value)}
+                  />
                 </Stack>
               </Grid>
               <Grid item md={6} xs={12}>
                 <Stack direction={"column"} spacing={1}>
                   <Typography variant="body1">Address of school</Typography>
-                  <TextField variant="standard" onChange={(e) => setA3(e.target.value)}/>
+                  <TextField
+                    variant="standard"
+                    onChange={(e) => setA3(e.target.value)}
+                  />
                 </Stack>
               </Grid>
             </Stack>
@@ -148,8 +155,13 @@ const SectionA = () => {
             <Stack direction={"row"} spacing={4}>
               <Grid item md={6} xs={12}>
                 <Stack direction={"column"} spacing={1}>
-                  <Typography variant="body1">Name of the respondent</Typography>
-                  <TextField variant="standard" onChange={(e) => setA4(e.target.value)}/>
+                  <Typography variant="body1">
+                    Name of the respondent
+                  </Typography>
+                  <TextField
+                    variant="standard"
+                    onChange={(e) => setA4(e.target.value)}
+                  />
                 </Stack>
               </Grid>
               <Grid item md={6} xs={12}>
@@ -187,7 +199,10 @@ const SectionA = () => {
               <Grid item md={4} xs={12}>
                 <Stack direction={"column"} spacing={1}>
                   <Typography variant="body1">School Phone number:*</Typography>
-                  <TextField variant="standard" onChange={(e) => setA5(e.target.value)}/>
+                  <TextField
+                    variant="standard"
+                    onChange={(e) => setA5(e.target.value)}
+                  />
                 </Stack>
               </Grid>
               <Grid item md={4} xs={12}>
@@ -198,7 +213,10 @@ const SectionA = () => {
                   justifyContent={"center"}
                 >
                   <Typography variant="body1">Mobile No:*</Typography>
-                  <TextField variant="standard" onChange={(e) => setA6(e.target.value)}/>
+                  <TextField
+                    variant="standard"
+                    onChange={(e) => setA6(e.target.value)}
+                  />
                 </Stack>
               </Grid>
               <Grid item md={4} xs={12}>
@@ -209,7 +227,10 @@ const SectionA = () => {
                   justifyContent={"center"}
                 >
                   <Typography variant="body1">Email Id:*</Typography>
-                  <TextField variant="standard" onChange={(e) => setA7(e.target.value)}/>
+                  <TextField
+                    variant="standard"
+                    onChange={(e) => setA7(e.target.value)}
+                  />
                 </Stack>
               </Grid>
             </Stack>
@@ -450,8 +471,16 @@ const SectionA = () => {
                     Number of Students enrolled in School
                   </Typography>
                   <Stack spacing={2}>
-                    <Input placeholder="Number of Boys" type="number" onChange={(e) => setA15(e.target.value)}/>
-                    <Input placeholder="Number of Girls" type="number" onChange={(e) => setA16(e.target.value)}/>
+                    <Input
+                      placeholder="Number of Boys"
+                      type="number"
+                      onChange={(e) => setA15(e.target.value)}
+                    />
+                    <Input
+                      placeholder="Number of Girls"
+                      type="number"
+                      onChange={(e) => setA16(e.target.value)}
+                    />
                   </Stack>
                 </Stack>
               </Grid>
@@ -466,8 +495,16 @@ const SectionA = () => {
                     Number of Children with Special Needs:
                   </Typography>
                   <Stack spacing={2}>
-                    <Input placeholder="Number of Boys" type="number" onChange={(e) => setA17(e.target.value)}/>
-                    <Input placeholder="Number of Girls" type="number" onChange={(e) => setA18(e.target.value)}/>
+                    <Input
+                      placeholder="Number of Boys"
+                      type="number"
+                      onChange={(e) => setA17(e.target.value)}
+                    />
+                    <Input
+                      placeholder="Number of Girls"
+                      type="number"
+                      onChange={(e) => setA18(e.target.value)}
+                    />
                   </Stack>
                 </Stack>
               </Grid>
@@ -482,8 +519,16 @@ const SectionA = () => {
                     Number of Teachers and Staff:
                   </Typography>
                   <Stack spacing={2}>
-                    <Input placeholder="Number of Male" type="number" onChange={(e) => setA19(e.target.value)}/>
-                    <Input placeholder="Number of Female" type="number" onChange={(e) => setA20(e.target.value)}/>
+                    <Input
+                      placeholder="Number of Male"
+                      type="number"
+                      onChange={(e) => setA19(e.target.value)}
+                    />
+                    <Input
+                      placeholder="Number of Female"
+                      type="number"
+                      onChange={(e) => setA20(e.target.value)}
+                    />
                   </Stack>
                 </Stack>
               </Grid>
@@ -546,7 +591,9 @@ const SectionA = () => {
               spacing={2}
               sx={{ button: { minWidth: "160px" } }}
             >
-              <Button color="success" sx={styles.bttn}>Save Changes</Button>
+              <Button color="success" sx={styles.bttn}>
+                Save Changes
+              </Button>
             </Stack>
           </Stack>
         </Box>

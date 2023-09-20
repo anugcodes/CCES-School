@@ -23,19 +23,34 @@ import SectionB2 from "../components/section-b2";
 import SectionB8 from "../components/section-b8";
 import SectionB9 from "../components/section-b9";
 
-export default function SurveyForm() {
+export default function SurveyForm({ form_tab }) {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [formStatus_cces, set_formStatus_cces] = useState({
+    sectionA: false,
+    sectionB1: false,
+    sectionB2: false,
+    sectionB3: false,
+    sectionB4: false,
+    sectionB5: false,
+    sectionB6: false,
+    sectionB7: false,
+    sectionB8: false,
+    sectionB9: false,
+  });
 
   // state variable for accordion
   const [expanded, setExpanded] = useState("sectionA");
   // state variable for tabs
-  const [tab, set_tab] = useState(0);
+  const [tab, set_tab] = useState(form_tab);
 
   const handleChange = (panel) => (event, newExpanded) => {
     console.log(panel, expanded);
     setExpanded(newExpanded ? panel : false);
   };
+
+  console.log(!(tab === 1));
 
   return (
     <div>
@@ -48,7 +63,7 @@ export default function SurveyForm() {
               aria-label="basic tabs"
             >
               <Tab label="CCES" />
-              <Tab label="SAP" />
+              <Tab label="SAP" disabled={!(tab === 1)} />
             </Tabs>
           </Box>
           <CustomTabPanel value={tab} index={0}>
@@ -117,23 +132,26 @@ export default function SurveyForm() {
                 section_form={SectionB7}
               />
 
-          {/* section B8: O and M */}
-          <SectionAccordion
-            expanded={expanded === "sectionB8"}
-            onChange={handleChange("sectionB8")}
-            heading="O and M"
-            section_form={SectionB8}
-          />
+              {/* section B8: O and M */}
+              <SectionAccordion
+                expanded={expanded === "sectionB8"}
+                onChange={handleChange("sectionB8")}
+                heading="O and M"
+                section_form={SectionB8}
+              />
 
-          {/* section B9: Capacity Building and Behaviour Change */}
-          <SectionAccordion
-            expanded={expanded === "sectionB9"}
-            onChange={handleChange("sectionB9")}
-            heading="Capacity Building and Behaviour Change"
-            // section_form={}
-          />
-        </Stack>
-        </CustomTabPanel>
+              {/* section B9: Capacity Building and Behaviour Change */}
+              <SectionAccordion
+                expanded={expanded === "sectionB9"}
+                onChange={handleChange("sectionB9")}
+                heading="Capacity Building and Behaviour Change"
+                section_form={SectionB9}
+              />
+            </Stack>
+          </CustomTabPanel>
+          <CustomTabPanel value={tab} index={1}>
+            hello from tab 2 - sap
+          </CustomTabPanel>
         </Box>
       </Container>
     </div>

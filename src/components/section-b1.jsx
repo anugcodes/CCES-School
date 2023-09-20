@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { PropTypes } from "prop-types";
+import Stack from "@mui/material/Stack";
 
-import { FormControl, FormLabel, Stack, Select, MenuItem } from "@mui/material";
+import OptionForm from "./option-form";
+import NextButton from "./next-button";
 
 export default function SectionB1() {
   const [b11, set_b11] = useState("");
@@ -21,104 +22,97 @@ export default function SectionB1() {
 
   return (
     <div>
-      <Stack direciton="column" spacing={2} sx={{padding: "1rem"}}>
-        <BooleanField
+      <Stack direciton="column" spacing={2} sx={{ padding: "1rem" }}>
+        <OptionForm
           question={b11}
           set_question={set_b11}
           label=" Whether the school has a school safety or equivalent committee?"
+          options={["Yes", "No"]}
         />
-        <BooleanField
+        <OptionForm
           question={b12}
           set_question={set_b12}
           label="Is there a clear list of committee members available with the school?"
+          options={["Yes", "No"]}
         />
 
-        <BooleanField
+        <OptionForm
           question={b13}
           set_question={set_b13}
           label="Are any of the school cabinet members part of the School safety committee?"
+          options={["Yes", "No"]}
         />
 
-        <BooleanField
+        <OptionForm
           question={b14}
           set_question={set_b14}
           label="Whether school has developed School Safety Plan (SSP) or equivalent?"
+          options={["Yes", "No"]}
         />
 
-        <BooleanField
+        <OptionForm
           question={b15}
           set_question={set_b15}
           label="Whether the schools’ School safety Plan have components of WASH ? "
+          options={["Yes", "No"]}
         />
 
-        <BooleanField
+        <OptionForm
           question={b16}
           set_question={set_b16}
           label=" If school ha"
+          options={["Yes", "No"]}
         />
-        <BooleanField
+        <OptionForm
           question={b17}
           set_question={set_b17}
           label="were children actively involved in identifying  hazards in the school? "
+          options={["Yes", "No"]}
         />
-        <BooleanField
+        <OptionForm
           question={b18}
           set_question={set_b18}
           label="Is your school vulnerable to any natural disasters ? "
+          options={["Yes", "No"]}
         />
-        <BooleanField
+        <OptionForm
           question={b19}
           set_question={set_b19}
           label="what are the likely climate-related events/ natural hazards/ other risks, and their intensity  (State/ district may like to further add  rows and points to the lists, with few lines left to be filled by the school concerned)"
+          options={["Yes", "No"]}
         />
-        <BooleanField
+        <OptionForm
           question={b110}
           set_question={set_b110}
           label="Has school done identified the impact of the above disasters on the WASH infrastructure in schools ? "
+          options={["Yes", "No"]}
         />
-        <BooleanField
+        <OptionForm
           question={b111}
           set_question={set_b111}
           label="Is the school located near any potential risk zone ?"
+          options={["Yes", "No"]}
         />
-        <BooleanField
+        <OptionForm
           question={b112}
           set_question={set_b112}
           label="Does your school have a practice of conducting mock drills for disaster response?"
+          options={["Yes", "No"]}
         />
-        <BooleanField
+        <OptionForm
           question={b113}
           set_question={set_b113}
           label="Is the swachhta action plan effective during  cyclone, heatwave, cold wave, floods, etc.?"
+          options={["Yes", "No"]}
         />
-        <BooleanField
+        <OptionForm
           question={b114}
           set_question={set_b114}
           label="Whether the WASH facilities in Schools are able to be effective during  drought, floods, cyclones, forest fire, landslide, etc."
+          options={["Yes", "No"]}
         />
+        <NextButton />
       </Stack>
     </div>
   );
 }
-
-const BooleanField = ({ question, set_question, label }) => {
-  return (
-    <FormControl sx={{ m: 1 }} required>
-      <FormLabel id="demo-customized-select-label">{label}</FormLabel>
-      <Select
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-      >
-        <MenuItem value={"yes"}>Yes</MenuItem>
-        <MenuItem value={"no"}>No</MenuItem>
-      </Select>
-    </FormControl>
-  );
-};
-BooleanField.propTypes = {
-  question: PropTypes.string,
-  set_question: PropTypes.func,
-  label: PropTypes.string,
-};
