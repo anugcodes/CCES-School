@@ -16,6 +16,7 @@ const TextFieldComponent = (props) => {
         value={question}
         onChange={(e) => set_question(e.target.value)}
         type={type}
+        required
       />
     </FormControl>
   );
@@ -24,7 +25,7 @@ const TextFieldComponent = (props) => {
 TextFieldComponent.propTypes = {
   question: PropTypes.string.isRequired,
   set_question: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   type: PropTypes.string.isRequired,
 };
 export default TextFieldComponent;

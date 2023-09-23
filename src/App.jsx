@@ -38,7 +38,7 @@ const SurveyLayout = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (location.pathname === "/survey") {
-      navigate({ pathname: "/survey/cces", hash: "SectionA", replace: true });
+      navigate({ pathname: "/survey/cces", hash: "sectionA" });
     }
   }, [location, navigate]);
   return <Outlet />;

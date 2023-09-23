@@ -59,7 +59,7 @@ export default function SectionB1(props) {
   return (
     <div>
       <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
-        <Stack direciton="column" spacing={2} sx={{ padding: "1rem" }}>
+        <Stack direciton="column" spacing={2}>
           <OptionForm
             question={b11}
             set_question={set_b11}

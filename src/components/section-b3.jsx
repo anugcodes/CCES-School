@@ -28,7 +28,7 @@ export default function SectionB3() {
 
   return (
     <div>
-      <Stack direciton="column" spacing={2} sx={{ padding: "1rem" }}>
+      <Stack direciton="column" spacing={2}>
         <OptionForm
           question={b31}
           set_question={set_b31}
