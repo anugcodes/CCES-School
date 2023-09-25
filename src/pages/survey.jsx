@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useLocation, useNavigate } from "react-router-dom";
+
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Tabs from "@mui/material/Tabs";
@@ -43,9 +43,6 @@ export default function SurveyForm({ form_tab }) {
     sectionB9: false,
   });
 
-  useEffect(() => {
-    console.log(formStatus_cces);
-  }, [formStatus_cces]);
 
   const handleChange = (panel) => {
     if (expanded === panel) return;

@@ -27,9 +27,7 @@ const SectionB9 = () => {
   const [b916, set_b916] = useState("");
 
   const handleNext = (e) => {
-    console.log(e);
     e.preventDefault();
-    console.log("next clicked");
     if (
       checkfield(b91) &&
       checkfield(b92) &&
