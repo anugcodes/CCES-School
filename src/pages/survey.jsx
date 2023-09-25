@@ -24,10 +24,12 @@ import SectionB8 from "../components/section-b8";
 import SectionB9 from "../components/section-b9";
 import Section1 from "../components/SAP/section-1";
 
-export default function SurveyForm({ form_tab }) {
-  const location = useLocation();
-  const navigate = useNavigate();
+// cces and sap form status context
+import { ccesformStatus, sapformStatus } from "../contexts/formContexts";
 
+export default function SurveyForm({ form_tab }) {
+  const [expanded, setExpanded] = useState("sectionA");
+  const [tab, set_tab] = useState(form_tab);
   const [formStatus_cces, set_formStatus_cces] = useState({
     sectionA: false,
     sectionB1: false,
@@ -42,240 +44,146 @@ export default function SurveyForm({ form_tab }) {
   });
 
   useEffect(() => {
-    const section = decodeURI(location.hash).split("#")[1];
-    if (section) {
-      setExpanded(section);
-    }
-  }, []);
+    console.log(formStatus_cces);
+  }, [formStatus_cces]);
 
-  // state variable for accordion
-  const [expanded, setExpanded] = useState(false);
-  // state variable for tabs
-  const [tab, set_tab] = useState(form_tab);
+  const handleChange = (panel) => {
+    if (expanded === panel) return;
 
-  const handleChange = (panel) => (event) => {
-    
     if (expanded !== panel && formStatus_cces[panel] === false) {
-      alert("fill the current section first.");
+      alert("please fill the current section first");
       return;
     }
-    navigate({ pathname: "/survey/cces", hash: panel });
+
+    if (expanded !== panel && formStatus_cces[panel] === true) {
+      setExpanded(panel);
+      return;
+    }
   };
 
   return (
-    <div>
-      <Container maxWidth="lg">
-        <Box sx={{ padding: "2rem 0" }}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs
-              value={tab}
-              onChange={(e, newValue) => set_tab(newValue)}
-              aria-label="basic tabs"
-            >
-              <Tab label="CCES" />
-              <Tab label="SAP" />
-            </Tabs>
-          </Box>
-          <CustomTabPanel value={tab} index={0}>
+    <Container maxWidth="lg">
+      <Box sx={{ padding: "2rem 0" }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs
+            value={tab}
+            onChange={(e, newValue) => set_tab(newValue)}
+            aria-label="basic tabs"
+          >
+            <Tab label="CCES" />
+            <Tab label="SAP" />
+          </Tabs>
+        </Box>
+
+        <CustomTabPanel value={tab} index={0}>
+          <ccesformStatus.Provider
+            value={{ formStatus_cces, set_formStatus_cces, setExpanded }}
+          >
             <Stack direction="column" spacing={0}>
               {/* section A - primary Informaiton */}
               <SectionAccordion
                 sectionId="sectionA"
                 expanded={expanded === "sectionA"}
-                onChange={handleChange("sectionA")}
+                onChange={() => handleChange("sectionA")}
                 heading="Primary Informaiton"
                 section_form={SectionA}
                 formStatus={formStatus_cces}
-                set_formStatus={set_formStatus_cces}
               />
 
               {/* section B1: Risk assessment, analysis, preventive measures, Plan */}
               <SectionAccordion
                 sectionId="sectionB1"
                 expanded={expanded === "sectionB1"}
-                onChange={handleChange("sectionB1")}
+                onChange={() => handleChange("sectionB1")}
                 heading="Risk assessment, analysis, preventive measures, Plan"
                 section_form={SectionB1}
                 formStatus={formStatus_cces}
-                set_formStatus={set_formStatus_cces}
               />
 
               {/* section B1: Water */}
               <SectionAccordion
                 sectionId="sectionB2"
                 expanded={expanded === "sectionB2"}
-                onChange={handleChange("sectionB2")}
+                onChange={() => handleChange("sectionB2")}
                 heading="Water"
                 section_form={SectionB2}
                 formStatus={formStatus_cces}
-                set_formStatus={set_formStatus_cces}
               />
 
               {/* section B3: Sanitation */}
               <SectionAccordion
                 sectionId="sectionB3"
                 expanded={expanded === "sectionB3"}
-                onChange={handleChange("sectionB3")}
+                onChange={() => handleChange("sectionB3")}
                 heading="Sanitation"
                 section_form={SectionB3}
                 formStatus={formStatus_cces}
-                set_formStatus={set_formStatus_cces}
               />
 
               {/* section B4: Handwashing with soap */}
               <SectionAccordion
                 sectionId="sectionB4"
                 expanded={expanded === "sectionB4"}
-                onChange={handleChange("sectionB4")}
+                onChange={() => handleChange("sectionB4")}
                 heading="Handwashing with soap"
                 section_form={SectionB4}
                 formStatus={formStatus_cces}
-                set_formStatus={set_formStatus_cces}
               />
 
               {/* section B5: Waste Management */}
               <SectionAccordion
                 sectionId="sectionB5"
                 expanded={expanded === "sectionB5"}
-                onChange={handleChange("sectionB5")}
+                onChange={() => handleChange("sectionB5")}
                 heading="Waste Management"
                 section_form={SectionB5}
                 formStatus={formStatus_cces}
-                set_formStatus={set_formStatus_cces}
               />
 
               {/* section B6: Energy */}
               <SectionAccordion
                 sectionId="sectionB6"
                 expanded={expanded === "sectionB6"}
-                onChange={handleChange("sectionB6")}
+                onChange={() => handleChange("sectionB6")}
                 heading="Energy"
                 section_form={SectionB6}
                 formStatus={formStatus_cces}
-                set_formStatus={set_formStatus_cces}
               />
 
               {/* section B7: Environment */}
               <SectionAccordion
                 sectionId="sectionB7"
                 expanded={expanded === "sectionB7"}
-                onChange={handleChange("sectionB7")}
+                onChange={() => handleChange("sectionB7")}
                 heading="Environment"
                 section_form={SectionB7}
                 formStatus={formStatus_cces}
-                set_formStatus={set_formStatus_cces}
               />
 
               {/* section B8: O and M */}
               <SectionAccordion
                 sectionId="sectionB8"
                 expanded={expanded === "sectionB8"}
-                onChange={handleChange("sectionB8")}
+                onChange={() => handleChange("sectionB8")}
                 heading="O and M"
                 section_form={SectionB8}
                 formStatus={formStatus_cces}
-                set_formStatus={set_formStatus_cces}
               />
 
               {/* section B9: Capacity Building and Behaviour Change */}
               <SectionAccordion
                 sectionId="sectionB9"
                 expanded={expanded === "sectionB9"}
-                onChange={handleChange("sectionB9")}
+                onChange={() => handleChange("sectionB9")}
                 heading="Capacity Building and Behaviour Change"
                 section_form={SectionB9}
                 formStatus={formStatus_cces}
-                set_formStatus={set_formStatus_cces}
               />
             </Stack>
-          </CustomTabPanel>
-
-          <CustomTabPanel value={tab} index={1}>
-            <Stack direction="column" spacing={0}>
-              {/* section A - primary Informaiton */}
-              <SectionAccordion
-                expanded={expanded === "sectionA"}
-                onChange={handleChange("sectionA")}
-                heading="Primary Informaiton"
-                section_form={Section1}
-              />
-
-              {/* section B1: Risk assessment, analysis, preventive measures, Plan */}
-              <SectionAccordion
-                expanded={expanded === "sectionB1"}
-                onChange={handleChange("sectionB1")}
-                heading="Risk assessment, analysis, preventive measures, Plan"
-                section_form={Section1}
-              />
-
-              {/* section B1: Water */}
-              <SectionAccordion
-                expanded={expanded === "sectionB2"}
-                onChange={handleChange("sectionB2")}
-                heading="Water"
-                section_form={Section1}
-              />
-
-              {/* section B3: Sanitation */}
-              <SectionAccordion
-                expanded={expanded === "sectionB3"}
-                onChange={handleChange("sectionB3")}
-                heading="Sanitation"
-                section_form={Section1}
-              />
-
-              {/* section B4: Handwashing with soap */}
-              <SectionAccordion
-                expanded={expanded === "sectionB4"}
-                onChange={handleChange("sectionB4")}
-                heading="Handwashing with soap"
-                section_form={Section1}
-              />
-
-              {/* section B5: Waste Management */}
-              <SectionAccordion
-                expanded={expanded === "sectionB5"}
-                onChange={handleChange("sectionB5")}
-                heading="Waste Management"
-                section_form={Section1}
-              />
-
-              {/* section B6: Energy */}
-              <SectionAccordion
-                expanded={expanded === "sectionB6"}
-                onChange={handleChange("sectionB6")}
-                heading="Energy"
-                section_form={Section1}
-              />
-
-              {/* section B7: Environment */}
-              <SectionAccordion
-                expanded={expanded === "sectionB7"}
-                onChange={handleChange("sectionB7")}
-                heading="Environment"
-                section_form={Section1}
-              />
-
-              {/* section B8: O and M */}
-              <SectionAccordion
-                expanded={expanded === "sectionB8"}
-                onChange={handleChange("sectionB8")}
-                heading="O and M"
-                section_form={Section1}
-              />
-
-              {/* section B9: Capacity Building and Behaviour Change */}
-              <SectionAccordion
-                expanded={expanded === "sectionB9"}
-                onChange={handleChange("sectionB9")}
-                heading="Capacity Building and Behaviour Change"
-                section_form={Section1}
-              />
-            </Stack>
-          </CustomTabPanel>
-        </Box>
-      </Container>
-    </div>
+          </ccesformStatus.Provider>
+        </CustomTabPanel>
+      </Box>
+    </Container>
   );
 }
 

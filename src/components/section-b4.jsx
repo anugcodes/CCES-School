@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Stack from "@mui/material/Stack";
-import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 
 import OptionForm from "./option-form";
 import NextButton from "./next-button";
 
-export default function SectionB4(props) {
-  const { formStatus, set_formStatus } = props;
+import { ccesformStatus } from "../contexts/formContexts";
+export default function SectionB4() {
+  const { formStatus_cces, set_formStatus_cces, setExpanded } =
+    useContext(ccesformStatus);
 
-  const navigate = useNavigate();
   const [b41, set_b41] = useState("");
   const [b42, set_b42] = useState("");
   const [b43, set_b43] = useState("");
@@ -35,8 +34,8 @@ export default function SectionB4(props) {
       checkfield(b48) &&
       checkfield(b49)
     ) {
-      set_formStatus({ ...formStatus, sectionB4: true });
-      navigate({ pathname: "/survey/cces", hash: "sectionB5" });
+      set_formStatus_cces({ ...formStatus_cces, sectionB4: true });
+      setExpanded("sectionB5");
     }
   };
 
@@ -139,7 +138,3 @@ export default function SectionB4(props) {
     </div>
   );
 }
-SectionB4.propTypes = {
-  formStatus: PropTypes.object,
-  set_formStatus: PropTypes.func,
-};

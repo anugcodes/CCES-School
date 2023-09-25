@@ -14,8 +14,13 @@ const OptionForm = ({
   ...others
 }) => {
   return (
-    <FormControl  {...others} required>
-      <FormLabel id="demo-customized-select-label">{label}</FormLabel>
+    <FormControl {...others} required>
+      <FormLabel
+        id="demo-customized-select-label"
+        sx={{ wordWrap: "break-word" }}
+      >
+        {label}
+      </FormLabel>
       <Select
         variant="outlined"
         size="small"

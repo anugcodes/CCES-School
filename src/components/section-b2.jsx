@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Stack from "@mui/material/Stack";
 import TextFieldComponent from "./text-field";
-import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import OptionForm from "./option-form";
 import NextButton from "./next-button";
+import { ccesformStatus } from "../contexts/formContexts";
 
-export default function SectionB2(props) {
-  const { formStatus, set_formStatus } = props;
-  const navigate = useNavigate();
-
+export default function SectionB2() {
+  const { formStatus_cces, set_formStatus_cces, setExpanded } =
+    useContext(ccesformStatus);
   const [b21, set_b21] = useState("");
   const [b22, set_b22] = useState("");
   const [b23, set_b23] = useState("");
@@ -35,9 +34,7 @@ export default function SectionB2(props) {
   const [b223, set_b223] = useState("");
 
   const handleNext = (e) => {
-    console.log(e);
     e.preventDefault();
-    console.log("next clicked");
     if (
       checkfield(b21) &&
       checkfield(b22) &&
@@ -63,8 +60,8 @@ export default function SectionB2(props) {
       checkfield(b222) &&
       checkfield(b223)
     ) {
-      set_formStatus({ ...formStatus, sectionB2: true });
-      navigate({ pathname: "/survey/cces", hash: "sectionB3" });
+      set_formStatus_cces({ ...formStatus_cces, sectionB2: true });
+      setExpanded("sectionB3");
     }
   };
 

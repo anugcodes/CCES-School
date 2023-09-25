@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 const TextFieldComponent = (props) => {
   const { question, set_question, label, type, ...others } = props;
   return (
-    <FormControl sx={{ m: 1 }} {...others}>
+    <FormControl fullWidth required>
       <FormLabel id="demo-customized-select-label">{label}</FormLabel>
       <TextField
         variant="outlined"
@@ -17,6 +17,7 @@ const TextFieldComponent = (props) => {
         onChange={(e) => set_question(e.target.value)}
         type={type}
         required
+        {...others}
       />
     </FormControl>
   );

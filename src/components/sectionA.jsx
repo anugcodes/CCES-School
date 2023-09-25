@@ -1,6 +1,6 @@
-import { Input, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import TextField from "@mui/material/TextField";
 import { State, City } from "country-state-city";
@@ -9,15 +9,16 @@ import FormLabel from "@mui/material/FormLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
 
 import TextFieldComponent from "./text-field";
 import OptionForm from "./option-form";
 import NextButton from "./next-button";
 
-const SectionA = ({ formStatus, set_formStatus }) => {
-  const navigate = useNavigate();
+import { ccesformStatus } from "../contexts/formContexts";
+
+const SectionA = () => {
+  const { formStatus_cces, set_formStatus_cces, setExpanded } =
+    useContext(ccesformStatus);
 
   const [a1, set_a1] = useState("");
   const [a2, set_a2] = useState("");
@@ -47,30 +48,12 @@ const SectionA = ({ formStatus, set_formStatus }) => {
     male: "",
     female: "",
   });
-  const [a16, set_a16] = useState({
-    star_rating: "",
-    svp_16_17: "",
-    svp_17_18: "",
-    svp_18_19: "",
-    svp_19_20: "",
-    svp_20_21: "",
-  });
+  const [a16, set_a16] = useState("");
   const [a17, set_a17] = useState("");
   const [a18, set_a18] = useState("");
-
   const [state, set_state] = useState("");
   const [city, set_city] = useState("Enter your city");
-
   const stateList = State.getStatesOfCountry("IN");
-
-  const handleNext = (e) => {
-    e.preventDefault();
-
-    if (checkfield(a1) && checkfield(a2) && checkfield(a3)) {
-      set_formStatus({ ...formStatus, sectionA: true });
-      navigate({ pathname: "/survey/cces", hash: "sectionB1" });
-    }
-  };
 
   const checkfield = (field) => {
     if (field && field !== "") {
@@ -78,9 +61,16 @@ const SectionA = ({ formStatus, set_formStatus }) => {
     } else return false;
   };
 
+  function handleNext(e) {
+    e.preventDefault();
+    // check all fields
+    set_formStatus_cces({ ...formStatus_cces, sectionA: true });
+    setExpanded("sectionB1");
+  }
+
   return (
     <div>
-      <form onSubmit={() => handleNext()}>
+      <form onSubmit={(e) => handleNext(e)}>
         <Stack spacing={3} direction={"column"}>
           <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
             <FormControl required fullWidth>
@@ -168,31 +158,42 @@ const SectionA = ({ formStatus, set_formStatus }) => {
               Contact Details of Respondent
             </Typography>
             <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-              <TextFieldComponent
-                question={a5.schoolPhone}
-                set_question={set_a5}
-                label="School Phone Number"
-                type="number"
-                required
-                fullWidth
-              />
-              <TextFieldComponent
-                question={a5.mobileNumber}
-                set_question={set_a5}
-                label="Mobile Number"
-                type="number"
-                required
-                fullWidth
-              />
+              <FormControl required fullWidth>
+                <FormLabel>School Phone Number</FormLabel>
+                <TextField
+                  value={a5.schoolPhone}
+                  onChange={(e) =>
+                    set_a5({ ...a5, schoolPhone: e.target.value })
+                  }
+                  type="number"
+                  required
+                  size="small"
+                />
+              </FormControl>
 
-              <TextFieldComponent
-                question={a5.emailId}
-                set_question={set_a5}
-                label="Email Id of the School"
-                type="email"
-                required
-                fullWidth
-              />
+              <FormControl required fullWidth>
+                <FormLabel>Mobile Number</FormLabel>
+                <TextField
+                  value={a5.mobileNumber}
+                  onChange={(e) =>
+                    set_a5({ ...a5, mobileNumber: e.target.value })
+                  }
+                  type="number"
+                  required
+                  size="small"
+                />
+              </FormControl>
+
+              <FormControl required fullWidth>
+                <FormLabel>Email Id</FormLabel>
+                <TextField
+                  value={a5.emailId}
+                  onChange={(e) => set_a5({ ...a5, emailId: e.target.value })}
+                  type="email"
+                  required
+                  size="small"
+                />
+              </FormControl>
             </Stack>
           </div>
 
@@ -258,6 +259,8 @@ const SectionA = ({ formStatus, set_formStatus }) => {
               question={a10}
               set_question={set_a10}
               label={"Year of Establishment of School"}
+              type="number"
+              required
             />
             <OptionForm
               fullWidth
@@ -268,129 +271,100 @@ const SectionA = ({ formStatus, set_formStatus }) => {
             />
           </Stack>
 
-          <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
-            <FormControl fullWidth>
-              <FormLabel>Number of students enrolled in the school</FormLabel>
-              <Stack
-                direction={"column"}
-                spacing={1}
-                sx={{ marginLeft: ".25rem" }}
-              >
-                <Stack direction="row" spacing={2} alignItems={"center"}>
-                  <Typography variant="subtitle2">Boys</Typography>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    value={a13.boys}
-                    placeholder="number of boys enrolled"
-                    size="small"
-                    sx={{ maxWidth: "15rem" }}
-                  />
-                </Stack>
-                <Stack direction="row" spacing={2} alignItems={"center"}>
-                  <Typography variant="subtitle2">Girls</Typography>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    value={a13.girls}
-                    placeholder="number of girls enrolled"
-                    size="small"
-                    sx={{ maxWidth: "15rem" }}
-                  />
-                </Stack>
+          <Stack direction="column" spacing={1}>
+            <FormControl fullWidth required>
+              <FormLabel id="text-field-label">
+                Number of students enrolled in school
+              </FormLabel>
+              <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+                <TextField
+                  value={a13.boys}
+                  placeholder="number of boys enrolled"
+                  onChange={(e) => set_a13({ ...a13, boys: e.target.value })}
+                  size="small"
+                  type="number"
+                />
+                <TextField
+                  value={a13.girls}
+                  placeholder="number of girls enrolled"
+                  onChange={(e) => set_a13({ ...a13, girls: e.target.value })}
+                  size="small"
+                  type="number"
+                />
               </Stack>
             </FormControl>
 
-            <FormControl fullWidth>
-              <FormLabel>Number of Children with Special Needs</FormLabel>
-              <Stack
-                direction={"column"}
-                spacing={1}
-                sx={{ marginLeft: ".25rem" }}
-              >
-                <Stack direction="row" spacing={2} alignItems={"center"}>
-                  <Typography variant="subtitle2">Boys</Typography>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    value={a14.boys}
-                    onChange={(e) => set_a14({ ...a14, boys: e.target.value })}
-                    placeholder="number of boys enrolled"
-                    size="small"
-                    sx={{ maxWidth: "15rem" }}
-                  />
-                </Stack>
-                <Stack direction="row" spacing={2} alignItems={"center"}>
-                  <Typography variant="subtitle2">Girls</Typography>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    value={a14.girls}
-                    onChange={(e) => set_a14({ ...a14, girls: e.target.value })}
-                    placeholder="number of girls enrolled"
-                    size="small"
-                    sx={{ maxWidth: "15rem" }}
-                  />
-                </Stack>
+            <FormControl fullWidth required>
+              <FormLabel id="text-field-label">
+                Number of Children with Special Needs
+              </FormLabel>
+              <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+                <TextField
+                  value={a14.boys}
+                  placeholder="number of boys enrolled"
+                  onChange={(e) => set_a14({ ...a14, boys: e.target.value })}
+                  size="small"
+                  type="number"
+                />
+                <TextField
+                  value={a14.girls}
+                  placeholder="number of girls enrolled"
+                  onChange={(e) => set_a14({ ...a14, girls: e.target.value })}
+                  size="small"
+                  type="number"
+                />
               </Stack>
             </FormControl>
 
-            <FormControl fullWidth>
-              <FormLabel>Number of Teachers and Staff</FormLabel>
-              <Stack
-                direction={"column"}
-                spacing={1}
-                sx={{ marginLeft: ".25rem" }}
-              >
-                <Stack
-                  direction="row"
-                  spacing={2}
-                  alignItems={"center"}
-                  justifyContent={"space-between"}
-                >
-                  <Typography variant="subtitle2">Male</Typography>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    value={a15.boys}
-                    onChange={(e) => set_a15({ ...a15, male: e.target.value })}
-                    placeholder="number of boys enrolled"
-                    size="small"
-                    sx={{ maxWidth: "15rem" }}
-                  />
-                </Stack>
-                <Stack
-                  direction="row"
-                  spacing={2}
-                  alignItems={"center"}
-                  justifyContent={"space-between"}
-                >
-                  <Typography variant="subtitle2">Female</Typography>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    value={a15.girls}
-                    onChange={(e) =>
-                      set_a15({ ...a15, female: e.target.value })
-                    }
-                    placeholder="number of girls enrolled"
-                    size="small"
-                    sx={{ maxWidth: "15rem" }}
-                  />
-                </Stack>
+            <FormControl fullWidth required>
+              <FormLabel id="text-field-label">
+                Number of Teachers and Staff
+              </FormLabel>
+              <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+                <TextField
+                  value={a15.male}
+                  placeholder="number of male staff"
+                  onChange={(e) => set_a15({ ...a15, male: e.target.value })}
+                  size="small"
+                  type="number"
+                />
+                <TextField
+                  value={a13.female}
+                  placeholder="number of female staff"
+                  onChange={(e) => set_a15({ ...a15, female: e.target.value })}
+                  size="small"
+                  type="number"
+                />
               </Stack>
             </FormControl>
           </Stack>
 
-          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-            <OptionForm
-              fullWidth
-              question={a17}
-              set_question={set_a17}
-              label="Has the school developed Swachhata Action Plan (SAP)?"
-              options={["Yes", "No"]}
-            />
-          </Stack>
+          <TextFieldComponent
+            fullWidth
+            question={a12}
+            set_question={set_a12}
+            label={"Name of Board"}
+            required
+            type="string"
+          />
+
+          <TextFieldComponent
+            fullWidth
+            question={a16}
+            set_question={set_a16}
+            label="Mention the star rating of awards obtained through SVP?"
+            type="string"
+            required
+          />
+
+          <OptionForm
+            fullWidth
+            question={a17}
+            set_question={set_a17}
+            label="Has the school developed Swachhata Action Plan (SAP)?"
+            options={["Yes", "No"]}
+          />
+
           <OptionForm
             fullWidth
             question={a18}

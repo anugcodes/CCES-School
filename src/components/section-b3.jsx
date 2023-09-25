@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
-import OptionForm from "./option-form";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 import Stack from "@mui/material/Stack";
+import OptionForm from "./option-form";
+import TextFieldComponent from "./text-field";
+
+import { ccesformStatus } from "../contexts/formContexts";
 
 export default function SectionB3() {
+  let currentDate = new Date();
+  const { formStatus_cces, set_formStatus_cces, setExpanded } =
+    useContext(ccesformStatus);
+
   const [b31, set_b31] = useState("");
   const [b32, set_b32] = useState("");
   const [b33, set_b33] = useState("");
-  const [b34, set_b34] = useState("");
+  const [b34, set_b34] = useState({
+    male: 0,
+    female: 0,
+  });
   const [b35, set_b35] = useState("");
   const [b36, set_b36] = useState("");
   const [b37, set_b37] = useState("");
@@ -26,8 +39,13 @@ export default function SectionB3() {
   const [b320, set_b320] = useState("");
   const [b321, set_b321] = useState("");
 
+  const handleNext = () => {
+    set_formStatus_cces({ ...formStatus_cces, sectionB3: true });
+    setExpanded("sectionB4");
+  };
+
   return (
-    <div>
+    <form onSubmit={(e) => handleNext()}>
       <Stack direciton="column" spacing={2}>
         <OptionForm
           question={b31}
@@ -51,6 +69,37 @@ export default function SectionB3() {
           ]}
         />
 
+        <TextFieldComponent
+          question={b33}
+          set_question={set_b33}
+          label={
+            "How many urinals in working condition does the school have for boys and girls? "
+          }
+          type="number"
+          min="1900"
+          max={currentDate.getFullYear()}
+        />
+
+        <FormControl fullWidth required>
+          <FormLabel id="text-field-label">
+            Number of Teachers and Staff
+          </FormLabel>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+            <TextField
+              value={b34.male}
+              placeholder="number of male staff enrolled"
+              onChange={(e) => set_b34({ ...b34, male: e.target.value })}
+              size="small"
+            />
+            <TextField
+              value={b34.female}
+              placeholder="number of female staff enrolled"
+              onChange={(e) => set_b34({ ...b34, female: e.target.value })}
+              size="small"
+            />
+          </Stack>
+        </FormControl>
+
         <OptionForm
           question={b35}
           set_question={set_b35}
@@ -63,6 +112,13 @@ export default function SectionB3() {
         />
 
         <OptionForm
+          question={b36}
+          set_question={set_b36}
+          label="Does the school have a climate-resilient secured roof cover ?"
+          options={["yes", "No"]}
+        />
+
+        <OptionForm
           question={b37}
           set_question={set_b37}
           label="Do all the toilets in the school have secure door with latch and cloth hanging hooks? "
@@ -71,6 +127,13 @@ export default function SectionB3() {
             "Secured door with latch/bolt only",
             "Secured Door with latch/bolt and cloth hanging hooks",
           ]}
+        />
+
+        <OptionForm
+          question={b38}
+          set_question={set_b38}
+          label="Does the school's toilet have adequate ventilation for natural light and air?"
+          options={["yes", "No"]}
         />
 
         <OptionForm
@@ -188,6 +251,6 @@ export default function SectionB3() {
           options={["yes", "No"]}
         />
       </Stack>
-    </div>
+    </form>
   );
 }

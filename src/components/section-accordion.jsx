@@ -101,7 +101,7 @@ SectionAccordion.propTypes = {
   onChange: PropTypes.func.isRequired,
   expanded: PropTypes.bool.isRequired,
   heading: PropTypes.string.isRequired,
-  section_form: PropTypes.func,
+  section_form: PropTypes.func.isRequired,
   formStatus: PropTypes.object,
   others: PropTypes.any,
 };
