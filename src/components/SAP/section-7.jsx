@@ -1,16 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Stack } from "@mui/material";
 import TextFieldComponent from "../text-field";
-import OptionForm from "../option-form";
+
+import { sapformStatus } from "../../contexts/formContexts";
+
+import NextButton from "../next-button";
 
 const Section2 = () => {
+
+  const { formStatus_sap, set_formStatus_sap, setExpanded_sap } =
+    useContext(sapformStatus);
+
   const [a11, set_a11] = useState("");
   const [a12, set_a12] = useState("");
   const [a13, set_a13] = useState("");
   const [a14, set_a14] = useState("");
   const [a15, set_a15] = useState("");
 
+  const handleNext = (e) => {
+    console.log(e);
+    e.preventDefault();
+    console.log("next clicked");
+    if (
+      checkfield(a11) &&
+      checkfield(a12) &&
+      checkfield(a13) &&
+      checkfield(a14) &&
+      checkfield(a15) 
+    ) {
+      set_formStatus_sap({ ...formStatus_sap, section7: true });
+      setExpanded_sap("section8");
+    }
+  };
+
+  const checkfield = (field) => {
+    if (field && field !== "") {
+      return true;
+    } else return false;
+  };
+
   return (
+    <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
     <Stack direction={"column"} spacing={2}>
       <TextFieldComponent 
         question={a11}
@@ -37,7 +67,9 @@ const Section2 = () => {
         set_question={set_a15}
         label=" Has your school undertaken any assessment of electricity consumption in school?"
       />
+      <NextButton type="submit"/>
     </Stack>
+    </form>
   );
 };
 

@@ -1,13 +1,16 @@
-import PropTypes from "prop-types";
-import React, { useState } from "react";
-
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import TextField from "@mui/material/TextField";
-import { Box, Stack } from "@mui/material";
+import React, { useState, useContext } from "react";
+import { Stack } from "@mui/material";
 import OptionForm from "../option-form";
 
+import { sapformStatus } from "../../contexts/formContexts";
+
+import NextButton from "../next-button";
+
 const Section1 = () => {
+
+  const { formStatus_sap, set_formStatus_sap, setExpanded_sap } =
+    useContext(sapformStatus);
+
   const [a11, set_a11] = useState("");
   const [a12, set_a12] = useState("");
   const [a13, set_a13] = useState("");
@@ -17,7 +20,33 @@ const Section1 = () => {
   const [a17, set_a17] = useState("");
   const [a18, set_a18] = useState("");
 
+  const handleNext = (e) => {
+    console.log(e);
+    e.preventDefault();
+    console.log("next clicked");
+    if (
+      checkfield(a11) &&
+      checkfield(a12) &&
+      checkfield(a13) &&
+      checkfield(a14) &&
+      checkfield(a15) &&
+      checkfield(a16) &&
+      checkfield(a17) 
+    ) {
+      set_formStatus_sap({ ...formStatus_sap, section1: true });
+      setExpanded_sap("section2");
+    }
+  };
+
+  const checkfield = (field) => {
+    if (field && field !== "") {
+      return true;
+    } else return false;
+  };
+
   return (
+    <div>
+      <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
     <Stack direction={"column"} spacing={2}>
       <OptionForm
         question={a11}
@@ -91,102 +120,11 @@ const Section1 = () => {
         ]}
         label={"Whether the WASH facilities in Schools are able to be effective during  drought, floods, cyclones, forest fire, landslide, etc"}
        />
+       <NextButton type="submit" />
     </Stack>
+    </form>
+    </div>
   );
-};
-
-const MultipleTextField = (props) => {
-  const { question, set_question, type, ...others } = props;
-  return (
-    <FormControl {...others}>
-      <FormLabel id="demo-customized-select-label">Compliance yes/ No/Partiality</FormLabel>
-      <TextField
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-        type={type}
-      />
-      <FormLabel id="demo-customized-select-label">Gap Identified order of priority</FormLabel>
-      <TextField
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-        type={type}
-      />
-      <FormLabel id="demo-customized-select-label">Activity</FormLabel>
-      <TextField
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-        type={type}
-      />
-      <FormLabel id="demo-customized-select-label">Quantity</FormLabel>
-      <TextField
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-        type={type}
-      />
-      <FormLabel id="demo-customized-select-label">Level of Address</FormLabel>
-      <TextField
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-        type={type}
-      />
-      <FormLabel id="demo-customized-select-label">Capital</FormLabel>
-      <TextField
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-        type={type}
-      />
-      <FormLabel id="demo-customized-select-label">Operational</FormLabel>
-      <TextField
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-        type={type}
-      />
-      <FormLabel id="demo-customized-select-label">Responsibility</FormLabel>
-      <TextField
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-        type={type}
-      />
-      <FormLabel id="demo-customized-select-label">Target (date or months)</FormLabel>
-      <TextField
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-        type={type}
-      />
-      <FormLabel id="demo-customized-select-label">Remarks (Possible Sources)</FormLabel>
-      <TextField
-        variant="outlined"
-        size="small"
-        value={question}
-        onChange={(e) => set_question(e.target.value)}
-        type={type}
-      />
-    </FormControl>
-  );
-};
-
-MultipleTextField.propTypes = {
-  question: PropTypes.string.isRequired,
-  set_question: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
 };
 
 export default Section1;

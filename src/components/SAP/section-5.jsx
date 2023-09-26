@@ -1,23 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Stack } from "@mui/material";
 import TextFieldComponent from "../text-field";
 
+import { sapformStatus } from "../../contexts/formContexts";
+
+import NextButton from "../next-button";
+
 const Section2 = () => {
+
+  const { formStatus_sap, set_formStatus_sap, setExpanded_sap } =
+    useContext(sapformStatus);
+
   const [a11, set_a11] = useState("");
   const [a12, set_a12] = useState("");
   const [a13, set_a13] = useState("");
   const [a14, set_a14] = useState("");
   const [a15, set_a15] = useState("");
   const [a16, set_a16] = useState("");
-  const [a17, set_a17] = useState("");
-  const [a18, set_a18] = useState("");
-  const [a19, set_a19] = useState("");
-  const [a110, set_a110] = useState("");
-  const [a111, set_a111] = useState("");
-  const [a112, set_a112] = useState("");
-  const [a113, set_a113] = useState("");
+
+  const handleNext = (e) => {
+    console.log(e);
+    e.preventDefault();
+    console.log("next clicked");
+    if (
+      checkfield(a11) &&
+      checkfield(a12) &&
+      checkfield(a13) &&
+      checkfield(a14) &&
+      checkfield(a15) &&
+      checkfield(a16)  
+    ) {
+      set_formStatus_sap({ ...formStatus_sap, section5: true });
+      setExpanded_sap("section6");
+    }
+  };
+
+  const checkfield = (field) => {
+    if (field && field !== "") {
+      return true;
+    } else return false;
+  };
 
   return (
+    <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
     <Stack direction={"column"} spacing={2}>
       <TextFieldComponent 
         question={a11}
@@ -49,7 +74,9 @@ const Section2 = () => {
         set_question={set_a16}
         label="School premises clean and free of water logging"
       />
+      <NextButton type="submit" />
     </Stack>
+    </form>
   );
 };
 

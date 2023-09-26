@@ -6,10 +6,12 @@ import Stack from "@mui/material/Stack";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import { Button } from "@mui/material";
 
 // components
 import SectionAccordion from "../components/section-accordion";
 import CustomTabPanel from "../components/custom-tab-panel";
+import NextButton from "../components/next-button";
 
 // form sections
 import SectionA from "../components/sectionA";
@@ -22,14 +24,25 @@ import SectionB7 from "../components/section-b7";
 import SectionB2 from "../components/section-b2";
 import SectionB8 from "../components/section-b8";
 import SectionB9 from "../components/section-b9";
+
 import Section1 from "../components/SAP/section-1";
+import Section2 from "../components/SAP/section-2";
+import Section3 from "../components/SAP/section-3";
+import Section4 from "../components/SAP/section-4";
+import Section5 from "../components/SAP/section-5";
+import Section6 from "../components/SAP/section-6";
+import Section7 from "../components/SAP/section-7";
+import Section8 from "../components/SAP/section-8";
+import Section9 from "../components/SAP/section-9";
 
 // cces and sap form status context
 import { ccesformStatus, sapformStatus } from "../contexts/formContexts";
 
 export default function SurveyForm({ form_tab }) {
-  const [expanded, setExpanded] = useState("sectionA");
+  const [expanded_cces, setExpanded_cces] = useState("sectionA");
+  const [expanded_sap, setExpanded_sap] = useState("section1");
   const [tab, set_tab] = useState(form_tab);
+
   const [formStatus_cces, set_formStatus_cces] = useState({
     sectionA: false,
     sectionB1: false,
@@ -43,17 +56,42 @@ export default function SurveyForm({ form_tab }) {
     sectionB9: false,
   });
 
+  const [formStatus_sap, set_formStatus_sap] = useState({
+    section1: false,
+    section2: false,
+    section3: false,
+    section4: false,
+    section5: false,
+    section6: false,
+    section7: false,
+    section8: false,
+    section9: false,
+  });
 
   const handleChange = (panel) => {
-    if (expanded === panel) return;
+    if (expanded_cces === panel) return;
 
-    if (expanded !== panel && formStatus_cces[panel] === false) {
+    if (expanded_cces !== panel && formStatus_cces[panel] === false) {
       alert("please fill the current section first");
       return;
     }
 
-    if (expanded !== panel && formStatus_cces[panel] === true) {
-      setExpanded(panel);
+    if (expanded_cces !== panel && formStatus_cces[panel] === true) {
+      setExpanded_cces(panel);
+      return;
+    }
+  };
+
+  const handleChangeSap = (panel) => {
+    if (expanded_sap === panel) return;
+
+    if (expanded_sap !== panel && formStatus_cces[panel] === false) {
+      alert("please fill the current section first");
+      return;
+    }
+
+    if (expanded_sap !== panel && formStatus_cces[panel] === true) {
+      setExpanded_sap(panel);
       return;
     }
   };
@@ -68,19 +106,19 @@ export default function SurveyForm({ form_tab }) {
             aria-label="basic tabs"
           >
             <Tab label="CCES" />
-            <Tab label="SAP" />
+            <Tab label="SAP" disabled />
           </Tabs>
         </Box>
 
         <CustomTabPanel value={tab} index={0}>
           <ccesformStatus.Provider
-            value={{ formStatus_cces, set_formStatus_cces, setExpanded }}
+            value={{ formStatus_cces, set_formStatus_cces, setExpanded_cces }}
           >
             <Stack direction="column" spacing={0}>
               {/* section A - primary Informaiton */}
               <SectionAccordion
                 sectionId="sectionA"
-                expanded={expanded === "sectionA"}
+                expanded={expanded_cces === "sectionA"}
                 onChange={() => handleChange("sectionA")}
                 heading="Primary Informaiton"
                 section_form={SectionA}
@@ -90,7 +128,7 @@ export default function SurveyForm({ form_tab }) {
               {/* section B1: Risk assessment, analysis, preventive measures, Plan */}
               <SectionAccordion
                 sectionId="sectionB1"
-                expanded={expanded === "sectionB1"}
+                expanded={expanded_cces === "sectionB1"}
                 onChange={() => handleChange("sectionB1")}
                 heading="Risk assessment, analysis, preventive measures, Plan"
                 section_form={SectionB1}
@@ -100,7 +138,7 @@ export default function SurveyForm({ form_tab }) {
               {/* section B1: Water */}
               <SectionAccordion
                 sectionId="sectionB2"
-                expanded={expanded === "sectionB2"}
+                expanded={expanded_cces === "sectionB2"}
                 onChange={() => handleChange("sectionB2")}
                 heading="Water"
                 section_form={SectionB2}
@@ -110,7 +148,7 @@ export default function SurveyForm({ form_tab }) {
               {/* section B3: Sanitation */}
               <SectionAccordion
                 sectionId="sectionB3"
-                expanded={expanded === "sectionB3"}
+                expanded={expanded_cces === "sectionB3"}
                 onChange={() => handleChange("sectionB3")}
                 heading="Sanitation"
                 section_form={SectionB3}
@@ -120,7 +158,7 @@ export default function SurveyForm({ form_tab }) {
               {/* section B4: Handwashing with soap */}
               <SectionAccordion
                 sectionId="sectionB4"
-                expanded={expanded === "sectionB4"}
+                expanded={expanded_cces === "sectionB4"}
                 onChange={() => handleChange("sectionB4")}
                 heading="Handwashing with soap"
                 section_form={SectionB4}
@@ -130,7 +168,7 @@ export default function SurveyForm({ form_tab }) {
               {/* section B5: Waste Management */}
               <SectionAccordion
                 sectionId="sectionB5"
-                expanded={expanded === "sectionB5"}
+                expanded={expanded_cces === "sectionB5"}
                 onChange={() => handleChange("sectionB5")}
                 heading="Waste Management"
                 section_form={SectionB5}
@@ -140,7 +178,7 @@ export default function SurveyForm({ form_tab }) {
               {/* section B6: Energy */}
               <SectionAccordion
                 sectionId="sectionB6"
-                expanded={expanded === "sectionB6"}
+                expanded={expanded_cces === "sectionB6"}
                 onChange={() => handleChange("sectionB6")}
                 heading="Energy"
                 section_form={SectionB6}
@@ -150,7 +188,7 @@ export default function SurveyForm({ form_tab }) {
               {/* section B7: Environment */}
               <SectionAccordion
                 sectionId="sectionB7"
-                expanded={expanded === "sectionB7"}
+                expanded={expanded_cces === "sectionB7"}
                 onChange={() => handleChange("sectionB7")}
                 heading="Environment"
                 section_form={SectionB7}
@@ -160,7 +198,7 @@ export default function SurveyForm({ form_tab }) {
               {/* section B8: O and M */}
               <SectionAccordion
                 sectionId="sectionB8"
-                expanded={expanded === "sectionB8"}
+                expanded={expanded_cces === "sectionB8"}
                 onChange={() => handleChange("sectionB8")}
                 heading="O and M"
                 section_form={SectionB8}
@@ -170,7 +208,7 @@ export default function SurveyForm({ form_tab }) {
               {/* section B9: Capacity Building and Behaviour Change */}
               <SectionAccordion
                 sectionId="sectionB9"
-                expanded={expanded === "sectionB9"}
+                expanded={expanded_cces === "sectionB9"}
                 onChange={() => handleChange("sectionB9")}
                 heading="Capacity Building and Behaviour Change"
                 section_form={SectionB9}
@@ -179,6 +217,110 @@ export default function SurveyForm({ form_tab }) {
             </Stack>
           </ccesformStatus.Provider>
         </CustomTabPanel>
+        <CustomTabPanel value={tab} index={1}>
+          <sapformStatus.Provider
+            value={{ formStatus_sap, set_formStatus_sap, setExpanded_sap }}
+          >
+            <SectionAccordion
+              sectionId="section1"
+              expanded={expanded_sap === "section1"}
+              onChange={handleChangeSap("section1")}
+              heading="Risk assessment, analysis, preventive measures, Plan"
+              section_form={Section1}
+              formStatus={formStatus_sap}
+            />
+
+            {/* section B1: Water */}
+            <SectionAccordion
+              sectionId="section2"
+              expanded={expanded_sap === "section2"}
+              onChange={handleChangeSap("section2")}
+              heading="Water"
+              section_form={Section2}
+              formStatus={formStatus_sap}
+            />
+
+            {/* section B3: Sanitation */}
+            <SectionAccordion
+              sectionId="section3"
+              expanded={expanded_sap === "section3"}
+              onChange={handleChangeSap("section3")}
+              heading="Sanitation"
+              section_form={Section3}
+              formStatus={formStatus_sap}
+            />
+
+            {/* section B4: Handwashing with soap */}
+            <SectionAccordion
+              sectionId="section4"
+              expanded={expanded_sap === "section4"}
+              onChange={handleChangeSap("section4")}
+              heading="Handwashing with Soap & Water"
+              section_form={Section4}
+              formStatus={formStatus_sap}
+            />
+
+            {/* section B5: Waste Management */}
+            <SectionAccordion
+              sectionId="section5"
+              expanded={expanded_sap === "section5"}
+              onChange={handleChangeSap("section5")}
+              heading="Waste Management"
+              section_form={Section5}
+              formStatus={formStatus_sap}
+            />
+
+            {/* section B6: Energy */}
+            <SectionAccordion
+              sectionId="section6"
+              expanded={expanded_sap === "section6"}
+              onChange={handleChangeSap("section6")}
+              heading="O and M"
+              section_form={Section6}
+              formStatus={formStatus_sap}
+            />
+
+            {/* section B7: Environment */}
+            <SectionAccordion
+              sectionId="section7"
+              expanded={expanded_sap === "section7"}
+              onChange={handleChangeSap("section7")}
+              heading="Energy"
+              section_form={Section7}
+              formStatus={formStatus_sap}
+            />
+
+            {/* section B8: O and M */}
+            <SectionAccordion
+              sectionId="section8"
+              expanded={expanded_sap === "section8"}
+              onChange={handleChangeSap("section8")}
+              heading="Environment"
+              section_form={Section8}
+              formStatus={formStatus_sap}
+            />
+
+            {/* section B9: Capacity Building and Behaviour Change */}
+            <SectionAccordion
+              sectionId="section9"
+              expanded={expanded_sap === "section9"}
+              onChange={handleChangeSap("section9")}
+              heading="Behavior Change & Capacity Building"
+              section_form={Section9}
+              formStatus={formStatus_sap}
+            />
+          </sapformStatus.Provider>
+        </CustomTabPanel>
+        <NextButton
+          color="success"
+          onClick={() => {
+            let ans = Object.values(formStatus_cces).reduce((total, item) => {
+              return total && item;
+            }, true);
+            if (ans) set_tab(1)
+            else alert("please fill all the sections")
+          }}
+        />
       </Box>
     </Container>
   );
@@ -186,17 +328,4 @@ export default function SurveyForm({ form_tab }) {
 
 SurveyForm.propTypes = {
   form_tab: PropTypes.number.isRequired,
-};
-
-const form_sections = {
-  sectionA: "Primary Information",
-  sectionB1: "Risk assessment, analysis, preventive measures, Plan",
-  sectionB2: "Water",
-  sectionB3: "Sanitation",
-  sectionB4: "Handwashing with soap",
-  sectionB5: "Waste Management",
-  sectionB6: "Energy",
-  sectionB7: "Environment",
-  sectionB8: "O and M",
-  sectionB9: "Capacity Building and Behaviour Change",
 };

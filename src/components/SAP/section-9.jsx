@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Stack } from "@mui/material";
 import TextFieldComponent from "../text-field";
+import { sapformStatus } from "../../contexts/formContexts";
 
-const Section2 = () => {
+import NextButton from "../next-button";
+
+const Section9 = () => {
+  const { formStatus_sap, set_formStatus_sap, setExpanded_sap } = useContext(
+    sapformStatus
+  );
   const [a11, set_a11] = useState("");
   const [a12, set_a12] = useState("");
   const [a13, set_a13] = useState("");
@@ -14,7 +20,33 @@ const Section2 = () => {
   const [a19, set_a19] = useState("");
   const [a110, set_a110] = useState("");
 
+  const handleNext = (e) => {
+    e.preventDefault();
+
+    if (
+      checkField(a11) &&
+      checkField(a12) &&
+      checkField(a13) &&
+      checkField(a14) &&
+      checkField(a15) &&
+      checkField(a16) &&
+      checkField(a17) &&
+      checkField(a18) &&
+      checkField(a19) &&
+      checkField(a110) 
+    ) {
+      set_formStatus_sap({ ...formStatus_sap, section9: true });
+      setExpanded_sap(false)
+    }
+  };
+
+  const checkField = (field) => {
+    if (field && field !== "") return true;
+    else return false;
+  };
+
   return (
+    <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
     <Stack direction={"column"} spacing={2}>
       <TextFieldComponent 
         question={a11}
@@ -66,8 +98,10 @@ const Section2 = () => {
         set_question={set_a110}
         label="Does the school observe special days/ fortnights actively- such as World Env. Day, Earth Day, World Water Day, World Toilet Day/GHD/ World Hand Hygiene/ Swachhata Pakhwada? "
       />
+      <NextButton type="submit" />
     </Stack>
+    </form>
   );
 };
 
-export default Section2;
+export default Section9;

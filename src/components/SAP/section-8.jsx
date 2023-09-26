@@ -1,14 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Stack } from "@mui/material";
 import TextFieldComponent from "../text-field";
-import OptionForm from "../option-form";
+
+import { sapformStatus } from "../../contexts/formContexts";
+
+import NextButton from "../next-button";
 
 const Section2 = () => {
+
+  const { formStatus_sap, set_formStatus_sap, setExpanded_sap } =
+    useContext(sapformStatus);
+
   const [a11, set_a11] = useState("");
   const [a12, set_a12] = useState("");
   const [a13, set_a13] = useState("");
 
+  const handleNext = (e) => {
+    console.log(e);
+    e.preventDefault();
+    console.log("next clicked");
+    if (
+      checkfield(a11) &&
+      checkfield(a12) &&
+      checkfield(a13) 
+    ) {
+      set_formStatus_sap({ ...formStatus_sap, section8: true });
+      setExpanded_sap("section9");
+    }
+  };
+
+  const checkfield = (field) => {
+    if (field && field !== "") {
+      return true;
+    } else return false;
+  };
+
   return (
+    <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
     <Stack direction={"column"} spacing={2}>
       <TextFieldComponent 
         question={a11}
@@ -25,7 +53,9 @@ const Section2 = () => {
         set_question={set_a13}
         label="Has the school taken up noteworthy steps towards reducing noise pollution, including creating silent zones within and nearby the school campus ?"
       />
+      <NextButton type="submit" />
     </Stack>
+    </form>
   );
 };
 

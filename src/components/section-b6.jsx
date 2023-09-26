@@ -6,7 +6,7 @@ import NextButton from "./next-button";
 import { ccesformStatus } from "../contexts/formContexts";
 
 export default function SectionB6() {
-  const { formStatus_cces, set_formStatus_cces, setExpanded } =
+  const { formStatus_cces, set_formStatus_cces, setExpanded_cces } =
     useContext(ccesformStatus);
 
   const [b61, set_b61] = useState("");
@@ -31,7 +31,7 @@ export default function SectionB6() {
       checkfield(b67)
     ) {
       set_formStatus_cces({ ...formStatus_cces, sectionB6: true });
-      setExpanded("sectionB7");
+      setExpanded_cces("sectionB7");
     }
   };
 

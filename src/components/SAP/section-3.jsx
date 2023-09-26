@@ -1,9 +1,17 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Stack } from "@mui/material";
 import TextFieldComponent from "../text-field";
 
+import { sapformStatus } from "../../contexts/formContexts";
+
+import NextButton from "../next-button";
+
 const Section3 = () => {
+
+  const { formStatus_sap, set_formStatus_sap, setExpanded_sap } =
+    useContext(sapformStatus);
+
   const [a11, set_a11] = useState("");
   const [a12, set_a12] = useState("");
   const [a13, set_a13] = useState("");
@@ -22,7 +30,41 @@ const Section3 = () => {
   const [a116, set_a116] = useState("");
   const [a117, set_a117] = useState("");
 
+  const handleNext = (e) => {
+    e.preventDefault();
+
+    if(
+      checkField(a11) &&
+      checkField(a12) &&
+      checkField(a13) &&
+      checkField(a14) &&
+      checkField(a15) &&
+      checkField(a16) &&
+      checkField(a17) &&
+      checkField(a18) &&
+      checkField(a19) &&
+      checkField(a110) &&
+      checkField(a111) &&
+      checkField(a112) &&
+      checkField(a113) &&
+      checkField(a114) &&
+      checkField(a115) &&
+      checkField(a116) &&
+      checkField(a117) 
+    ) {
+      set_formStatus_sap({...formStatus_sap, section3: true});
+      setExpanded_sap("section4")
+    }
+  }
+
+  const checkField = (field) => {
+    if(field && field !== "")
+      return true;
+    else return false;
+  }
+
   return (
+    <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
     <Stack direction={"column"} spacing={2}>
       <TextFieldComponent
         question={a11}
@@ -109,7 +151,9 @@ const Section3 = () => {
         set_question={set_a117}
         label="Does the school have scheduled desludging of the faecal matter (preferably before monsoon), in coordination with nearby service provider?"
       />
+      <NextButton type="submit"/>
     </Stack>
+    </form>
   );
 };
 
