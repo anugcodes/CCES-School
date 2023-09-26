@@ -15,9 +15,5 @@ export default function AdminLayout() {
       navigate("/admin/dashboard");
     }
   }, []);
-  return (
-    <Container maxWidth="lg">
-      <Outlet />
-    </Container>
-  );
+  return <Outlet />;
 }
