@@ -20,7 +20,6 @@ export default function SectionB4() {
   const [b49, set_b49] = useState("");
 
   const handleNext = (e) => {
-    console.log(e);
     e.preventDefault();
     if (
       checkfield(b41) &&

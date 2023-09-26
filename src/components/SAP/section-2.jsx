@@ -7,9 +7,8 @@ import { sapformStatus } from "../../contexts/formContexts";
 import NextButton from "../next-button";
 
 const Section2 = () => {
-  const { formStatus_sap, set_formStatus_sap, setExpanded_sap } = useContext(
-    sapformStatus
-  );
+  const { formStatus_sap, set_formStatus_sap, setExpanded_sap, formData } =
+    useContext(sapformStatus);
 
   const [a11, set_a11] = useState("");
   const [a12, set_a12] = useState("");
@@ -57,6 +56,30 @@ const Section2 = () => {
       checkField(a119) &&
       checkField(a120)
     ) {
+      const section_data = {
+        a11: a11,
+        a12: a12,
+        a13: a13,
+        a14: a14,
+        a15: a15,
+        a16: a16,
+        a17: a17,
+        a18: a18,
+        a19: a19,
+        a110: a110,
+        a111: a111,
+        a112: a112,
+        a113: a113,
+        a114: a114,
+        a115: a115,
+        a116: a116,
+        a117: a117,
+        a118: a118,
+        a119: a119,
+        a120: a120,
+      };
+      console.log("sap - section2:", formData);
+      formData.current.sap.section2 = section_data;
       set_formStatus_sap({ ...formStatus_sap, section2: true });
       setExpanded_sap("section3");
     }

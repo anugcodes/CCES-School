@@ -7,12 +7,22 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 
+// firebase
+import { db } from "../firebase";
+import {
+  doc,
+  deleteDoc,
+  setDoc,
+  collection,
+  onSnapshot,
+} from "firebase/firestore";
+
 // components
 import SectionAccordion from "../components/section-accordion";
 import CustomTabPanel from "../components/custom-tab-panel";
 import NextButton from "../components/next-button";
 
-// form sections
+// cces form sections
 import SectionA from "../components/sectionA";
 import SectionB1 from "../components/section-b1";
 import SectionB3 from "../components/section-b3";
@@ -23,7 +33,7 @@ import SectionB7 from "../components/section-b7";
 import SectionB2 from "../components/section-b2";
 import SectionB8 from "../components/section-b8";
 import SectionB9 from "../components/section-b9";
-
+// sap form sections
 import Section1 from "../components/SAP/section-1";
 import Section2 from "../components/SAP/section-2";
 import Section3 from "../components/SAP/section-3";
@@ -41,32 +51,6 @@ export default function SurveyForm() {
   const [expanded_cces, setExpanded_cces] = useState("sectionA");
   const [expanded_sap, setExpanded_sap] = useState("section1");
   const [tab, set_tab] = useState(0);
-
-  // const [formData, set_FormData] = useState({
-  //   cces: {
-  //     sectionA: {},
-  //     sectionB1: {},
-  //     sectionB2: {},
-  //     sectionB3: {},
-  //     sectionB4: {},
-  //     sectionB5: {},
-  //     sectionB6: {},
-  //     sectionB7: {},
-  //     sectionB8: {},
-  //     sectionB9: {},
-  //   },
-  //   sap: {
-  //     section1: {},
-  //     section2: {},
-  //     section3: {},
-  //     section4: {},
-  //     section5: {},
-  //     section6: {},
-  //     section7: {},
-  //     section8: {},
-  //     section9: {},
-  //   },
-  // });
 
   const formData = useRef({
     cces: {
@@ -144,6 +128,28 @@ export default function SurveyForm() {
     if (expanded_sap !== panel && formStatus_cces[panel] === true) {
       setExpanded_sap(panel);
       return;
+    }
+  };
+
+  const handleFinalSubmit = async () => {
+    console.log("final submit");
+    console.log(formData.current.cces, formData.current.sap);
+    const uid = formData.current.cces.sectionA.a1.toLowerCase();
+    const schoolPrimaryInfo = {
+      uDiseCode: uid,
+      NameAndAddress: formData.current.cces.sectionA.a2,
+      Respondent: formData.current.cces.sectionA.a3,
+      RespondentDesignation: formData.current.cces.sectionA.a4,
+      SchoolPhone: formData.current.cces.sectionA.a5.schoolPhone,
+    };
+
+    try {
+      await setDoc(doc(db, "UnicefSurveyCces", uid, formData.current.cces));
+      await setDoc(doc(db, "UnicefSurveySap", uid, formData.current.sap));
+      await setDoc(doc(db, "SchoolInfo", uid, schoolPrimaryInfo));
+      console.log("Database updated successfully!");
+    } catch (error) {
+      console.error("Error updating database:", error);
     }
   };
 
@@ -387,7 +393,11 @@ export default function SurveyForm() {
               formStatus={formStatus_sap}
             />
 
-            <Button variant="contained" color="success">
+            <Button
+              variant="contained"
+              color="success"
+              onClick={(e) => handleFinalSubmit()}
+            >
               Submit
             </Button>
           </sapformStatus.Provider>

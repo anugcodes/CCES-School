@@ -72,7 +72,7 @@ export default function SectionB3() {
   };
 
   return (
-    <form onSubmit={(e) => handleNext()}>
+    <form onSubmit={(e) => handleNext(e)}>
       <Stack direciton="column" spacing={2}>
         <OptionForm
           question={b31}
