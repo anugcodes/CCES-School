@@ -1,32 +1,43 @@
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { UserAuth } from "../../contexts/authContext";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
+
+import DashboardNav from "../../components/admin/dashboard-nav";
+import SchoolDataTab from "../../components/admin/school-data";
+import FormDataCharts from "../../components/admin/form-charts";
 
 
 export default function AdminDashboard() {
-  const { logOut } = UserAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
-
+  const [currentView, set_currentView] = useState(null);
 
   return (
     <Box>
-      <Box sx={{ background: "#ddf" }}>
-        <Container maxWidth="lg">
-          <Stack direction="row" spacing={2} justifyContent={"space-between"} sx={{padding:".5rem"}}>
-            <Stack direction={"row"} spacing={2} alignItems={"center"} justifyContent={"center"}>
-              <Typography variant="h6">Admin Dashboard</Typography>
-              <Button variant="text" size="small" onClick={() => console.log("Data Table clicked")}>Data Table</Button>
-              <Button variant="text" size="small" onClick={() => console.log("charts clicked")}>Charts</Button>
-            </Stack>
-            <Button variant="outlined" size="small" onClick={() => logOut()}>Logout</Button>
-          </Stack>
-        </Container>
-      </Box>
+      <DashboardNav set_currentView={set_currentView} />
+      <Container maxWidth="lg">
+        <Box
+          sx={{
+            margin: ".5rem 0",
+            padding: "1rem",
+            borderRadius: "1rem",
+            background: "#eef",
+          }}
+        >
+          <Typography variant="h6">
+            Total Registered Schools:{" "}
+            <Typography variant="subtitle1" component={"span"}>
+              {Number(100)}
+            </Typography>
+          </Typography>
+        </Box>
+
+        {currentView === "schools" ? <SchoolDataTab /> : <FormDataCharts />}
+      </Container>
     </Box>
   );
 }
+
