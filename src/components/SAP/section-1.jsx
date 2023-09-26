@@ -22,65 +22,75 @@ const Section1 = () => {
       <OptionForm
         question={a11}
         set_question={set_a11}
-        options={["Yes", "No"]}
-        label={
-          " Whether the school has a school safety or equivalent committee? "
-        }
-      />
+        options={[
+            "Yes",
+            "No"
+        ]}
+        label={" Whether the school has a school safety or equivalent committee? "}
+       />
       <OptionForm
         question={a12}
         set_question={set_a12}
-        options={["Yes", "No"]}
-        label={
-          " Are any of the school cabinet members part of the School safety committee?"
-        }
-      />
+        options={[
+            "Yes",
+            "No"
+        ]}
+        label={" Are any of the school cabinet members part of the School safety committee?"}
+       />
       <OptionForm
         question={a13}
         set_question={set_a13}
-        options={["Yes", "No"]}
-        label={
-          " Whether school has developed School Safety Plan (SSP) or equivalent and WASH is included ? "
-        }
-      />
+        options={[
+            "Yes",
+            "No"
+        ]}
+        label={" Whether school has developed School Safety Plan (SSP) or equivalent and WASH is included ? "}
+       />
       <OptionForm
         question={a14}
         set_question={set_a14}
-        options={["Yes", "No"]}
+        options={[
+            "Yes",
+            "No"
+        ]}
         label={"Is your school vulnerable to any natural disasters ? "}
-      />
+       />
       <OptionForm
         question={a15}
         set_question={set_a15}
-        options={["Yes", "No"]}
-        label={
-          " Has school done identified the impact of the above disasters on the WASH infrastructure in schools ? "
-        }
-      />
+        options={[
+            "Yes",
+            "No"
+        ]}
+        label={" Has school done identified the impact of the above disasters on the WASH infrastructure in schools ? "}
+       />
       <OptionForm
         question={a16}
         set_question={set_a16}
-        options={["Yes", "No"]}
-        label={
-          "Does your school have a practice of conducting mock drills for disaster response?"
-        }
-      />
+        options={[
+            "Yes",
+            "No"
+        ]}
+        label={"Does your school have a practice of conducting mock drills for disaster response?"}
+       />
       <OptionForm
         question={a17}
         set_question={set_a17}
-        options={["Yes", "No"]}
-        label={
-          "Is the Swachata action plan effective during  cyclone, heatwave, cold wave, floods, etc.?"
-        }
-      />
+        options={[
+            "Yes",
+            "No"
+        ]}
+        label={"Is the Swachata action plan effective during  cyclone, heatwave, cold wave, floods, etc.?"}
+       />
       <OptionForm
         question={a18}
         set_question={set_a18}
-        options={["Yes", "No"]}
-        label={
-          "Whether the WASH facilities in Schools are able to be effective during  drought, floods, cyclones, forest fire, landslide, etc"
-        }
-      />
+        options={[
+            "Yes",
+            "No"
+        ]}
+        label={"Whether the WASH facilities in Schools are able to be effective during  drought, floods, cyclones, forest fire, landslide, etc"}
+       />
     </Stack>
   );
 };
@@ -89,9 +99,7 @@ const MultipleTextField = (props) => {
   const { question, set_question, type, ...others } = props;
   return (
     <FormControl {...others}>
-      <FormLabel id="demo-customized-select-label">
-        Compliance yes/ No/Partiality
-      </FormLabel>
+      <FormLabel id="demo-customized-select-label">Compliance yes/ No/Partiality</FormLabel>
       <TextField
         variant="outlined"
         size="small"
@@ -99,9 +107,7 @@ const MultipleTextField = (props) => {
         onChange={(e) => set_question(e.target.value)}
         type={type}
       />
-      <FormLabel id="demo-customized-select-label">
-        Gap Identified order of priority
-      </FormLabel>
+      <FormLabel id="demo-customized-select-label">Gap Identified order of priority</FormLabel>
       <TextField
         variant="outlined"
         size="small"
@@ -157,9 +163,7 @@ const MultipleTextField = (props) => {
         onChange={(e) => set_question(e.target.value)}
         type={type}
       />
-      <FormLabel id="demo-customized-select-label">
-        Target (date or months)
-      </FormLabel>
+      <FormLabel id="demo-customized-select-label">Target (date or months)</FormLabel>
       <TextField
         variant="outlined"
         size="small"
@@ -167,9 +171,7 @@ const MultipleTextField = (props) => {
         onChange={(e) => set_question(e.target.value)}
         type={type}
       />
-      <FormLabel id="demo-customized-select-label">
-        Remarks (Possible Sources)
-      </FormLabel>
+      <FormLabel id="demo-customized-select-label">Remarks (Possible Sources)</FormLabel>
       <TextField
         variant="outlined"
         size="small"
