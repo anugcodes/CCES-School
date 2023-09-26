@@ -12,9 +12,8 @@ import NextButton from "./next-button";
 
 export default function SectionB3() {
   let currentDate = new Date();
-  const { formStatus_cces, set_formStatus_cces, setExpanded_cces, formData, set_FormData } = useContext(
-    ccesformStatus
-  );
+  const { formStatus_cces, set_formStatus_cces, setExpanded_cces, formData } =
+    useContext(ccesformStatus);
 
   const [b31, set_b31] = useState("");
   const [b32, set_b32] = useState("");
@@ -41,37 +40,33 @@ export default function SectionB3() {
   const [b320, set_b320] = useState("");
   const [b321, set_b321] = useState("");
 
-  const handleNext = () => {
-
-    set_FormData({
-      ...formData,
-      cces: {
-        sectionB3: {
-          b31: b31,
-          b32: b32,
-          b33: b33,
-          b34: b34,
-          b35: b35,
-          b36: b36,
-          b37: b37,
-          b38: b38,
-          b39: b39,
-          b310: b310,
-          b311: b311,
-          b312: b312,
-          b313: b313,
-          b314: b314,
-          b315: b315,
-          b316: b316,
-          b317: b317,
-          b318: b318,
-          b319: b319,
-          b320: b320,
-          b321: b321
-        },
-      },
-    });
-
+  const handleNext = (e) => {
+    e.preventDefault();
+    const section_data = {
+      b31: b31,
+      b32: b32,
+      b33: b33,
+      b34: b34,
+      b35: b35,
+      b36: b36,
+      b37: b37,
+      b38: b38,
+      b39: b39,
+      b310: b310,
+      b311: b311,
+      b312: b312,
+      b313: b313,
+      b314: b314,
+      b315: b315,
+      b316: b316,
+      b317: b317,
+      b318: b318,
+      b319: b319,
+      b320: b320,
+      b321: b321,
+    };
+    console.log("section b3:", formData);
+    formData.current.cces.sectionB3 = section_data;
     set_formStatus_cces({ ...formStatus_cces, sectionB3: true });
     setExpanded_cces("sectionB4");
   };
@@ -114,7 +109,8 @@ export default function SectionB3() {
 
         <FormControl fullWidth required>
           <FormLabel id="text-field-label">
-          How many urinals in working condition does the school have for boys and girls?
+            How many urinals in working condition does the school have for boys
+            and girls?
           </FormLabel>
           <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
             <TextField

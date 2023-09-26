@@ -6,7 +6,7 @@ import NextButton from "./next-button";
 
 import { ccesformStatus } from "../contexts/formContexts";
 export default function SectionB4() {
-  const { formStatus_cces, set_formStatus_cces, setExpanded_cces, set_FormData, formData } =
+  const { formStatus_cces, set_formStatus_cces, setExpanded_cces, formData } =
     useContext(ccesformStatus);
 
   const [b41, set_b41] = useState("");
@@ -22,7 +22,6 @@ export default function SectionB4() {
   const handleNext = (e) => {
     console.log(e);
     e.preventDefault();
-    console.log("next clicked");
     if (
       checkfield(b41) &&
       checkfield(b42) &&
@@ -34,23 +33,19 @@ export default function SectionB4() {
       checkfield(b48) &&
       checkfield(b49)
     ) {
-
-      set_FormData({
-        ...formData,
-        cces: {
-          sectionB4: {
-            b41: b41,
-            b42: b42,
-            b43: b43,
-            b44: b44,
-            b45: b45,
-            b46: b46,
-            b47: b47,
-            b48: b48,
-            b49: b49
-          },
-        },
-      });
+      const section_data = {
+        b41: b41,
+        b42: b42,
+        b43: b43,
+        b44: b44,
+        b45: b45,
+        b46: b46,
+        b47: b47,
+        b48: b48,
+        b49: b49,
+      };
+      console.log("section b4:", formData);
+      formData.current.cces.sectionB4 = section_data;
       set_formStatus_cces({ ...formStatus_cces, sectionB4: true });
       setExpanded_cces("sectionB5");
     }

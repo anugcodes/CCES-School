@@ -17,13 +17,8 @@ import NextButton from "./next-button";
 import { ccesformStatus } from "../contexts/formContexts";
 
 const SectionA = () => {
-  const {
-    formStatus_cces,
-    set_formStatus_cces,
-    setExpanded_cces,
-    set_FormData,
-    formData,
-  } = useContext(ccesformStatus);
+  const { formStatus_cces, set_formStatus_cces, setExpanded_cces,formData } =
+    useContext(ccesformStatus);
 
   const [a1, set_a1] = useState("");
   const [a2, set_a2] = useState("");
@@ -57,7 +52,7 @@ const SectionA = () => {
   const [a17, set_a17] = useState("");
   const [a18, set_a18] = useState("");
   const [state, set_state] = useState("");
-  const [city, set_city] = useState("Enter your city");
+  const [city, set_city] = useState("");
   const stateList = State.getStatesOfCountry("IN");
 
   const checkfield = (field) => {
@@ -69,34 +64,30 @@ const SectionA = () => {
   function handleNext(e) {
     e.preventDefault();
     // check all fields
-    set_FormData({
-      ...formData,
-      cces: {
-        sectionA: {
-          state: state,
-          city: city,
-          a1: a1,
-          a2: a2,
-          a3: a3,
-          a4: a4,
-          a5: a5,
-          a6: a6,
-          a7: a7,
-          a8: a8,
-          a9: a9,
-          a10: a10,
-          a11: a11,
-          a12: a12,
-          a13: a13,
-          a14: a14,
-          a15: a15,
-          a16: a16,
-          a17: a17,
-          a18: a18,
-        },
-      },
-    });
-    console.log(formData);
+    const seciton_data = {
+      state: state,
+      city: city,
+      a1: a1,
+      a2: a2,
+      a3: a3,
+      a4: a4,
+      a5: a5,
+      a6: a6,
+      a7: a7,
+      a8: a8,
+      a9: a9,
+      a10: a10,
+      a11: a11,
+      a12: a12,
+      a13: a13,
+      a14: a14,
+      a15: a15,
+      a16: a16,
+      a17: a17,
+      a18: a18,
+    };
+    console.log("sectionA:",formData);
+    formData.current.cces.sectionA = seciton_data;
     set_formStatus_cces({ ...formStatus_cces, sectionA: true });
     setExpanded_cces("sectionB1");
   }

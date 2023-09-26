@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import { useEffect, useState, useRef } from "react";
 
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
@@ -38,10 +37,62 @@ import Section9 from "../components/SAP/section-9";
 // cces and sap form status context
 import { ccesformStatus, sapformStatus } from "../contexts/formContexts";
 
-export default function SurveyForm({ form_tab }) {
+export default function SurveyForm() {
   const [expanded_cces, setExpanded_cces] = useState("sectionA");
   const [expanded_sap, setExpanded_sap] = useState("section1");
-  const [tab, set_tab] = useState(form_tab);
+  const [tab, set_tab] = useState(0);
+
+  // const [formData, set_FormData] = useState({
+  //   cces: {
+  //     sectionA: {},
+  //     sectionB1: {},
+  //     sectionB2: {},
+  //     sectionB3: {},
+  //     sectionB4: {},
+  //     sectionB5: {},
+  //     sectionB6: {},
+  //     sectionB7: {},
+  //     sectionB8: {},
+  //     sectionB9: {},
+  //   },
+  //   sap: {
+  //     section1: {},
+  //     section2: {},
+  //     section3: {},
+  //     section4: {},
+  //     section5: {},
+  //     section6: {},
+  //     section7: {},
+  //     section8: {},
+  //     section9: {},
+  //   },
+  // });
+
+  const formData = useRef({
+    cces: {
+      sectionA: {},
+      sectionB1: {},
+      sectionB2: {},
+      sectionB3: {},
+      sectionB4: {},
+      sectionB5: {},
+      sectionB6: {},
+      sectionB7: {},
+      sectionB8: {},
+      sectionB9: {},
+    },
+    sap: {
+      section1: {},
+      section2: {},
+      section3: {},
+      section4: {},
+      section5: {},
+      section6: {},
+      section7: {},
+      section8: {},
+      section9: {},
+    },
+  });
 
   const [formStatus_cces, set_formStatus_cces] = useState({
     sectionA: false,
@@ -67,11 +118,6 @@ export default function SurveyForm({ form_tab }) {
     section8: false,
     section9: false,
   });
-
-  const [formData, set_FormData] = useState({
-    cces: {},
-    sap: {},
-  })
 
   const handleChange = (panel) => {
     if (expanded_cces === panel) return;
@@ -111,7 +157,7 @@ export default function SurveyForm({ form_tab }) {
             aria-label="basic tabs"
           >
             <Tab label="CCES" />
-            <Tab label="SAP" />
+            <Tab label="SAP" disabled />
           </Tabs>
         </Box>
 
@@ -121,8 +167,7 @@ export default function SurveyForm({ form_tab }) {
               formStatus_cces,
               set_formStatus_cces,
               setExpanded_cces,
-              set_FormData,
-              formData
+              formData,
             }}
           >
             <Stack direction="column" spacing={0}>
@@ -225,10 +270,10 @@ export default function SurveyForm({ form_tab }) {
                 section_form={SectionB9}
                 formStatus={formStatus_cces}
               />
+
               <NextButton
                 color="success"
                 onClick={() => {
-                  console.log(formData)
                   let ans = Object.values(formStatus_cces).reduce(
                     (total, item) => {
                       return total && item;
@@ -237,6 +282,8 @@ export default function SurveyForm({ form_tab }) {
                   );
                   if (ans) set_tab(1);
                   else alert("please fill all the sections");
+
+                  console.log(formData.current);
                 }}
               />
             </Stack>
@@ -248,14 +295,13 @@ export default function SurveyForm({ form_tab }) {
               formStatus_sap,
               set_formStatus_sap,
               setExpanded_sap,
-              set_FormData,
-              formData
+              formData,
             }}
           >
             <SectionAccordion
               sectionId="section1"
               expanded={expanded_sap === "section1"}
-              onChange={handleChangeSap("section1")}
+              onChange={() => handleChangeSap("section1")}
               heading="Risk assessment, analysis, preventive measures, Plan"
               section_form={Section1}
               formStatus={formStatus_sap}
@@ -265,7 +311,7 @@ export default function SurveyForm({ form_tab }) {
             <SectionAccordion
               sectionId="section2"
               expanded={expanded_sap === "section2"}
-              onChange={handleChangeSap("section2")}
+              onChange={() => handleChangeSap("section2")}
               heading="Water"
               section_form={Section2}
               formStatus={formStatus_sap}
@@ -275,7 +321,7 @@ export default function SurveyForm({ form_tab }) {
             <SectionAccordion
               sectionId="section3"
               expanded={expanded_sap === "section3"}
-              onChange={handleChangeSap("section3")}
+              onChange={() => handleChangeSap("section3")}
               heading="Sanitation"
               section_form={Section3}
               formStatus={formStatus_sap}
@@ -285,7 +331,7 @@ export default function SurveyForm({ form_tab }) {
             <SectionAccordion
               sectionId="section4"
               expanded={expanded_sap === "section4"}
-              onChange={handleChangeSap("section4")}
+              onChange={() => handleChangeSap("section4")}
               heading="Handwashing with Soap & Water"
               section_form={Section4}
               formStatus={formStatus_sap}
@@ -295,7 +341,7 @@ export default function SurveyForm({ form_tab }) {
             <SectionAccordion
               sectionId="section5"
               expanded={expanded_sap === "section5"}
-              onChange={handleChangeSap("section5")}
+              onChange={() => handleChangeSap("section5")}
               heading="Waste Management"
               section_form={Section5}
               formStatus={formStatus_sap}
@@ -305,7 +351,7 @@ export default function SurveyForm({ form_tab }) {
             <SectionAccordion
               sectionId="section6"
               expanded={expanded_sap === "section6"}
-              onChange={handleChangeSap("section6")}
+              onChange={() => handleChangeSap("section6")}
               heading="O and M"
               section_form={Section6}
               formStatus={formStatus_sap}
@@ -315,7 +361,7 @@ export default function SurveyForm({ form_tab }) {
             <SectionAccordion
               sectionId="section7"
               expanded={expanded_sap === "section7"}
-              onChange={handleChangeSap("section7")}
+              onChange={() => handleChangeSap("section7")}
               heading="Energy"
               section_form={Section7}
               formStatus={formStatus_sap}
@@ -325,7 +371,7 @@ export default function SurveyForm({ form_tab }) {
             <SectionAccordion
               sectionId="section8"
               expanded={expanded_sap === "section8"}
-              onChange={handleChangeSap("section8")}
+              onChange={() => handleChangeSap("section8")}
               heading="Environment"
               section_form={Section8}
               formStatus={formStatus_sap}
@@ -335,19 +381,18 @@ export default function SurveyForm({ form_tab }) {
             <SectionAccordion
               sectionId="section9"
               expanded={expanded_sap === "section9"}
-              onChange={handleChangeSap("section9")}
+              onChange={() => handleChangeSap("section9")}
               heading="Behavior Change & Capacity Building"
               section_form={Section9}
               formStatus={formStatus_sap}
             />
-            <Button>Submit</Button>
+
+            <Button variant="contained" color="success">
+              Submit
+            </Button>
           </sapformStatus.Provider>
         </CustomTabPanel>
       </Box>
     </Container>
   );
 }
-
-SurveyForm.propTypes = {
-  form_tab: PropTypes.number.isRequired,
-};

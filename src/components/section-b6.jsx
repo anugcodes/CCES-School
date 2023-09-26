@@ -6,7 +6,7 @@ import NextButton from "./next-button";
 import { ccesformStatus } from "../contexts/formContexts";
 
 export default function SectionB6() {
-  const { formStatus_cces, set_formStatus_cces, setExpanded_cces, formData, set_FormData } =
+  const { formStatus_cces, set_formStatus_cces, setExpanded_cces, formData } =
     useContext(ccesformStatus);
 
   const [b61, set_b61] = useState("");
@@ -30,21 +30,17 @@ export default function SectionB6() {
       checkfield(b66) &&
       checkfield(b67)
     ) {
-
-      set_FormData({
-        ...formData,
-        cces: {
-          sectionB6: {
-            b61: b61,
-            b62: b62,
-            b63: b63,
-            b64: b64,
-            b65: b65,
-            b66: b66,
-            b67: b67
-          },
-        },
-      });
+      const section_data = {
+        b61: b61,
+        b62: b62,
+        b63: b63,
+        b64: b64,
+        b65: b65,
+        b66: b66,
+        b67: b67,
+      };
+      console.log("section b6:", formData);
+      formData.current.cces.sectionB6 = section_data;
       set_formStatus_cces({ ...formStatus_cces, sectionB6: true });
       setExpanded_cces("sectionB7");
     }
