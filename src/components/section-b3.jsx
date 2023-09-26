@@ -8,11 +8,13 @@ import OptionForm from "./option-form";
 import TextFieldComponent from "./text-field";
 
 import { ccesformStatus } from "../contexts/formContexts";
+import NextButton from "./next-button";
 
 export default function SectionB3() {
   let currentDate = new Date();
-  const { formStatus_cces, set_formStatus_cces, setExpanded } =
-    useContext(ccesformStatus);
+  const { formStatus_cces, set_formStatus_cces, setExpanded_cces } = useContext(
+    ccesformStatus
+  );
 
   const [b31, set_b31] = useState("");
   const [b32, set_b32] = useState("");
@@ -41,7 +43,7 @@ export default function SectionB3() {
 
   const handleNext = () => {
     set_formStatus_cces({ ...formStatus_cces, sectionB3: true });
-    setExpanded("sectionB4");
+    setExpanded_cces("sectionB4");
   };
 
   return (
@@ -73,7 +75,7 @@ export default function SectionB3() {
           question={b33}
           set_question={set_b33}
           label={
-            "How many urinals in working condition does the school have for boys and girls? "
+            "How many toilets seats in working condition does the school have for boys and girls"
           }
           type="number"
           min="1900"
@@ -82,7 +84,7 @@ export default function SectionB3() {
 
         <FormControl fullWidth required>
           <FormLabel id="text-field-label">
-            Number of Teachers and Staff
+          How many urinals in working condition does the school have for boys and girls?
           </FormLabel>
           <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
             <TextField
@@ -250,6 +252,7 @@ export default function SectionB3() {
           label="Has the school cleared/demolished/disposed of the old dilapidated non-usable toilet blocks with appropriate permission from officials?"
           options={["yes", "No"]}
         />
+        <NextButton type="submit" />
       </Stack>
     </form>
   );

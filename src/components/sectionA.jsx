@@ -17,7 +17,7 @@ import NextButton from "./next-button";
 import { ccesformStatus } from "../contexts/formContexts";
 
 const SectionA = () => {
-  const { formStatus_cces, set_formStatus_cces, setExpanded } =
+  const { formStatus_cces, set_formStatus_cces, setExpanded_cces } =
     useContext(ccesformStatus);
 
   const [a1, set_a1] = useState("");
@@ -65,7 +65,7 @@ const SectionA = () => {
     e.preventDefault();
     // check all fields
     set_formStatus_cces({ ...formStatus_cces, sectionA: true });
-    setExpanded("sectionB1");
+    setExpanded_cces("sectionB1");
   }
 
   return (
