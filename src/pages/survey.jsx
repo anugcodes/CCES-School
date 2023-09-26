@@ -68,6 +68,11 @@ export default function SurveyForm({ form_tab }) {
     section9: false,
   });
 
+  const [formData, set_FormData] = useState({
+    cces: {},
+    sap: {},
+  })
+
   const handleChange = (panel) => {
     if (expanded_cces === panel) return;
 
@@ -106,13 +111,19 @@ export default function SurveyForm({ form_tab }) {
             aria-label="basic tabs"
           >
             <Tab label="CCES" />
-            <Tab label="SAP" disabled />
+            <Tab label="SAP" />
           </Tabs>
         </Box>
 
         <CustomTabPanel value={tab} index={0}>
           <ccesformStatus.Provider
-            value={{ formStatus_cces, set_formStatus_cces, setExpanded_cces }}
+            value={{
+              formStatus_cces,
+              set_formStatus_cces,
+              setExpanded_cces,
+              set_FormData,
+              formData
+            }}
           >
             <Stack direction="column" spacing={0}>
               {/* section A - primary Informaiton */}
@@ -214,12 +225,32 @@ export default function SurveyForm({ form_tab }) {
                 section_form={SectionB9}
                 formStatus={formStatus_cces}
               />
+              <NextButton
+                color="success"
+                onClick={() => {
+                  console.log(formData)
+                  let ans = Object.values(formStatus_cces).reduce(
+                    (total, item) => {
+                      return total && item;
+                    },
+                    true
+                  );
+                  if (ans) set_tab(1);
+                  else alert("please fill all the sections");
+                }}
+              />
             </Stack>
           </ccesformStatus.Provider>
         </CustomTabPanel>
         <CustomTabPanel value={tab} index={1}>
           <sapformStatus.Provider
-            value={{ formStatus_sap, set_formStatus_sap, setExpanded_sap }}
+            value={{
+              formStatus_sap,
+              set_formStatus_sap,
+              setExpanded_sap,
+              set_FormData,
+              formData
+            }}
           >
             <SectionAccordion
               sectionId="section1"
@@ -309,18 +340,9 @@ export default function SurveyForm({ form_tab }) {
               section_form={Section9}
               formStatus={formStatus_sap}
             />
+            <Button>Submit</Button>
           </sapformStatus.Provider>
         </CustomTabPanel>
-        <NextButton
-          color="success"
-          onClick={() => {
-            let ans = Object.values(formStatus_cces).reduce((total, item) => {
-              return total && item;
-            }, true);
-            if (ans) set_tab(1)
-            else alert("please fill all the sections")
-          }}
-        />
       </Box>
     </Container>
   );
