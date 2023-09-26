@@ -1,21 +1,15 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 
 // firebase
 import { db } from "../firebase";
-import {
-  doc,
-  deleteDoc,
-  setDoc,
-  collection,
-  onSnapshot,
-} from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 // components
 import SectionAccordion from "../components/section-accordion";
@@ -144,9 +138,9 @@ export default function SurveyForm() {
     };
 
     try {
-      await setDoc(doc(db, "UnicefSurveyCces", uid, formData.current.cces));
-      await setDoc(doc(db, "UnicefSurveySap", uid, formData.current.sap));
-      await setDoc(doc(db, "SchoolInfo", uid, schoolPrimaryInfo));
+      await setDoc(doc(db, "UnicefSurveyCces", uid), formData.current.cces);
+      await setDoc(doc(db, "UnicefSurveySap", uid), formData.current.sap);
+      await setDoc(doc(db, "SchoolInfo", uid), schoolPrimaryInfo);
       console.log("Database updated successfully!");
     } catch (error) {
       console.error("Error updating database:", error);
