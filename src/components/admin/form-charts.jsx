@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { useEffect, useState } from "react";
-import { Stack } from "@mui/material";
+import { Grid } from "@mui/material";
 
 import { PieChart } from "@mui/x-charts/PieChart";
 import { onSnapshot, collection } from "firebase/firestore";
@@ -57,52 +57,39 @@ export default function FormDataCharts() {
         </Tabs>
       </Box>
 
-      <CustomTabPanel value={ccestab} index={0}>
-        <Stack direction="column" spacing={2} sx={{ padding: ".5rem 0" }}>
-          {Object.keys(questions.cces["sectionB1"]).map((questionId, index) => {
-            console.log(questionId);
-            return (
-              <QuestionChart
-                data={ccesData}
-                section={"sectionB1"}
-                questionId={questionId}
-                key={index}
-              />
-            );
-          })}
-        </Stack>
-      </CustomTabPanel>
-
-      <CustomTabPanel value={ccestab} index={1}>
-        <Stack direction="column" spacing={2} sx={{ padding: ".5rem 0" }}>
-          {Object.keys(questions.cces["sectionB2"]).map((questionId, index) => {
-            console.log(questionId);
-            return (
-              <QuestionChart
-                data={ccesData}
-                section={"sectionB2"}
-                questionId={questionId}
-                key={index}
-              />
-            );
-          })}
-        </Stack>
-      </CustomTabPanel>
-
+      {Object.keys(cces_section).map((section, index) => {
+        return (
+          <CustomTabPanel value={ccestab} index={index} key={index}>
+            <Grid container spacing={2} sx={{ padding: ".5rem 0" }}>
+              {Object.keys(questions.cces[section]).map((questionId, index) => {
+                return (
+                  <Grid item xs={12} md={6} key={index}>
+                    <QuestionChart
+                      data={ccesData}
+                      section={section}
+                      questionId={questionId}
+                    />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </CustomTabPanel>
+        );
+      })}
     </Box>
   );
 }
 
 const cces_section = {
-  b1: "Risk assessment, analysis, preventive measures, Plan",
-  b2: "Water",
-  b3: "Sanitation",
-  b4: "Handwashing with soap",
-  b5: "Waste Management",
-  b6: "Energy",
-  b7: "Environment",
-  b8: "O and M",
-  b9: "Capacity Building and Behaviour Change",
+  sectionB1: "Risk assessment, analysis, preventive measures, Plan",
+  sectionB2: "Water",
+  sectionB3: "Sanitation",
+  sectionB4: "Handwashing with soap",
+  sectionB5: "Waste Management",
+  sectionB6: "Energy",
+  sectionB7: "Environment",
+  sectionB8: "O and M",
+  sectionB9: "Capacity Building and Behaviour Change",
 };
 
 function QuestionChart({ data, section, questionId }) {
@@ -111,7 +98,6 @@ function QuestionChart({ data, section, questionId }) {
   chartData.forEach((item) => {
     counts[item] = counts[item] ? counts[item] + 1 : 1;
   });
-  // console.log(counts);
 
   const finalData = [];
   Object.keys(counts).map((item, index) => {
@@ -123,15 +109,21 @@ function QuestionChart({ data, section, questionId }) {
       <Typography variant="subtitle1">
         {questions.cces[section][questionId]}
       </Typography>
-      <PieChart
-        series={[
-          {
-            data: finalData,
-          },
-        ]}
-        width={250}
-        height={200}
-      />
+      <Box sx={{ width: "400px", height: 300 }}>
+        <PieChart
+          series={[
+            {
+              data: finalData,
+              outerRadius: 100,
+              innerRadius: 30,
+              cornerRadius: 2,
+              paddingAngle: 5,
+            },
+          ]}
+          // width={500}
+          // height={200}
+        />
+      </Box>
     </Box>
   );
 }
