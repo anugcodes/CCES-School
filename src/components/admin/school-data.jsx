@@ -12,6 +12,7 @@ import Tab from "@mui/material/Tab";
 import CustomTabPanel from "../custom-tab-panel";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import questions from "../../data/questions.json";
 
 export default function SchoolDataTab() {
   const [schools, set_schools] = useState([]);
@@ -24,11 +25,29 @@ export default function SchoolDataTab() {
     uDiseCode: "",
   });
 
+  const [cces_formData, set_ccesFormData] = useState([]);
+  const [sap_formData, set_sapFormData] = useState([]);
+
+  console.log("cces questions", questions.cces);
+  console.log("sap questions", questions.sap);
+
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "SchoolInfo"), (snapshot) => {
+    let unsubscribe = onSnapshot(collection(db, "SchoolInfo"), (snapshot) => {
       const updatedList = snapshot.docs.map((doc) => doc.data());
       set_schools(updatedList);
       console.log(updatedList);
+    });
+
+    unsubscribe = onSnapshot(collection(db, "UnicefSurveyCces"), (snapshot) => {
+      const updatedData = snapshot.docs.map((doc) => doc.data());
+      set_ccesFormData(updatedData);
+      console.log("cces", updatedData);
+    });
+
+    unsubscribe = onSnapshot(collection(db, "UnicefSurveySap"), (snapshot) => {
+      const updatedData = snapshot.docs.map((doc) => doc.data());
+      set_sapFormData(updatedData);
+      console.log("sap", updatedData);
     });
     return () => unsubscribe(); // Unsubscribe from the snapshot listener when the component unmounts
   }, []);
@@ -154,7 +173,94 @@ function CcesFormDataModal(props) {
           </Tabs>
         </Box>
         <CustomTabPanel value={tab} index={0}>
-          Primary Information goes here
+          <Box>
+            {Object.keys(questions.cces["sectionA"]).map((data, index) => (
+              <Typography key={index} fontWeight={"bold"}>
+                {questions.cces["sectionA"][data]}
+              </Typography>
+            ))}
+          </Box>
+        </CustomTabPanel>
+        <CustomTabPanel value={tab} index={1}>
+          <Box>
+            {Object.keys(questions.cces["sectionB1"]).map((data, index) => (
+              <Typography key={index} fontWeight={"bold"}>
+                {questions.cces["sectionB1"][data]}
+              </Typography>
+            ))}
+          </Box>
+        </CustomTabPanel>
+        <CustomTabPanel value={tab} index={2}>
+          <Box>
+            {Object.keys(questions.cces["sectionB2"]).map((data, index) => (
+              <Typography key={index} fontWeight={"bold"}>
+                {questions.cces["sectionB2"][data]}
+              </Typography>
+            ))}
+          </Box>
+        </CustomTabPanel>
+        <CustomTabPanel value={tab} index={3}>
+          <Box>
+            {Object.keys(questions.cces["sectionB3"]).map((data, index) => (
+              <Typography key={index} fontWeight={"bold"}>
+                {questions.cces["sectionB3"][data]}
+              </Typography>
+            ))}
+          </Box>
+        </CustomTabPanel>
+        <CustomTabPanel value={tab} index={4}>
+          <Box>
+            {Object.keys(questions.cces["sectionB4"]).map((data, index) => (
+              <Typography key={index} fontWeight={"bold"}>
+                {questions.cces["sectionB4"][data]}
+              </Typography>
+            ))}
+          </Box>
+        </CustomTabPanel>
+        <CustomTabPanel value={tab} index={5}>
+          <Box>
+            {Object.keys(questions.cces["sectionB5"]).map((data, index) => (
+              <Typography key={index} fontWeight={"bold"}>
+                {questions.cces["sectionB5"][data]}
+              </Typography>
+            ))}
+          </Box>
+        </CustomTabPanel>
+        <CustomTabPanel value={tab} index={6}>
+          <Box>
+            {Object.keys(questions.cces["sectionB6"]).map((data, index) => (
+              <Typography key={index} fontWeight={"bold"}>
+                {questions.cces["sectionB6"][data]}
+              </Typography>
+            ))}
+          </Box>
+        </CustomTabPanel>
+        <CustomTabPanel value={tab} index={7}>
+          <Box>
+            {Object.keys(questions.cces["sectionB7"]).map((data, index) => (
+              <Typography key={index} fontWeight={"bold"}>
+                {questions.cces["sectionB7"][data]}
+              </Typography>
+            ))}
+          </Box>
+        </CustomTabPanel>
+        <CustomTabPanel value={tab} index={8}>
+          <Box>
+            {Object.keys(questions.cces["sectionB8"]).map((data, index) => (
+              <Typography key={index} fontWeight={"bold"}>
+                {questions.cces["sectionB8"][data]}
+              </Typography>
+            ))}
+          </Box>
+        </CustomTabPanel>
+        <CustomTabPanel value={tab} index={9}>
+          <Box>
+            {Object.keys(questions.cces["sectionB9"]).map((data, index) => (
+              <Typography key={index} fontWeight={"bold"}>
+                {questions.cces["sectionB9"][data]}
+              </Typography>
+            ))}
+          </Box>
         </CustomTabPanel>
       </Box>
     </Modal>
