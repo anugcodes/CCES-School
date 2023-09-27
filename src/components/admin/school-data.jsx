@@ -12,6 +12,7 @@ import Tab from "@mui/material/Tab";
 import CustomTabPanel from "../custom-tab-panel";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import questions from "../../data/questions.json"
 
 export default function SchoolDataTab() {
   const [schools, set_schools] = useState([]);
@@ -24,12 +25,27 @@ export default function SchoolDataTab() {
     uDiseCode: "",
   });
 
+  const [cces_formData, set_ccesFormData] = useState([]);
+  const [sap_formData, set_sapFormData] = useState([]);
+
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "SchoolInfo"), (snapshot) => {
+    let unsubscribe = onSnapshot(collection(db, "SchoolInfo"), (snapshot) => {
       const updatedList = snapshot.docs.map((doc) => doc.data());
       set_schools(updatedList);
       console.log(updatedList);
     });
+
+    unsubscribe = onSnapshot(collection(db, "UnicefSurveyCces"), (snapshot) => {
+      const updatedData = snapshot.docs.map((doc) => doc.data());
+      set_ccesFormData(updatedData);
+      console.log(updatedData);
+    })
+
+    unsubscribe = onSnapshot(collection(db, "UnicefSurveySap"), (snapshot) => {
+      const updatedData = snapshot.docs.map((doc) => doc.data());
+      set_sapFormData(updatedData);
+      console.log(updatedData);
+    })
     return () => unsubscribe(); // Unsubscribe from the snapshot listener when the component unmounts
   }, []);
 
