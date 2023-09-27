@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
-import { onSnapshot, collection } from "firebase/firestore";
+import { onSnapshot, collection, doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import CloseIcon from "@mui/icons-material/Close";
@@ -26,7 +26,6 @@ export default function SchoolDataTab() {
   });
 
   const [cces_formData, set_ccesFormData] = useState([]);
-  const [sap_formData, set_sapFormData] = useState([]);
 
   useEffect(() => {
     let unsubscribe = onSnapshot(collection(db, "SchoolInfo"), (snapshot) => {
@@ -41,11 +40,6 @@ export default function SchoolDataTab() {
       // console.log("cces", updatedData);
     });
 
-    unsubscribe = onSnapshot(collection(db, "UnicefSurveySap"), (snapshot) => {
-      const updatedData = snapshot.docs.map((doc) => doc.data());
-      set_sapFormData(updatedData);
-      // console.log("sap", updatedData);
-    });
     return () => unsubscribe(); // Unsubscribe from the snapshot listener when the component unmounts
   }, []);
 
@@ -96,12 +90,14 @@ export default function SchoolDataTab() {
         margin: ".5rem 0",
         padding: "1rem",
         borderRadius: "1rem",
-        background: "#eeeeff",
+        background: "#CEF6FF",
         height: "80vh",
         maxHeight: "82vh",
       }}
     >
-      <Typography variant="h6">Schools</Typography>
+      <Typography variant="h6" sx={{ color: "#0056B0" }}>
+        Schools
+      </Typography>
       <Box sx={{ height: "90%" }}>
         <DataGrid rows={rows} columns={columns} onCellClick={handleCellClick} />
       </Box>
@@ -135,7 +131,7 @@ function CcesFormDataModal(props) {
           top: "8%",
           left: "5%",
           width: "90%",
-          bgcolor: "background.paper",
+          bgcolor: "#E6F4F1",
           border: "2px solid #000",
           borderRadius: "1rem",
           boxShadow: 24,
@@ -342,6 +338,18 @@ function SapFormDataModal(props) {
   const { open, set_open } = props;
   const uDiseCode = open.uDiseCode;
 
+  const [sapData, set_sapData] = useState(null);
+
+  useEffect(() => {
+    console.log(uDiseCode);
+    async function fetchDocument(schoolCode) {
+      const docRef = doc(db, "UnicefSurveySap", schoolCode);
+      const docSnap = await getDoc(docRef);
+      set_sapData(docSnap.data());
+    }
+    fetchDocument(uDiseCode);
+  }, []);
+
   const [tab, set_tab] = useState(0);
   return (
     <Modal
@@ -356,7 +364,7 @@ function SapFormDataModal(props) {
           top: "8%",
           left: "5%",
           width: "90%",
-          bgcolor: "background.paper",
+          bgcolor: "#E6F4F1",
           border: "2px solid #000",
           borderRadius: "1rem",
           boxShadow: 24,

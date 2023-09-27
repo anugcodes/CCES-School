@@ -170,6 +170,7 @@ export default function SurveyForm() {
               set_formStatus_cces,
               setExpanded_cces,
               formData,
+              set_tab,
             }}
           >
             <Stack direction="column" spacing={0}>
@@ -273,7 +274,8 @@ export default function SurveyForm() {
                 formStatus={formStatus_cces}
               />
 
-              <NextButton
+              {/* 00aeef */}
+              {/* <NextButton
                 color="success"
                 onClick={() => {
                   let ans = Object.values(formStatus_cces).reduce(
@@ -287,7 +289,7 @@ export default function SurveyForm() {
 
                   console.log(formData.current);
                 }}
-              />
+              /> */}
             </Stack>
           </ccesformStatus.Provider>
         </CustomTabPanel>

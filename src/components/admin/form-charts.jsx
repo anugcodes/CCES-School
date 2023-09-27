@@ -38,7 +38,7 @@ export default function FormDataCharts() {
         margin: ".5rem 0",
         padding: "1rem",
         borderRadius: "1rem",
-        background: "#eef",
+        background: "#CEF6FF",
       }}
     >
       <Typography variant="h6">Charts</Typography>
@@ -105,7 +105,9 @@ function QuestionChart({ data, section, questionId }) {
   });
   console.log(finalData);
   return (
-    <Box sx={{ padding: ".5rem", borderRadius: ".5rem", background: "#ddf" }}>
+    <Box
+      sx={{ padding: ".5rem", borderRadius: ".5rem", background: "#B1D5ED" }}
+    >
       <Typography variant="subtitle1">
         {questions.cces[section][questionId]}
       </Typography>
