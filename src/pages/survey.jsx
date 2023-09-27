@@ -6,6 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 // firebase
 import { db } from "../firebase";
@@ -42,6 +43,7 @@ import Section9 from "../components/SAP/section-9";
 import { ccesformStatus, sapformStatus } from "../contexts/formContexts";
 
 export default function SurveyForm() {
+  const navigate = useNavigate();
   const [expanded_cces, setExpanded_cces] = useState("sectionA");
   const [expanded_sap, setExpanded_sap] = useState("section1");
   const [tab, set_tab] = useState(0);
@@ -390,7 +392,10 @@ export default function SurveyForm() {
             <Button
               variant="contained"
               color="success"
-              onClick={(e) => handleFinalSubmit()}
+              onClick={(e) => {
+                handleFinalSubmit();
+                navigate({ pathname: "/successfulsubmission" });
+              }}
             >
               Submit
             </Button>
