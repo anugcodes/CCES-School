@@ -80,10 +80,10 @@ export default function SchoolDataTab() {
     const docRef = doc(db, "UnicefSurveySap", schoolCode);
     const docSnap = await getDoc(docRef);
     set_sapData(docSnap.data());
+    console.log("sap", sapData)
   }
 
   const handleCellClick = (params, event) => {
-    console.log("params", params);
     const uDiseCode = params.row.col1;
     if (params.field === "col6") {
       set_ccesformModal({ open: true, uDiseCode: uDiseCode });
@@ -351,6 +351,7 @@ function SapFormDataModal(props) {
   const uDiseCode = open.uDiseCode;
 
   console.log("questions ", questions.sap["section1"]);
+  console.log("sap data ", sapData)
 
   const [tab, set_tab] = useState(0);
   return (
