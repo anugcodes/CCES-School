@@ -19,7 +19,7 @@ export default function AdminDashboard() {
             margin: ".5rem 0",
             padding: "1rem",
             borderRadius: "1rem",
-            background: "#eef",
+            background: "#CEF6FF",
           }}
         >
           <Typography variant="subtitle1">
