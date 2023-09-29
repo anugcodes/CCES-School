@@ -23,6 +23,8 @@ import SectionB2 from "../components/section-b2";
 import SectionB8 from "../components/section-b8";
 import SectionB9 from "../components/section-b9";
 import Section1 from "../components/SAP/section-1";
+import NavBar from "../components/common/NavBar";
+import Footer from "../components/common/Footer";
 
 export default function SurveyForm({ form_tab }) {
   const location = useLocation();
@@ -54,7 +56,7 @@ export default function SurveyForm({ form_tab }) {
   const [tab, set_tab] = useState(form_tab);
 
   const handleChange = (panel) => (event) => {
-    
+
     if (expanded !== panel && formStatus_cces[panel] === false) {
       alert("fill the current section first.");
       return;
@@ -64,6 +66,7 @@ export default function SurveyForm({ form_tab }) {
 
   return (
     <div>
+      <NavBar />
       <Container maxWidth="lg">
         <Box sx={{ padding: "2rem 0" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -275,6 +278,7 @@ export default function SurveyForm({ form_tab }) {
           </CustomTabPanel>
         </Box>
       </Container>
+      <Footer />
     </div>
   );
 }
