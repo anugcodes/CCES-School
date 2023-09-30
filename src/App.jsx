@@ -6,7 +6,7 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { UserAuth } from "./contexts/authContext";
 
@@ -40,7 +40,7 @@ function App() {
               path="/successfulsubmission"
               element={<SuccessfulSubmission />}
             />
-            <Route path="*" element={<h1>Not Found</h1>} />
+            <Route path="*" element={<PageNotFound />} />
           </>
         </Routes>
       </BrowserRouter>
@@ -62,9 +62,39 @@ function RequireAuth({ children }) {
 
 function SuccessfulSubmission() {
   return (
-    <div style={{ display: "flex", marginTop: "5rem" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        marginTop: "5rem",
+        textAlign: "center",
+      }}
+    >
       <h1>Thank you for submitting the form</h1>
       <p>Your response has been recorded.</p>
+      <a href="/" style={{ textDecoration: "none" }}>
+        Go to Home
+      </a>
+    </div>
+  );
+}
+
+function PageNotFound() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        direction: "column",
+        alignItems: "center",
+        marginTop: "5rem",
+        textAlign:"center"
+      }}
+    >
+      <h1>Page Not Found</h1>
+      <a href="/" style={{ textDecoration: "none" }}>
+        Go to Home
+      </a>
     </div>
   );
 }
