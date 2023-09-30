@@ -1,5 +1,4 @@
 import { Stack, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 
 import TextField from "@mui/material/TextField";
@@ -10,7 +9,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 
-import { MuiTelInput, matchIsValidTel } from "mui-tel-input";
+import { MuiTelInput } from "mui-tel-input";
 
 import TextFieldComponent from "./text-field";
 import OptionForm from "./option-form";
@@ -94,6 +93,7 @@ const SectionA = () => {
     setExpanded_cces("sectionB1");
   }
 
+  // set_a6("hello world")
   return (
     <div>
       <form onSubmit={(e) => handleNext(e)}>
@@ -299,18 +299,19 @@ const SectionA = () => {
             />
           </Stack>
 
-          <Stack direction="column" spacing={1}>
+          <Stack direction="column" spacing={2}>
             <FormControl fullWidth required>
               <FormLabel id="text-field-label">
                 Number of students enrolled in school
               </FormLabel>
-              <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+              <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
                 <TextField
                   value={a13.boys}
                   placeholder="number of boys enrolled"
                   onChange={(e) => set_a13({ ...a13, boys: e.target.value })}
                   size="small"
                   type="number"
+                  required
                 />
                 <TextField
                   value={a13.girls}
@@ -318,6 +319,7 @@ const SectionA = () => {
                   onChange={(e) => set_a13({ ...a13, girls: e.target.value })}
                   size="small"
                   type="number"
+                  required
                 />
               </Stack>
             </FormControl>
@@ -326,13 +328,14 @@ const SectionA = () => {
               <FormLabel id="text-field-label">
                 Number of Children with Special Needs
               </FormLabel>
-              <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+              <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
                 <TextField
                   value={a14.boys}
                   placeholder="number of boys enrolled"
                   onChange={(e) => set_a14({ ...a14, boys: e.target.value })}
                   size="small"
                   type="number"
+                  required
                 />
                 <TextField
                   value={a14.girls}
@@ -340,6 +343,7 @@ const SectionA = () => {
                   onChange={(e) => set_a14({ ...a14, girls: e.target.value })}
                   size="small"
                   type="number"
+                  required
                 />
               </Stack>
             </FormControl>
@@ -348,20 +352,22 @@ const SectionA = () => {
               <FormLabel id="text-field-label">
                 Number of Teachers and Staff
               </FormLabel>
-              <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+              <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
                 <TextField
                   value={a15.male}
                   placeholder="number of male staff"
                   onChange={(e) => set_a15({ ...a15, male: e.target.value })}
                   size="small"
                   type="number"
+                  required
                 />
                 <TextField
-                  value={a13.female}
+                  value={a15.female}
                   placeholder="number of female staff"
                   onChange={(e) => set_a15({ ...a15, female: e.target.value })}
                   size="small"
                   type="number"
+                  required
                 />
               </Stack>
             </FormControl>
