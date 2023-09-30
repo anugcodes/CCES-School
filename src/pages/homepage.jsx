@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../components/common/NavBar";
 import Footer from "../components/common/Footer";
 import Hero from "../components/landing/Hero";
-import About from "../components/landing/about";
+import About from "../components/landing/About";
 import Blogs from "../components/landing/Blogs";
 
 export default function Home() {
