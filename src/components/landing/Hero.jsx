@@ -3,12 +3,12 @@ import { Carousel } from "react-bootstrap";
 import Button from "@mui/material/Button";
 
 
-import bg1 from '../../img/bg1.png'
-import bg2 from '../../img/bg2.jpg'
-import bg3 from '../../img/bg3.jpg'
-import bg4 from '../../img/bg4.png'
-import bg5 from '../../img/bg5.png'
-import bg6 from '../../img/bg6.png'
+import bg1 from '../../assets/bg1.png'
+import bg2 from '../../assets/bg2.jpg'
+import bg3 from '../../assets/bg3.jpg'
+import bg4 from '../../assets/bg4.png'
+import bg5 from '../../assets/bg5.png'
+import bg6 from '../../assets/bg6.png'
 
 function Hero() {
     return (

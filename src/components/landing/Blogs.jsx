@@ -2,9 +2,9 @@ import { Container, Link } from '@mui/material'
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import blog1 from '../../img/blog1.jpg'
-import blog3 from '../../img/blog3.jpeg'
-import blog2 from '../../img/blog2.jpeg'
+import blog1 from '../../assets/blog1.jpg'
+import blog3 from '../../assets/blog3.jpeg'
+import blog2 from '../../assets/blog2.jpeg'
 
 function Blogs() {
     return (
@@ -46,15 +46,15 @@ function Blogs() {
             </div>
 
             <div className="d-flex justify-content-around my-3 flex-wrap p-2">
-                <iframe width="450" height="250" src="https://www.youtube.com/embed/4c1NRIWEqXo?si=KQHqjMjuLobrtFwc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='m-2 rounded'></iframe>
+                <iframe width="450" height="250" src="https://www.youtube.com/embed/4c1NRIWEqXo?si=KQHqjMjuLobrtFwc" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='m-2 rounded'></iframe>
 
-                <iframe width="450" height="250" src="https://www.youtube.com/embed/LKynsa1ZjsA?si=zf1c-0gJcFjXL88L" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='m-2 rounded'></iframe>
+                <iframe width="450" height="250" src="https://www.youtube.com/embed/LKynsa1ZjsA?si=zf1c-0gJcFjXL88L" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='m-2 rounded'></iframe>
 
-                <iframe width="450" height="250" src="https://www.youtube.com/embed/w19uuadnwBY?si=NmHsEq943wX5juKm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='m-2 rounded'></iframe>
+                <iframe width="450" height="250" src="https://www.youtube.com/embed/w19uuadnwBY?si=NmHsEq943wX5juKm" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='m-2 rounded'></iframe>
 
-                <iframe width="450" height="250" src="https://www.youtube.com/embed/IqaEqRYSIx4?si=Pt6XmO7qIbqV18IQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='m-2 rounded'></iframe>
+                <iframe width="450" height="250" src="https://www.youtube.com/embed/IqaEqRYSIx4?si=Pt6XmO7qIbqV18IQ" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='m-2 rounded'></iframe>
 
-                <iframe width="450" height="250" src="https://www.youtube.com/embed/-Lcb4m0YtfU?si=A8hzJ--wHlGscp0p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='m-2 rounded'></iframe>
+                <iframe width="450" height="250" src="https://www.youtube.com/embed/-Lcb4m0YtfU?si=A8hzJ--wHlGscp0p" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='m-2 rounded'></iframe>
             </div>
         </Container>
     )
