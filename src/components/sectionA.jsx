@@ -208,11 +208,7 @@ const SectionA = () => {
               sx={{ maxWidth: "30%" }}
             /> */}
 
-            <FormControl
-              sx={{ width: "32%" }}
-              required
-              error={formerror.a1 !== null}
-            >
+            <FormControl sx={{width: {md: "32%"}}} required error={formerror.a1 !== null} fullWidth>
               <FormLabel>U-Dise Code</FormLabel>
               <Autocomplete
                 filterOptions={filterOptions}

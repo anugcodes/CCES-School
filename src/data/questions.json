@@ -7,7 +7,12 @@
             "a2": "Name of School and Address",
             "a3": "Name of Respondent",
             "a4": "Designation of Respondent",
-            "a5": "Contact Details of Respondent:",
+            "a5": {
+                "title": "Contact Details of Respondent:",
+                "mobileNumber": "Mobile No.",
+                "emailId": "Email Id",
+                "schoolPhone": "School Phone No."
+            },
             "a6": " School Management (Please select anyone)",
             "a7": "School type (use)",
             "a8": "Category of School",
@@ -15,9 +20,21 @@
             "a10": "Year of Establishment of the School",
             "a11": "Location of the School",
             "a12": "Name of Board",
-            "a13": "Number of students enrolled in the school",
-            "a14": "Number of Children with Special Needs",
-            "a15": "Number of Teachers and Staff",
+            "a13": {
+                "title": "Number of students enrolled in the school",
+                "boys": "Boys",
+                "girls": "Girls"
+            },
+            "a14": {
+                "title": "Number of Children with Special Needs",
+                "boys": "Boys",
+                "girls": "Girls"
+            },
+            "a15": {
+                "title": "Number of Teachers and Staff",
+                "male": "Male",
+                "female": "Female"
+            },
             "a16": "Mention the star rating of awards obtained through SVP?",
             "a17": "Has the school developed Swachhata Action Plan (SAP)?",
             "a18": "Is the school aware of the requirements of the Standard Operating Procedures (SOPs) for Sustaining Water, Sanitation & Hygiene in schools (https://schooledn.py.gov.in/ssarmsa/pdf/SOP for WASH - 14-10-2021.pdf)?"
@@ -39,7 +56,7 @@
             "b114": " Whether the WASH facilities in Schools are able to be effective during  drought, floods, cyclones, forest fire, landslide, etc.?"
         },
         "sectionB2": {
-            "B21": "What is the main source of water supply in your school?",
+            "b21": "What is the main source of water supply in your school?",
             "b22": "Is adequate safe drinking water (at least 1.5 litre per child per day in non-residential & 5 litre per child per day in residential school) available from this water supply, all days throughout the year? ",
             "b23": "How is drinking water stored and handled in the school?",
             "b24": "Does the water stored in the school adequate to meet the requirement of water for all purposes?",
@@ -67,7 +84,11 @@
             "b31": "What is the most common type of toilet used by the students at the school? ",
             "b32": "Does the school have separate toilets for boys and girls in working condition?",
             "b33": "How many toilets seats in working condition does the school have for boys and girls? (column may have state/ regional specific customization considering the likely climate event/ natural hazard)",
-            "b34": "How many urinals in working condition does the school have for boys and girls? ",
+            "b34": {
+                "title": "How many urinals in working condition does the school have for boys and girls? ",
+                "male": "Male",
+                "female": "Female"
+            },
             "b35": "Does the school have toilets accessible to the Children with Special Needs (CWSN) (an accessible toilet for CWSN, is one that if there is a functional toilet with ramp, handrail, and wide door for wheelchair entry inside toilet)? ",
             "b36": "Does the school have a climate-resilient secured roof cover? ",
             "b37": "Do all the toilets in the school have secure door with latch and cloth hanging hooks? ",

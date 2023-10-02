@@ -69,7 +69,7 @@ export default function SectionB2() {
         b26: b26,
         b27: b27,
         b28: b28,
-        b19: b29,
+        b29: b29,
         b210: b210,
         b211: b211,
         b212: b212,

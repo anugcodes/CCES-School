@@ -15,7 +15,6 @@ import { doc, setDoc } from "firebase/firestore";
 // components
 import SectionAccordion from "../components/section-accordion";
 import CustomTabPanel from "../components/custom-tab-panel";
-import NextButton from "../components/next-button";
 
 // cces form sections
 import SectionA from "../components/sectionA";
