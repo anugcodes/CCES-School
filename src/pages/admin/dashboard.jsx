@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack"
+import Stack from "@mui/material/Stack";
 
 import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -12,7 +12,7 @@ import DashboardNav from "../../components/admin/dashboard-nav";
 import SchoolDataTab from "../../components/admin/school-data";
 import FormDataCharts from "../../components/admin/form-charts";
 
-import AdminImage from "../../../public/admin-dashboard.jpg"
+import AdminImage from "../../assets/admin-dashboard.jpg";
 
 // context api
 import { serverData } from "../../contexts/formContexts";
@@ -72,21 +72,36 @@ export default function AdminDashboard() {
           }}
         >
           <Stack direction={"row"} spacing={4}>
-          <Stack spacing={3} justifyContent={"center"}>
-          <img src="https://www.unicef.org/india/sites/unicef.org.india/files/styles/logo/public/English.png?itok=7CkDc2wD" alt="" width={"80%"}/>
-          <Typography variant="h6" sx={{textTransform: "uppercase", fontWeight: "bold"}}>
-            Total Registered Schools:{"  "}
-            <Typography variant="h5" component={"span"} color={"white"} fontWeight={"bold"}>
-              {primaryData.length}
-            </Typography>
-          </Typography>
+            <Stack spacing={3} justifyContent={"center"}>
+              <img
+                src="https://www.unicef.org/india/sites/unicef.org.india/files/styles/logo/public/English.png?itok=7CkDc2wD"
+                alt=""
+                width={"80%"}
+              />
+              <Typography
+                variant="h6"
+                sx={{ textTransform: "uppercase", fontWeight: "bold" }}
+              >
+                Total Registered Schools:{"  "}
+                <Typography
+                  variant="h5"
+                  component={"span"}
+                  color={"white"}
+                  fontWeight={"bold"}
+                >
+                  {primaryData.length}
+                </Typography>
+              </Typography>
+            </Stack>
+            <img
+              src={AdminImage}
+              alt=""
+              width={"30%"}
+              style={{
+                borderRadius: "1rem",
+              }}
+            />
           </Stack>
-        <img src={AdminImage} alt="" width={"30%"}
-            style={{
-              borderRadius: "1rem"
-            }}
-           />
-        </Stack>
         </Box>
         <serverData.Provider value={{ primaryData, ccesData, sapData }}>
           {currentView === "schools" ? <SchoolDataTab /> : <FormDataCharts />}

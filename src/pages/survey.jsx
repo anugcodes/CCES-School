@@ -51,6 +51,7 @@ export default function SurveyForm() {
   const [tab, set_tab] = useState(0);
 
   const formData = useRef({
+    uDiseCode: null,
     cces: {
       sectionA: {},
       sectionB1: {},
@@ -101,37 +102,33 @@ export default function SurveyForm() {
     section9: false,
   });
 
+  // handle change function for cces and sap sections
   const handleChange = (panel) => {
     if (expanded_cces === panel) return;
-
     if (expanded_cces !== panel && formStatus_cces[panel] === false) {
       alert("please fill the current section first");
       return;
     }
-
     if (expanded_cces !== panel && formStatus_cces[panel] === true) {
       setExpanded_cces(panel);
       return;
     }
   };
-
   const handleChangeSap = (panel) => {
     if (expanded_sap === panel) return;
-
     if (expanded_sap !== panel && formStatus_cces[panel] === false) {
       alert("please fill the current section first");
       return;
     }
-
     if (expanded_sap !== panel && formStatus_cces[panel] === true) {
       setExpanded_sap(panel);
       return;
     }
   };
 
+  // final submit button function
   const handleFinalSubmit = async () => {
     console.log("final submit");
-    console.log(formData.current.cces, formData.current.sap);
     const uid = formData.current.cces.sectionA.a1.toLowerCase();
     const schoolPrimaryInfo = {
       uDiseCode: uid,
@@ -140,6 +137,9 @@ export default function SurveyForm() {
       RespondentDesignation: formData.current.cces.sectionA.a4,
       SchoolPhone: formData.current.cces.sectionA.a5.schoolPhone,
     };
+    formData.current.cces["uDiseCode"] = uid;
+    formData.current.sap["uDiseCode"] = uid;
+    console.log(formData.current.cces, formData.current.sap);
 
     try {
       await setDoc(doc(db, "UnicefSurveyCces", uid), formData.current.cces);
@@ -277,26 +277,10 @@ export default function SurveyForm() {
                   section_form={SectionB9}
                   formStatus={formStatus_cces}
                 />
-
-                {/* 00aeef */}
-                {/* <NextButton
-                color="success"
-                onClick={() => {
-                  let ans = Object.values(formStatus_cces).reduce(
-                    (total, item) => {
-                      return total && item;
-                    },
-                    true
-                  );
-                  if (ans) set_tab(1);
-                  else alert("please fill all the sections");
-
-                  console.log(formData.current);
-                }}
-              /> */}
               </Stack>
             </ccesformStatus.Provider>
           </CustomTabPanel>
+
           <CustomTabPanel value={tab} index={1}>
             <sapformStatus.Provider
               value={{

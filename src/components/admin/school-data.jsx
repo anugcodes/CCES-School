@@ -10,6 +10,7 @@ import Tab from "@mui/material/Tab";
 import CustomTabPanel from "../custom-tab-panel";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 // meta data
 import questions from "../../data/questions.json";
@@ -60,6 +61,13 @@ export default function SchoolDataTab() {
       renderCell: () => <OpenInNewIcon />,
       disableClickEventBubbling: true,
     },
+    // {
+    //   field: "col8",
+    //   headerName: "Delete School",
+    //   width: 120,
+    //   renderCell: () => <DeleteIcon />,
+    //   disableClickEventBubbling: true,
+    // },
   ];
 
   const handleCellClick = (params, event) => {
@@ -299,6 +307,7 @@ function SapFormDataModal(props) {
 }
 
 function QuestionListCces({ data, section, questionId, school }) {
+  console.log(section, school[0][section]);
   const schoolData = school[0][section][questionId];
   return (
     <Box

@@ -1,27 +1,41 @@
-import { Stack, Typography } from "@mui/material";
-import { useContext, useState } from "react";
+import { FormHelperText, Stack, Typography } from "@mui/material";
+import { useContext, useEffect, useState, useRef } from "react";
 
 import TextField from "@mui/material/TextField";
-import { State, City } from "country-state-city";
+// import { State, City } from "country-state-city";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import FormHelperText from "@mui/material/FormHelperText";
+// import Select from "@mui/material/Select";
+// import MenuItem from "@mui/material/MenuItem";
+// import FormHelperText from "@mui/material/FormHelperText";
+import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 
 import { MuiTelInput } from "mui-tel-input";
-
+// compoennts
 import TextFieldComponent from "./text-field";
 import OptionForm from "./option-form";
 import NextButton from "./next-button";
 
+// context api
 import { ccesformStatus } from "../contexts/formContexts";
 
+// school list data
+import schoolList from "../data/school_list.json";
+
+import { onSnapshot, collection } from "firebase/firestore";
+import { db } from "../firebase";
+
+// sectionA component
 const SectionA = () => {
   const { formStatus_cces, set_formStatus_cces, setExpanded_cces, formData } =
     useContext(ccesformStatus);
 
-  const [a1, set_a1] = useState("");
+  const uDiseList = useRef([]);
+  const [formerror, set_fromerror] = useState({
+    a1: null,
+  });
+
+  const [a1, set_a1] = useState(""); //u-Dise code - a1
   const [a2, set_a2] = useState("");
   const [a3, set_a3] = useState("");
   const [a4, set_a4] = useState("");
@@ -52,22 +66,22 @@ const SectionA = () => {
   const [a16, set_a16] = useState("");
   const [a17, set_a17] = useState("");
   const [a18, set_a18] = useState("");
-  const [state, set_state] = useState("");
-  const [city, set_city] = useState("");
-  const stateList = State.getStatesOfCountry("IN");
+  // const [state, set_state] = useState("");
+  // const [city, set_city] = useState("");
+  // const stateList = State.getStatesOfCountry("IN");
 
-  const checkfield = (field) => {
-    if (field && field !== "") {
-      return true;
-    } else return false;
-  };
+  // const checkfield = (field) => {
+  //   if (field && field !== "") {
+  //     return true;
+  //   } else return false;
+  // };
 
   function handleNext(e) {
     e.preventDefault();
     // check all fields
     const seciton_data = {
-      state: state,
-      city: city,
+      // state: state,
+      // city: city,
       a1: a1,
       a2: a2,
       a3: a3,
@@ -88,18 +102,64 @@ const SectionA = () => {
       a18: a18,
     };
     console.log("sectionA:", formData);
+    formData.current.uDiseCode = a1;
     formData.current.cces.sectionA = seciton_data;
     set_formStatus_cces({ ...formStatus_cces, sectionA: true });
     setExpanded_cces("sectionB1");
   }
 
-  // set_a6("hello world")
+  let new_school_list = schoolList.map((school) => {
+    return {
+      uDiseCode: school.udise_code,
+      school_name: school.school_name,
+      school_management: school.school_management,
+      school_category: school.school_category,
+      school_address: `${school.block},${school.district}`,
+    };
+  });
+
+  const handleSelectUdise = (e, newValue) => {
+    const school_uDiseCode = String(newValue.uDiseCode);
+    // console.log(school_uDiseCode);
+    if (uDiseList.current.includes(String(newValue.uDiseCode))) {
+      set_fromerror({ ...formerror, a1: "UDise Code already took survey" });
+    } else {
+      set_fromerror({ ...formerror, a1: null });
+    }
+    const school_name_address = `${newValue.school_name} ${newValue.school_address}`;
+    const school_category = newValue.school_category.trim().toLowerCase();
+    const school_management = newValue.school_management
+      .trim()
+      .split("-")[1]
+      .toLowerCase();
+    // console.log(school_uDiseCode, school_category, school_management);
+    set_a1(school_uDiseCode);
+    set_a2(school_name_address);
+    set_a8(school_category);
+    set_a6(school_management);
+  };
+
+  const filterOptions = createFilterOptions({
+    matchFrom: "start",
+    limit: 100,
+  });
+
+  // fetch all the udise codes that already took the survey
+  useEffect(() => {
+    let unsubscribe1 = onSnapshot(collection(db, "SchoolInfo"), (snapshot) => {
+      const updatedList = snapshot.docs.map((doc) => doc.data());
+      uDiseList.current = updatedList.map((school) => school.uDiseCode);
+      console.log(uDiseList.current);
+    });
+    return unsubscribe1;
+  }, []);
+
   return (
     <div>
       <form onSubmit={(e) => handleNext(e)}>
         <Stack spacing={3} direction={"column"}>
           <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
-            <FormControl required fullWidth>
+            {/* <FormControl required fullWidth>
               <FormLabel id="demo-customized-select-label">
                 {"Select State"}
               </FormLabel>
@@ -136,16 +196,54 @@ const SectionA = () => {
               <FormHelperText>
                 {state === "" ? "select a state first" : null}
               </FormHelperText>
-            </FormControl>
+            </FormControl> */}
 
-            <TextFieldComponent
+            {/* <TextFieldComponent
               question={a1}
               set_question={set_a1}
               label="U-DISE Code"
               required
               type="string"
               fullWidth
-            />
+              sx={{ maxWidth: "30%" }}
+            /> */}
+
+            <FormControl
+              sx={{ width: "32%" }}
+              required
+              error={formerror.a1 !== null}
+            >
+              <FormLabel>U-Dise Code</FormLabel>
+              <Autocomplete
+                filterOptions={filterOptions}
+                value={a1}
+                onChange={(e, newValue) => handleSelectUdise(e, newValue)}
+                id="combo-box-demo"
+                options={new_school_list.map((school) => {
+                  return {
+                    ...school,
+                    label: `${String(school.uDiseCode)}  -  ${
+                      school.school_name
+                    }`,
+                  };
+                })}
+                freeSolo
+                size="small"
+                renderInput={(params) => {
+                  return (
+                    <TextField
+                      variant="outlined"
+                      size="small"
+                      {...params}
+                      required
+                    />
+                  );
+                }}
+              />
+              {formerror.a1 !== null && (
+                <FormHelperText>{formerror.a1}</FormHelperText>
+              )}
+            </FormControl>
           </Stack>
 
           <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
@@ -232,14 +330,17 @@ const SectionA = () => {
               set_question={set_a6}
               label="School Management (Please select anyone)"
               options={[
-                "Government schools",
+                "Govt. school",
                 "Govt- Kasturba Gandhi Balika Vidyalaya (KGBV)",
                 "Govt- Ekalavya Model Residential School",
-                "Government-aided Schools",
+                "Govt. Aided",
                 "Specified Category Schools - Kendriya Vidyalaya",
                 "Navodya Vidyalaya (JNV)",
                 "Sainik School",
                 "Private Schools",
+                "Tribal Welfare dept",
+                "Social Welfare Department",
+                "Dept. of Edn",
                 "Others",
               ]}
             />
@@ -256,16 +357,15 @@ const SectionA = () => {
               set_question={set_a8}
               label="Category of School"
               options={[
-                "Primary only with grades 1-5",
-                "Upper primary with grades 1-8",
-                "Higher secondary with grades 1-12",
-                "Upper Primary only with grades 6-8",
-                "Higher secondary with grades 6-12",
-                "Secondary/ Sr. Secondary with grades 1-10",
-                "Secondary/ Sr. Secondary with grades 6-10",
-                "Secondary/ Sr. Secondary only with grades 9 & 10",
-                "Higher secondary with grade 9-12",
-                "Higher secondary/ Jr. College only with grades 11 & 12",
+                "2-Primary with Upper Primary(1-8)",
+                "8-Secondary only(9 & 10)",
+                "1-Primary only (1-5)",
+                "6-Primary with upper primary and secondary(1-10)",
+                "7-Upper Primary with secondary(6-10)",
+                "11-Hr. Secondary only/Jr. College(11 & 12)",
+                "4-Upper Primary only(6-8)",
+                "5-Upper Primary with secondary and higher secondary(6-12)",
+                "3-Primary with upper primary and secondary and higher secondary(1-12)",
               ]}
             />
           </Stack>
