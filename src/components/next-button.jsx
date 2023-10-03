@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 const NextButton = (props) => {
-  const { onClick ,...others} = props;
+  const { onClick, title, ...others } = props;
   return (
     <Box sx={{ display: "flex", justifyContent: "start", padding: "2rem 0" }}>
       <Button
@@ -13,13 +13,14 @@ const NextButton = (props) => {
         onClick={onClick}
         {...others}
       >
-        Next
+        {title ? String(title) : "Next"}
       </Button>
     </Box>
   );
 };
 export default NextButton;
 NextButton.propTypes = {
+  title: PropTypes.string,
   onClick: PropTypes.func,
   others: PropTypes.any,
 };

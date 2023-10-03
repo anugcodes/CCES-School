@@ -81,7 +81,7 @@ export default function CcesFormDataModal(props) {
               <Stack direction={"column"} spacing={1}>
                 {Object.keys(questions.cces[section]).map((data, index) => (
                   <QuestionListCces
-                    index = {index}
+                    index={index}
                     data={questions}
                     section={section}
                     questionId={data}
@@ -116,7 +116,7 @@ const ccesSectionList = {
   sectionB9: "Capacity Building and Behaviour Change",
 };
 
-function QuestionListCces({ data, section, questionId, school,index }) {
+function QuestionListCces({ data, section, questionId, school, index }) {
   const schoolData = school[section][questionId];
   const questionData = data.cces[section][questionId];
   console.log(schoolData, questionData);
@@ -125,7 +125,7 @@ function QuestionListCces({ data, section, questionId, school,index }) {
       sx={{ background: "#cef6ff", padding: ".5rem", borderRadius: ".5rem" }}
     >
       <Typography fontWeight={"bold"}>
-        Q{index+1}){" "}
+        Q{index + 1}){" "}
         {typeof questionData === "object" ? questionData.title : questionData}
       </Typography>
 
@@ -162,6 +162,7 @@ function QuestionListCces({ data, section, questionId, school,index }) {
   );
 }
 QuestionListCces.propTypes = {
+  index: PropTypes.number.isRequired,
   data: PropTypes.object.isRequired,
   section: PropTypes.string.isRequired,
   questionId: PropTypes.string.isRequired,

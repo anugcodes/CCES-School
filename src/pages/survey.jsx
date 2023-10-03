@@ -161,7 +161,7 @@ export default function SurveyForm() {
               onChange={(e, newValue) => set_tab(newValue)}
               aria-label="basic tabs"
             >
-              <Tab label="CCES" />
+              <Tab label="CCES" disabled />
               <Tab label="SAP" disabled />
             </Tabs>
           </Box>

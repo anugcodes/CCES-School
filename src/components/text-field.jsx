@@ -27,6 +27,6 @@ TextFieldComponent.propTypes = {
   question: PropTypes.string.isRequired,
   set_question: PropTypes.func.isRequired,
   label: PropTypes.string,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };
 export default TextFieldComponent;

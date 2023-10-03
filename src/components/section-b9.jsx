@@ -73,6 +73,7 @@ const SectionB9 = () => {
       set_formStatus_cces({ ...formStatus_cces, sectionB9: true });
       setExpanded_cces(false);
       set_tab(1);
+      window.scrollTo(0,0);
     }
   };
 
@@ -224,7 +225,7 @@ const SectionB9 = () => {
             }
             options={["Yes", "No"]}
           />
-          <NextButton type="submit" />
+          <NextButton type="submit" title={"Save and move to SAP"} />
         </Stack>
       </form>
     </div>
