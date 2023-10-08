@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import Stack from "@mui/material/Stack";
 
-import OptionForm from "./option-form";
-import NextButton from "./next-button";
+import OptionForm from "../option-form";
+import NextButton from "../next-button";
 
-import { ccesformStatus } from "../contexts/formContexts";
+import { ccesformStatus } from "../../contexts/formContexts";
 export default function SectionB4() {
   const { formStatus_cces, set_formStatus_cces, setExpanded_cces, formData } =
     useContext(ccesformStatus);

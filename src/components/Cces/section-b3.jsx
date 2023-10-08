@@ -4,11 +4,15 @@ import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Stack from "@mui/material/Stack";
-import OptionForm from "./option-form";
-import TextFieldComponent from "./text-field";
 
-import { ccesformStatus } from "../contexts/formContexts";
-import NextButton from "./next-button";
+// components
+import OptionForm from "../option-form";
+import TextFieldComponent from "../text-field";
+import NextButton from "../next-button";
+
+// context api
+import { ccesformStatus } from "../../contexts/formContexts";
+
 
 export default function SectionB3() {
   let currentDate = new Date();

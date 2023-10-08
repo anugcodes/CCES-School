@@ -2,28 +2,28 @@ import { FormHelperText, Stack, Typography } from "@mui/material";
 import { useContext, useEffect, useState, useRef } from "react";
 
 import TextField from "@mui/material/TextField";
-// import { State, City } from "country-state-city";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-// import Select from "@mui/material/Select";
-// import MenuItem from "@mui/material/MenuItem";
-// import FormHelperText from "@mui/material/FormHelperText";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
-
 import { MuiTelInput } from "mui-tel-input";
+
+
 // compoennts
-import TextFieldComponent from "./text-field";
-import OptionForm from "./option-form";
-import NextButton from "./next-button";
+import TextFieldComponent from "../text-field";
+import OptionForm from "../option-form";
+import NextButton from "../next-button";
+
 
 // context api
-import { ccesformStatus } from "../contexts/formContexts";
+import { ccesformStatus } from "../../contexts/formContexts";
 
 // school list data
-import schoolList from "../data/school_list.json";
+import schoolList from "../../data/school_list.json";
 
 import { onSnapshot, collection } from "firebase/firestore";
-import { db } from "../firebase";
+import { db } from "../../firebase";
+
+
 
 // sectionA component
 const SectionA = () => {
@@ -66,22 +66,12 @@ const SectionA = () => {
   const [a16, set_a16] = useState("");
   const [a17, set_a17] = useState("");
   const [a18, set_a18] = useState("");
-  // const [state, set_state] = useState("");
-  // const [city, set_city] = useState("");
-  // const stateList = State.getStatesOfCountry("IN");
 
-  // const checkfield = (field) => {
-  //   if (field && field !== "") {
-  //     return true;
-  //   } else return false;
-  // };
 
   function handleNext(e) {
     e.preventDefault();
     // check all fields
     const seciton_data = {
-      // state: state,
-      // city: city,
       a1: a1,
       a2: a2,
       a3: a3,
@@ -117,6 +107,7 @@ const SectionA = () => {
       school_address: `${school.block},${school.district}`,
     };
   });
+
 
   const handleSelectUdise = (e, newValue) => {
     const school_uDiseCode = String(newValue.uDiseCode);
