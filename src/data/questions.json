@@ -70,25 +70,28 @@
             "b215": "School has awareness programme on water conservation in the community ?"
         },
         "sectionB3": {
-            "b31": "What is the most common type of toilet used by the students at the school? ",
-            "b32": "Does the school have separate toilets for boys and girls in working condition?",
-            "b33": "How many toilets seats in working condition does the school have for boys and girls? (column may have state/ regional specific customization considering the likely climate event/ natural hazard)",
-            "b34": {
-                "title": "How many urinals in working condition does the school have for boys and girls? ",
-                "male": "Male",
-                "female": "Female"
+            "b31": "Does the school have separate toilets for boys and girls in working condition?",
+            "b32": {
+                "title": "How many toilets seats in working condition does the school have for boys and girls? (column may have state/ regional specific customization considering the likely climate event/ natural hazard)",
+                "boys": "Boys",
+                "girls": "Girls"
             },
-            "b35": "Does the school have toilets accessible to the Children with Special Needs (CWSN) (an accessible toilet for CWSN, is one that if there is a functional toilet with ramp, handrail, and wide door for wheelchair entry inside toilet)? ",
-            "b36": "Do all the toilets in the school have secure door with latch and cloth hanging hooks? ",
-            "b37": "Does the school's toilet have adequate ventilation for natural light and air?",
-            "b38": "What is the frequency of cleaning toilets?",
-            "b39": "Are toilets cleaned with appropriate cleaning material?",
-            "b310": "Who supervises the cleaning and maintenance of the toilets in the school? ",
-            "b311": " Does the school do timely upkeeping/maintenance of fitting and fixtures of toilets?",
-            "b312": "Are any toilets in the school prone to the impact of climate/natural hazards (as floods/ drought/seasonal water scarcity etc)?",
-            "b313": "Does the school have separate dustbins with lid and with specific colours for disposal of menstrual waste? ",
-            "b314": "Which of the following option is used by the school for safe treatment/ disposal of sanitary waste? ",
-            "b315": "Does the school have scheduled desludging of the faecal matter (preferably before monsoon), in coordination with nearby service provider?"
+            "b33": {
+                "title": "How many urinals in working condition does the school have for boys and girls? ",
+                "boys": "Boys",
+                "girls": "Girls"
+            },
+            "b34": "Does the school have toilets accessible to the Children with Special Needs (CWSN) (an accessible toilet for CWSN, is one that if there is a functional toilet with ramp, handrail, and wide door for wheelchair entry inside toilet)?",
+            "b35": "Do all the toilets in the school have secure door with latch and cloth hanging hooks?",
+            "b36": "Does the school's toilet have adequate ventilation for natural light and air?",
+            "b37": "What is the frequency of cleaning toilets?",
+            "b38": "Are toilets cleaned with appropriate cleaning material?",
+            "b39": "Who supervises the cleaning and maintenance of the toilets in the school? ",
+            "b310": " Does the school do timely upkeeping/maintenance of fitting and fixtures of toilets?",
+            "b311": "Are any toilets in the school prone to the impact of climate/natural hazards (as floods/ drought/seasonal water scarcity etc)?",
+            "b312": "Does the school have separate dustbins with lid and with specific colours for disposal of menstrual waste? ",
+            "b313": "Which of the following option is used by the school for safe treatment/ disposal of sanitary waste? ",
+            "b314": "Does the school have scheduled desludging of the faecal matter (preferably before monsoon), in coordination with nearby service provider?"
         },
         "sectionB4": {
             "b41": "Does the school have a facility for hand-washing before Mid-Day Meal (MDM) / lunch where a group of children can practice hand washing at the same time?",
