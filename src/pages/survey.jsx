@@ -31,7 +31,8 @@ import SectionB6 from "../components/Cces/section-b6";
 import SectionB7 from "../components/Cces/section-b7";
 import SectionB8 from "../components/Cces/section-b8";
 import SectionB9 from "../components/Cces/section-b9";
-import ImageInput from "../components/imageInput";
+import SectionB10 from "../components/Cces/section-b10";
+
 // sap form sections
 import Section1 from "../components/SAP/section-1";
 import Section2 from "../components/SAP/section-2";
@@ -65,6 +66,7 @@ export default function SurveyForm() {
       sectionB7: {},
       sectionB8: {},
       sectionB9: {},
+      sectionB10: {},
     },
     sap: {
       section1: {},
@@ -75,7 +77,7 @@ export default function SurveyForm() {
       section6: {},
       section7: {},
       section8: {},
-      section9: {}, 
+      section9: {},
     },
   });
 
@@ -90,7 +92,7 @@ export default function SurveyForm() {
     sectionB7: false,
     sectionB8: false,
     sectionB9: false,
-    image: true
+    sectionB10: true,
   });
 
   const [formStatus_sap, set_formStatus_sap] = useState({
@@ -283,11 +285,11 @@ export default function SurveyForm() {
 
                 {/*Image input */}
                 <SectionAccordion
-                  sectionId="sectionB9"
-                  expanded={expanded_cces === "image"}
-                  onChange={() => handleChange("image")}
-                  heading="Enter your images"
-                  section_form={ImageInput}
+                  sectionId="sectionB10"
+                  expanded={expanded_cces === "sectionB10"}
+                  onChange={() => handleChange("sectionB10")}
+                  heading="Photographs"
+                  section_form={SectionB10}
                   formStatus={formStatus_cces}
                 />
               </Stack>

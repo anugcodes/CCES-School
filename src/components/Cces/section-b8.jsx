@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
 
 import Stack from "@mui/material/Stack";
-import OptionForm from "../option-form";
+import OptionForm from "./section-b10";
 import NextButton from "../next-button";
 import { ccesformStatus } from "../../contexts/formContexts";
-
 
 const SectionB8 = () => {
   const { formStatus_cces, set_formStatus_cces, setExpanded_cces, formData } =
@@ -25,7 +24,7 @@ const SectionB8 = () => {
       checkfield(b83) &&
       checkfield(b84) &&
       checkfield(b85) &&
-      checkfield(b86) &&
+      checkfield(b86)
     ) {
       const section_data = {
         b81: b81,
@@ -52,14 +51,13 @@ const SectionB8 = () => {
     <div>
       <form onSubmit={(e) => handleNext(e)}>
         <Stack direction={"column"} spacing={2}>
-          
           <OptionForm
             question={b81}
             set_question={set_b81}
             label={"Does the school have a boundary wall with secured gates ?"}
             options={["Yes", "No"]}
           />
-          
+
           <OptionForm
             question={b82}
             set_question={set_b82}
@@ -78,8 +76,6 @@ const SectionB8 = () => {
             options={["Yes", "No"]}
           />
 
-
-
           <OptionForm
             question={b84}
             set_question={set_b84}
@@ -93,8 +89,6 @@ const SectionB8 = () => {
             ]}
           />
 
-         
-
           <OptionForm
             question={b85}
             set_question={set_b85}
@@ -103,8 +97,6 @@ const SectionB8 = () => {
             }
             options={["Yes", "No"]}
           />
-
-         
 
           <OptionForm
             question={b86}

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 
 import Stack from "@mui/material/Stack";
-import OptionForm from "../option-form";
+import OptionForm from "./section-b10";
 import NextButton from "../next-button";
 import { ccesformStatus } from "../../contexts/formContexts";
 
@@ -51,9 +51,9 @@ const SectionB9 = () => {
       console.log("section b9:", formData);
       formData.current.cces.sectionB9 = section_data;
       set_formStatus_cces({ ...formStatus_cces, sectionB9: true });
-      setExpanded_cces(false);
-      set_tab(1);
-      window.scrollTo(0, 0);
+      setExpanded_cces("sectionB10");
+      // set_tab(1);
+      // window.scrollTo(0, 0);
     }
   };
 

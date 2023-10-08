@@ -7,12 +7,11 @@ import FormLabel from "@mui/material/FormLabel";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import { MuiTelInput } from "mui-tel-input";
 
-
 // compoennts
 import TextFieldComponent from "../text-field";
 import OptionForm from "../option-form";
 import NextButton from "../next-button";
-
+import RadioField from "../radio-field";
 
 // context api
 import { ccesformStatus } from "../../contexts/formContexts";
@@ -22,8 +21,6 @@ import schoolList from "../../data/school_list.json";
 
 import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "../../firebase";
-
-
 
 // sectionA component
 const SectionA = () => {
@@ -67,7 +64,6 @@ const SectionA = () => {
   const [a17, set_a17] = useState("");
   const [a18, set_a18] = useState("");
 
-
   function handleNext(e) {
     e.preventDefault();
     // check all fields
@@ -107,7 +103,6 @@ const SectionA = () => {
       school_address: `${school.block},${school.district}`,
     };
   });
-
 
   const handleSelectUdise = (e, newValue) => {
     const school_uDiseCode = String(newValue.uDiseCode);
@@ -150,56 +145,12 @@ const SectionA = () => {
       <form onSubmit={(e) => handleNext(e)}>
         <Stack spacing={3} direction={"column"}>
           <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
-            {/* <FormControl required fullWidth>
-              <FormLabel id="demo-customized-select-label">
-                {"Select State"}
-              </FormLabel>
-              <Select
-                variant="outlined"
-                size="small"
-                value={state}
-                onChange={(e) => set_state(e.target.value)}
-              >
-                {stateList.map((item, index) => (
-                  <MenuItem key={index} value={item.isoCode}>
-                    {item.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-
-            <FormControl disabled={state === ""} fullWidth required>
-              <FormLabel id="demo-customized-select-label">
-                {"Select City"}
-              </FormLabel>
-              <Select
-                variant="outlined"
-                size="small"
-                value={city}
-                onChange={(e) => set_city(e.target.value)}
-              >
-                {City.getCitiesOfState("IN", state).map((item, index) => (
-                  <MenuItem key={index} value={item.name}>
-                    {item.name}
-                  </MenuItem>
-                ))}
-              </Select>
-              <FormHelperText>
-                {state === "" ? "select a state first" : null}
-              </FormHelperText>
-            </FormControl> */}
-
-            {/* <TextFieldComponent
-              question={a1}
-              set_question={set_a1}
-              label="U-DISE Code"
+            <FormControl
+              sx={{ width: { md: "32%" } }}
               required
-              type="string"
+              error={formerror.a1 !== null}
               fullWidth
-              sx={{ maxWidth: "30%" }}
-            /> */}
-
-            <FormControl sx={{width: {md: "32%"}}} required error={formerror.a1 !== null} fullWidth>
+            >
               <FormLabel>U-Dise Code</FormLabel>
               <Autocomplete
                 filterOptions={filterOptions}
@@ -460,13 +411,13 @@ const SectionA = () => {
             </FormControl>
           </Stack>
 
-          <TextFieldComponent
+          <RadioField
             fullWidth
             question={a12}
             set_question={set_a12}
             label={"Name of Board"}
             required
-            type="string"
+            options={["CBSE", "ICSE", "State Board", "Other"]}
           />
 
           <TextFieldComponent
