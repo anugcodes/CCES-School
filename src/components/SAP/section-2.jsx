@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, { useState, useContext } from "react";
 import { Stack } from "@mui/material";
 import TextFieldComponent from "../text-field";

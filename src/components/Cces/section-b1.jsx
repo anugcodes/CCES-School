@@ -9,8 +9,6 @@ import NextButton from "../next-button";
 // context api
 import { ccesformStatus } from "../../contexts/formContexts";
 
-
-
 export default function SectionB1() {
   const { formStatus_cces, set_formStatus_cces, setExpanded_cces, formData } =
     useContext(ccesformStatus);
@@ -28,7 +26,6 @@ export default function SectionB1() {
   const [b111, set_b111] = useState("");
   const [b112, set_b112] = useState("");
   const [b113, set_b113] = useState("");
-  const [b114, set_b114] = useState("");
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -45,8 +42,7 @@ export default function SectionB1() {
       checkfield(b110) &&
       checkfield(b111) &&
       checkfield(b112) &&
-      checkfield(b113) &&
-      checkfield(b114)
+      checkfield(b113)
     ) {
       const section_data = {
         b11: b11,
@@ -62,7 +58,6 @@ export default function SectionB1() {
         b111: b111,
         b112: b112,
         b113: b113,
-        b114: b114,
       };
       console.log("section b1:", formData);
       formData.current.cces.sectionB1 = section_data;
@@ -118,13 +113,13 @@ export default function SectionB1() {
           <OptionForm
             question={b16}
             set_question={set_b16}
-            label=" If school ha"
+            label="If school has identified the disaster hazards?"
             options={["Yes", "No"]}
           />
           <OptionForm
             question={b17}
             set_question={set_b17}
-            label="were children actively involved in identifying  hazards in the school? "
+            label="Were children actively involved in identifying  hazards in the school? "
             options={["Yes", "No"]}
           />
           <OptionForm
@@ -137,7 +132,22 @@ export default function SectionB1() {
             question={b19}
             set_question={set_b19}
             label="what are the likely climate-related events/ natural hazards/ other risks, and their intensity  (State/ district may like to further add  rows and points to the lists, with few lines left to be filled by the school concerned)"
-            options={["Yes", "No"]}
+            options={[
+              "Cyclone",
+              "Tsunami",
+              "Floods",
+              "Lightning",
+              "Thunderstorm",
+              "Tornadoes",
+              "Drought",
+              "Earthquakes",
+              "Heatwave",
+              "Cold waves",
+              "Landslides",
+              "Sea erosion",
+              "Forest fires",
+              "Water scarcity",
+            ]}
           />
           <OptionForm
             question={b110}
@@ -151,6 +161,7 @@ export default function SectionB1() {
             label="Is the school located near any potential risk zone ?"
             options={["Yes", "No"]}
           />
+
           <OptionForm
             question={b112}
             set_question={set_b112}
@@ -160,12 +171,6 @@ export default function SectionB1() {
           <OptionForm
             question={b113}
             set_question={set_b113}
-            label="Is the swachhta action plan effective during  cyclone, heatwave, cold wave, floods, etc.?"
-            options={["Yes", "No"]}
-          />
-          <OptionForm
-            question={b114}
-            set_question={set_b114}
             label="Whether the WASH facilities in Schools are able to be effective during  drought, floods, cyclones, forest fire, landslide, etc."
             options={["Yes", "No"]}
           />

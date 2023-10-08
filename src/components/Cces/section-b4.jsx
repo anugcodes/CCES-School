@@ -17,7 +17,6 @@ export default function SectionB4() {
   const [b46, set_b46] = useState("");
   const [b47, set_b47] = useState("");
   const [b48, set_b48] = useState("");
-  const [b49, set_b49] = useState("");
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -29,8 +28,7 @@ export default function SectionB4() {
       checkfield(b45) &&
       checkfield(b46) &&
       checkfield(b47) &&
-      checkfield(b48) &&
-      checkfield(b49)
+      checkfield(b48)
     ) {
       const section_data = {
         b41: b41,
@@ -41,7 +39,6 @@ export default function SectionB4() {
         b46: b46,
         b47: b47,
         b48: b48,
-        b49: b49,
       };
       console.log("section b4:", formData);
       formData.current.cces.sectionB4 = section_data;
@@ -55,6 +52,7 @@ export default function SectionB4() {
       return true;
     } else return false;
   };
+
   return (
     <div>
       <form onSubmit={(e) => handleNext(e)}>
@@ -121,13 +119,6 @@ export default function SectionB4() {
           <OptionForm
             question={b47}
             set_question={set_b47}
-            label="Is the handwashing facility in the school secured against any potential risk or obstruction (for example electrical pole/ stand-alone structure/ tree nearby etc. that can damage in case of climate event/ natural hazard)? "
-            options={["Yes", "No"]}
-          />
-
-          <OptionForm
-            question={b48}
-            set_question={set_b48}
             label="Who supervises the practice of daily hand-washing with soap by students and cooks before Mid-Day Meal (MDM) / lunch? "
             options={[
               "No one in particular",
@@ -137,8 +128,8 @@ export default function SectionB4() {
           />
 
           <OptionForm
-            question={b49}
-            set_question={set_b49}
+            question={b48}
+            set_question={set_b48}
             label="Do all children wash their hands with soap before mid-day meal (MDM)/ Lunch? "
             options={["Yes", "No"]}
           />

@@ -23,12 +23,12 @@ import Footer from "../components/common/Footer";
 // cces form sections
 import SectionA from "../components/Cces/sectionA";
 import SectionB1 from "../components/Cces/section-b1";
+import SectionB2 from "../components/Cces/section-b2";
 import SectionB3 from "../components/Cces/section-b3";
 import SectionB4 from "../components/Cces/section-b4";
 import SectionB5 from "../components/Cces/section-b5";
 import SectionB6 from "../components/Cces/section-b6";
 import SectionB7 from "../components/Cces/section-b7";
-import SectionB2 from "../components/Cces/section-b2";
 import SectionB8 from "../components/Cces/section-b8";
 import SectionB9 from "../components/Cces/section-b9";
 // sap form sections
@@ -384,7 +384,7 @@ export default function SurveyForm() {
                 variant="contained"
                 color="success"
                 onClick={(e) => {
-                  handleFinalSubmit();
+                  handleFinalSubmit(e);
                   navigate({ pathname: "/successfulsubmission" });
                 }}
               >

@@ -17,9 +17,6 @@ export default function SectionB5() {
   const [b57, set_b57] = useState("");
   const [b58, set_b58] = useState("");
   const [b59, set_b59] = useState("");
-  const [b510, set_b510] = useState("");
-  const [b511, set_b511] = useState("");
-  const [b512, set_b512] = useState("");
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -32,10 +29,7 @@ export default function SectionB5() {
       checkfield(b56) &&
       checkfield(b57) &&
       checkfield(b58) &&
-      checkfield(b59) &&
-      checkfield(b510) &&
-      checkfield(b511) &&
-      checkfield(b512)
+      checkfield(b59)
     ) {
       const section_data = {
         b51: b51,
@@ -47,9 +41,6 @@ export default function SectionB5() {
         b57: b57,
         b58: b58,
         b59: b59,
-        b510: b510,
-        b511: b511,
-        b512: b512,
       };
       console.log("section b5:", formData);
       formData.current.cces.sectionB5 = section_data;
@@ -63,6 +54,7 @@ export default function SectionB5() {
       return true;
     } else return false;
   };
+
   return (
     <div>
       <form onSubmit={(e) => handleNext(e)}>
@@ -70,7 +62,7 @@ export default function SectionB5() {
           <OptionForm
             question={b51}
             set_question={set_b51}
-            label="Has your school adopted the 5R’s (refuse, reduce, reuse, repurpose, and then recycle) of waste management Standard Operating Procedures (SOP)?"
+            label="Has your school adopted the 5R's (refuse, reduce, reuse, repurpose, and then recycle) of waste management Standard Operating Procedures (SOP)?"
             options={["yes", "No"]}
           />
 
@@ -103,19 +95,10 @@ export default function SectionB5() {
               "Yes, on school premises ",
             ]}
           />
+
           <OptionForm
             question={b55}
             set_question={set_b55}
-            label="If in previous question, school is not composting biodegradable waste in the school premises, what are the reasons for not doing so (wherever applicable)?"
-            options={[
-              " Lack of space",
-              "Lack of know how",
-              " Other reasons (please specify)",
-            ]}
-          />
-          <OptionForm
-            question={b56}
-            set_question={set_b56}
             label="How does the school dispose of its non-biodegradable waste (dry waste)? "
             options={[
               "No specific measure / throw anywhere/ dumped at a place aside in campus/ nearby/ Burnt on school premises",
@@ -123,43 +106,29 @@ export default function SectionB5() {
               "Collection by municipality/Panchayat",
             ]}
           />
+
           <OptionForm
-            question={b57}
-            set_question={set_b57}
-            label="If in previous question, the school does not have any mechanism for safe disposal of non-biodegradable waste disposal, what are the reasons "
-            options={[
-              "Lack of space",
-              "Lack of knowhow",
-              " Other reasons (please specify)",
-            ]}
-          />
-          <OptionForm
-            question={b58}
-            set_question={set_b58}
+            question={b56}
+            set_question={set_b56}
             label="Is the school premises clean (free from littering)? "
             options={["yes", "No"]}
           />
           <OptionForm
-            question={b59}
-            set_question={set_b59}
+            question={b57}
+            set_question={set_b57}
             label="Are the waste pits in your school secured from climate events such as floods (above the  the flood level/ have some kind of flood proofing arrangement) ? "
             options={["yes", "No"]}
           />
           <OptionForm
-            question={b510}
-            set_question={set_b510}
+            question={b58}
+            set_question={set_b58}
             label="Has the school taken any innovative measures for the reuse of waste material (such as using plastic bottles and toffee wrappers for making bricks for fencing of vegetation/plants)"
             options={["yes", "No"]}
           />
+
           <OptionForm
-            question={b511}
-            set_question={set_b511}
-            label="Has school engaged children in understanding the waste management priority through activities such as waste audit, waste trails, waste journey, etc? "
-            options={["yes", "No"]}
-          />
-          <OptionForm
-            question={b512}
-            set_question={set_b512}
+            question={b59}
+            set_question={set_b59}
             label="Has school taken any measures to reduce, minimize or ban the use of single-use plastic?"
             options={["yes", "No"]}
           />
