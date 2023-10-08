@@ -31,6 +31,7 @@ import SectionB7 from "../components/Cces/section-b7";
 import SectionB2 from "../components/Cces/section-b2";
 import SectionB8 from "../components/Cces/section-b8";
 import SectionB9 from "../components/Cces/section-b9";
+import ImageInput from "../components/imageInput";
 // sap form sections
 import Section1 from "../components/SAP/section-1";
 import Section2 from "../components/SAP/section-2";
@@ -89,6 +90,7 @@ export default function SurveyForm() {
     sectionB7: false,
     sectionB8: false,
     sectionB9: false,
+    image: true
   });
 
   const [formStatus_sap, set_formStatus_sap] = useState({
@@ -276,6 +278,16 @@ export default function SurveyForm() {
                   onChange={() => handleChange("sectionB9")}
                   heading="Capacity Building and Behaviour Change"
                   section_form={SectionB9}
+                  formStatus={formStatus_cces}
+                />
+
+                {/*Image input */}
+                <SectionAccordion
+                  sectionId="sectionB9"
+                  expanded={expanded_cces === "image"}
+                  onChange={() => handleChange("image")}
+                  heading="Enter your images"
+                  section_form={ImageInput}
                   formStatus={formStatus_cces}
                 />
               </Stack>
