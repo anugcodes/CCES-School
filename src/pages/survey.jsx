@@ -16,21 +16,23 @@ import { doc, setDoc } from "firebase/firestore";
 import SectionAccordion from "../components/section-accordion";
 import CustomTabPanel from "../components/custom-tab-panel";
 
-// cces form sections
-import SectionA from "../components/sectionA";
-import SectionB1 from "../components/section-b1";
-import SectionB3 from "../components/section-b3";
-import SectionB4 from "../components/section-b4";
-import SectionB5 from "../components/section-b5";
-import SectionB6 from "../components/section-b6";
-import SectionB7 from "../components/section-b7";
-import SectionB2 from "../components/section-b2";
-import SectionB8 from "../components/section-b8";
-import SectionB9 from "../components/section-b9";
-// sap form sections
-import Section1 from "../components/SAP/section-1";
+// footer and navbar
 import NavBar from "../components/common/NavBar";
 import Footer from "../components/common/Footer";
+
+// cces form sections
+import SectionA from "../components/Cces/sectionA";
+import SectionB1 from "../components/Cces/section-b1";
+import SectionB3 from "../components/Cces/section-b3";
+import SectionB4 from "../components/Cces/section-b4";
+import SectionB5 from "../components/Cces/section-b5";
+import SectionB6 from "../components/Cces/section-b6";
+import SectionB7 from "../components/Cces/section-b7";
+import SectionB2 from "../components/Cces/section-b2";
+import SectionB8 from "../components/Cces/section-b8";
+import SectionB9 from "../components/Cces/section-b9";
+// sap form sections
+import Section1 from "../components/SAP/section-1";
 import Section2 from "../components/SAP/section-2";
 import Section3 from "../components/SAP/section-3";
 import Section4 from "../components/SAP/section-4";
@@ -72,7 +74,7 @@ export default function SurveyForm() {
       section6: {},
       section7: {},
       section8: {},
-      section9: {},
+      section9: {}, 
     },
   });
 
@@ -115,11 +117,11 @@ export default function SurveyForm() {
   };
   const handleChangeSap = (panel) => {
     if (expanded_sap === panel) return;
-    if (expanded_sap !== panel && formStatus_cces[panel] === false) {
+    if (expanded_sap !== panel && formStatus_sap[panel] === false) {
       alert("please fill the current section first");
       return;
     }
-    if (expanded_sap !== panel && formStatus_cces[panel] === true) {
+    if (expanded_sap !== panel && formStatus_sap[panel] === true) {
       setExpanded_sap(panel);
       return;
     }
