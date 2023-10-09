@@ -7,6 +7,9 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import { Typography } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import Modal from "@mui/material/Modal";
 
 // firebase
 import { db } from "../firebase";
@@ -46,12 +49,17 @@ import Section9 from "../components/SAP/section-9";
 
 // cces and sap form status context
 import { ccesformStatus, sapformStatus } from "../contexts/formContexts";
+import NextButton from "../components/next-button";
 
 export default function SurveyForm() {
   const navigate = useNavigate();
   const [expanded_cces, setExpanded_cces] = useState("sectionA");
   const [expanded_sap, setExpanded_sap] = useState("section1");
   const [tab, set_tab] = useState(0);
+
+  // preview modal
+  const [ccesModal, set_ccesModal] = useState(false);
+  const [sapModal, set_sapModal] = useState(false);
 
   const formData = useRef({
     uDiseCode: null,
@@ -92,7 +100,7 @@ export default function SurveyForm() {
     sectionB7: false,
     sectionB8: false,
     sectionB9: false,
-    sectionB10: true,
+    sectionB10: false,
   });
 
   const [formStatus_sap, set_formStatus_sap] = useState({
@@ -107,7 +115,7 @@ export default function SurveyForm() {
     section9: false,
   });
 
-  // handle change function for cces and sap sections
+  // handle change function for cces
   const handleChange = (panel) => {
     if (expanded_cces === panel) return;
     if (expanded_cces !== panel && formStatus_cces[panel] === false) {
@@ -119,6 +127,7 @@ export default function SurveyForm() {
       return;
     }
   };
+  // handle change function for sap sections
   const handleChangeSap = (panel) => {
     if (expanded_sap === panel) return;
     if (expanded_sap !== panel && formStatus_sap[panel] === false) {
@@ -129,6 +138,17 @@ export default function SurveyForm() {
       setExpanded_sap(panel);
       return;
     }
+  };
+
+  // handle cces preview
+  const handleCcesPreview = () => {
+    console.log("cces preview");
+    set_ccesModal(true);
+  };
+
+  // sap preview
+  const handleSapPreview = () => {
+    console.log("sap preview");
   };
 
   // final submit button function
@@ -292,6 +312,11 @@ export default function SurveyForm() {
                   section_form={SectionB10}
                   formStatus={formStatus_cces}
                 />
+
+                <NextButton
+                  title="Preview"
+                  onClick={() => handleCcesPreview()}
+                />
               </Stack>
             </ccesformStatus.Provider>
           </CustomTabPanel>
@@ -396,7 +421,6 @@ export default function SurveyForm() {
 
               <Button
                 variant="contained"
-                color="success"
                 onClick={(e) => {
                   handleFinalSubmit(e);
                   navigate({ pathname: "/successfulsubmission" });
@@ -406,9 +430,91 @@ export default function SurveyForm() {
               </Button>
             </sapformStatus.Provider>
           </CustomTabPanel>
+
+          <CcesPreviewModal open={ccesModal} set_open={set_ccesModal} />
         </Box>
       </Container>
       <Footer />
     </>
   );
 }
+
+const CcesPreviewModal = (props) => {
+  const { open, set_open, formData } = props;
+  const [tab, set_tab] = useState(0);
+
+  return (
+    <Modal
+      open={open}
+      onClose={() => set_open(false)}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          top: "8%",
+          left: "5%",
+          width: "90%",
+          bgcolor: "#E6F4F1",
+          border: "2px solid #000",
+          borderRadius: "1rem",
+          boxShadow: 24,
+          p: 3,
+          height: "80vh",
+          overflow: "auto",
+        }}
+      >
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+        >
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            CCES Section Data Preview
+          </Typography>
+
+          <Button
+            variant="text"
+            size="small"
+            color="error"
+            onClick={() => set_open(false)}
+            sx={{ padding: ".5rem" }}
+          >
+            <CloseIcon />
+          </Button>
+        </Stack>
+
+
+        <Box sx={{ marginTop: ".5rem" }}>
+          <Tabs
+            value={tab}
+            onChange={(e, newValue) => set_tab(newValue)}
+            aria-label="basic tabs"
+            scrollButtons="auto"
+            variant="scrollable"
+          >
+            {Object.values(ccesSectionList).map((value, index) => (
+              <Tab label={value} key={index} />
+            ))}
+          </Tabs>
+        </Box>
+        hello world
+      </Box>
+    </Modal>
+  );
+};
+
+const ccesSectionList = {
+  sectionA: "Primary Information",
+  sectionB1: "Risk assessment, analysis, preventive measures, Plan",
+  sectionB2: "Water",
+  sectionB3: "Sanitation",
+  sectionB4: "Handwashing with soap",
+  sectionB5: "Waste Management",
+  sectionB6: "Energy",
+  sectionB7: "Environment",
+  sectionB8: "O and M",
+  sectionB9: "Capacity Building and Behaviour Change",
+};
