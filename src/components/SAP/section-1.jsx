@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Stack } from "@mui/material";
 
-import OptionForm from "../option-form";
+import TextFieldComponent from "../text-field";
 
 import { sapformStatus } from "../../contexts/formContexts";
 
@@ -65,76 +65,64 @@ const Section1 = () => {
       <form onSubmit={(e) => handleNext(e)}>
         <Stack direction={"column"} spacing={2}>
           {sectionB1Data.b11 !== "no" && (
-            <OptionForm
+            <TextFieldComponent
               question={a11}
               set_question={set_a11}
-              options={["Yes", "No"]}
-              label={
-                " Whether the school has a school safety or equivalent committee? "
-              }
+              label="Whether the school has a school safety or equivalent committee?"
             />
           )}
           {sectionB1Data.b13 === "no" && (
-            <OptionForm
+            <TextFieldComponent
               question={a12}
               set_question={set_a12}
-              options={["Yes", "No"]}
-              label={
-                " Are any of the school cabinet members part of the School safety committee?"
-              }
+              label="Are any of the school cabinet members part of the School safety committee?"
             />
           )}
           {sectionB1Data.b14 === "no" && (
-            <OptionForm
+            <TextFieldComponent
               question={a13}
               set_question={set_a13}
-              options={["Yes", "No"]}
               label={
                 " Whether school has developed School Safety Plan (SSP) or equivalent and WASH is included ? "
               }
             />
           )}
           {sectionB1Data.b18 === "no" && (
-            <OptionForm
+            <TextFieldComponent
               question={a14}
               set_question={set_a14}
-              options={["Yes", "No"]}
               label={"Is your school vulnerable to any natural disasters ? "}
             />
           )}
           {sectionB1Data.b110 === "no" && (
-            <OptionForm
+            <TextFieldComponent
               question={a15}
               set_question={set_a15}
-              options={["Yes", "No"]}
               label={
                 " Has school done identified the impact of the above disasters on the WASH infrastructure in schools ? "
               }
             />
           )}
           {sectionB1Data.b112 === "no" && (
-            <OptionForm
+            <TextFieldComponent
               question={a16}
               set_question={set_a16}
-              options={["Yes", "No"]}
               label={
                 "Does your school have a practice of conducting mock drills for disaster response?"
               }
             />
           )}
-          <OptionForm
+          <TextFieldComponent
             question={a17}
             set_question={set_a17}
-            options={["Yes", "No"]}
             label={
               "Is the Swachata action plan effective during  cyclone, heatwave, cold wave, floods, etc.?"
             }
           />
           {sectionB1Data.b113 === "no" && (
-            <OptionForm
+            <TextFieldComponent
               question={a18}
               set_question={set_a18}
-              options={["Yes", "No"]}
               label={
                 "Whether the WASH facilities in Schools are able to be effective during  drought, floods, cyclones, forest fire, landslide, etc"
               }

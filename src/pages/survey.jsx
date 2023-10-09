@@ -174,34 +174,50 @@ export default function SurveyForm() {
     };
     formData.current.cces["uDiseCode"] = uid;
     formData.current.sap["uDiseCode"] = uid;
-    console.log(formData.current.cces, formData.current.sap);
 
-    let images = formData.current.cces.sectionB10;
+    const images = formData.current.cces.sectionB10;
+    let imagesUploadedCount = 0;
 
-    Object.keys(images).forEach(async (image) => {
+    // empty the sectionB10
+    formData.current.cces.sectionB10 = {};
+
+    Object.keys(images).forEach(async (image, index) => {
       const storageRef = ref(
         storage,
-        `unicef-images/${images[image].lastModified}-${images[
+        `unicef-images/${uid}-${images[image].lastModified}-${images[
           image
         ].name.trim()}`
       );
       const uploadTask = uploadBytesResumable(storageRef, images[image]);
+
       uploadTask.then(async () => {
-        console.log("file upload successfully");
         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-        images[image]["downloadUrl"] = downloadURL;
+        console.log(`image- ${image} - ${downloadURL} upload successfully`);
+
+        formData.current.cces.sectionB10[`imageFile${index + 1}`] = {
+          uid: uid,
+          fileName: images[image].name,
+          lastModified: images[image].lastModified,
+          downloadURL: downloadURL,
+        };
+        imagesUploadedCount += 1;
+
+        console.log(formData.current.cces.sectionB10);
+        if (imagesUploadedCount === 4) {
+          try {
+            await setDoc(
+              doc(db, "UnicefSurveyCces", uid),
+              formData.current.cces
+            );
+            await setDoc(doc(db, "UnicefSurveySap", uid), formData.current.sap);
+            await setDoc(doc(db, "SchoolInfo", uid), schoolPrimaryInfo);
+            console.log("Database updated successfully!");
+          } catch (error) {
+            console.error("Error updating database:", error);
+          }
+        }
       });
     });
-    formData.current.cces.sectionB10 = images;
-
-    try {
-      await setDoc(doc(db, "UnicefSurveyCces", uid), formData.current.cces);
-      await setDoc(doc(db, "UnicefSurveySap", uid), formData.current.sap);
-      await setDoc(doc(db, "SchoolInfo", uid), schoolPrimaryInfo);
-      console.log("Database updated successfully!");
-    } catch (error) {
-      console.error("Error updating database:", error);
-    }
   };
 
   return (
@@ -470,23 +486,19 @@ export default function SurveyForm() {
             </sapformStatus.Provider>
           </CustomTabPanel>
 
-          {Object.keys(formStatus_cces).reduce((total_status, section) => {
-            return total_status && formStatus_cces[section];
-          }, true) === true && (
-            <CcesPreviewModal
-              open={ccesModal}
-              set_open={set_ccesModal}
-              formData={formData.current}
-              set_Expanded={setExpanded_cces}
-              set_SectionTab={set_tab}
-            />
-          )}
+          <CcesPreviewModal
+            open={ccesModal}
+            set_open={set_ccesModal}
+            formData={formData.current}
+            set_Expanded={setExpanded_cces}
+            set_SectionTab={set_tab}
+          />
 
           <SapPreviewModal
             open={sapModal}
             set_open={set_sapModal}
             formData={formData.current}
-            set_Expanded={setExpanded_cces}
+            set_Expanded={setExpanded_sap}
             finalSubmitFunc={handleFinalSubmit}
           />
         </Box>
@@ -802,15 +814,19 @@ function QuestionListSap({ data, section, questionId, school, index }) {
 }
 
 SapPreviewModal.propTypes = {
-  open: PropTypes.object.isRequired,
+  open: PropTypes.bool.isRequired,
   set_open: PropTypes.func.isRequired,
-  formData: PropTypes.array.isRequired,
+  formData: PropTypes.object.isRequired,
+  set_Expanded: PropTypes.func,
+  finalSubmitFunc: PropTypes.func,
 };
 
 CcesPreviewModal.propTypes = {
-  open: PropTypes.object.isRequired,
+  open: PropTypes.bool.isRequired,
   set_open: PropTypes.func.isRequired,
-  formData: PropTypes.array.isRequired,
+  formData: PropTypes.object.isRequired,
+  set_Expanded: PropTypes.func,
+  set_SectionTab: PropTypes.func,
 };
 QuestionListSap.propTypes = {
   index: PropTypes.number.isRequired,
