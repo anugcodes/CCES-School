@@ -135,7 +135,7 @@ const SectionA = () => {
     let unsubscribe1 = onSnapshot(collection(db, "SchoolInfo"), (snapshot) => {
       const updatedList = snapshot.docs.map((doc) => doc.data());
       uDiseList.current = updatedList.map((school) => school.uDiseCode);
-      console.log(uDiseList.current);
+      // console.log(uDiseList.current);
     });
     return unsubscribe1;
   }, []);

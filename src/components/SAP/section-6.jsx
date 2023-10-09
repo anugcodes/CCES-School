@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Stack } from "@mui/material";
 import TextFieldComponent from "../text-field";
-import OptionForm from "../Cces/section-b10";
+import OptionForm from "../option-form";
 import { sapformStatus } from "../../contexts/formContexts";
 import NextButton from "../next-button";
 
@@ -89,7 +89,7 @@ const Section2 = () => {
         <TextFieldComponent
           question={a14}
           set_question={set_a14}
-          label="Who supervises the cleaning and maintenance of the toilets in the school? "
+          label="Who supervises the cleaning and maintenance of the toilets in the school?"
         />
         <TextFieldComponent
           question={a15}

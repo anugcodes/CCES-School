@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import PropTypes from "prop-types";
 
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
@@ -11,9 +12,19 @@ import { Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Modal from "@mui/material/Modal";
 
+// import questions
+import questions from "../data/questions.json";
+
 // firebase
 import { db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
+import { storage } from "../firebase";
+import {
+  ref,
+  getDownloadURL,
+  uploadBytesResumable,
+  deleteObject,
+} from "firebase/storage";
 
 // components
 import SectionAccordion from "../components/section-accordion";
@@ -52,7 +63,6 @@ import { ccesformStatus, sapformStatus } from "../contexts/formContexts";
 import NextButton from "../components/next-button";
 
 export default function SurveyForm() {
-  const navigate = useNavigate();
   const [expanded_cces, setExpanded_cces] = useState("sectionA");
   const [expanded_sap, setExpanded_sap] = useState("section1");
   const [tab, set_tab] = useState(0);
@@ -148,7 +158,7 @@ export default function SurveyForm() {
 
   // sap preview
   const handleSapPreview = () => {
-    console.log("sap preview");
+    set_sapModal(true);
   };
 
   // final submit button function
@@ -165,6 +175,24 @@ export default function SurveyForm() {
     formData.current.cces["uDiseCode"] = uid;
     formData.current.sap["uDiseCode"] = uid;
     console.log(formData.current.cces, formData.current.sap);
+
+    let images = formData.current.cces.sectionB10;
+
+    Object.keys(images).forEach(async (image) => {
+      const storageRef = ref(
+        storage,
+        `unicef-images/${images[image].lastModified}-${images[
+          image
+        ].name.trim()}`
+      );
+      const uploadTask = uploadBytesResumable(storageRef, images[image]);
+      uploadTask.then(async () => {
+        console.log("file upload successfully");
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        images[image]["downloadUrl"] = downloadURL;
+      });
+    });
+    formData.current.cces.sectionB10 = images;
 
     try {
       await setDoc(doc(db, "UnicefSurveyCces", uid), formData.current.cces);
@@ -188,7 +216,7 @@ export default function SurveyForm() {
               aria-label="basic tabs"
             >
               <Tab label="CCES" disabled />
-              <Tab label="SAP"  />
+              <Tab label="SAP" disabled />
             </Tabs>
           </Box>
 
@@ -314,6 +342,14 @@ export default function SurveyForm() {
                 />
 
                 <NextButton
+                  disabled={
+                    !Object.keys(formStatus_cces).reduce(
+                      (total_status, section) => {
+                        return total_status && formStatus_cces[section];
+                      },
+                      true
+                    )
+                  }
                   title="Preview"
                   onClick={() => handleCcesPreview()}
                 />
@@ -419,19 +455,40 @@ export default function SurveyForm() {
                 formStatus={formStatus_sap}
               />
 
-              <Button
-                variant="contained"
-                onClick={(e) => {
-                  handleFinalSubmit(e);
-                  navigate({ pathname: "/successfulsubmission" });
-                }}
-              >
-                Submit
-              </Button>
+              <NextButton
+                onClick={() => handleSapPreview()}
+                title="Preview"
+                disabled={
+                  !Object.keys(formStatus_sap).reduce(
+                    (total_status, section) => {
+                      return total_status && formStatus_sap[section];
+                    },
+                    true
+                  )
+                }
+              />
             </sapformStatus.Provider>
           </CustomTabPanel>
 
-          <CcesPreviewModal open={ccesModal} set_open={set_ccesModal} />
+          {Object.keys(formStatus_cces).reduce((total_status, section) => {
+            return total_status && formStatus_cces[section];
+          }, true) === true && (
+            <CcesPreviewModal
+              open={ccesModal}
+              set_open={set_ccesModal}
+              formData={formData.current}
+              set_Expanded={setExpanded_cces}
+              set_SectionTab={set_tab}
+            />
+          )}
+
+          <SapPreviewModal
+            open={sapModal}
+            set_open={set_sapModal}
+            formData={formData.current}
+            set_Expanded={setExpanded_cces}
+            finalSubmitFunc={handleFinalSubmit}
+          />
         </Box>
       </Container>
       <Footer />
@@ -440,7 +497,7 @@ export default function SurveyForm() {
 }
 
 const CcesPreviewModal = (props) => {
-  const { open, set_open, formData } = props;
+  const { open, set_open, formData, set_Expanded, set_SectionTab } = props;
   const [tab, set_tab] = useState(0);
 
   return (
@@ -486,7 +543,6 @@ const CcesPreviewModal = (props) => {
           </Button>
         </Stack>
 
-
         <Box sx={{ marginTop: ".5rem" }}>
           <Tabs
             value={tab}
@@ -500,7 +556,44 @@ const CcesPreviewModal = (props) => {
             ))}
           </Tabs>
         </Box>
-        hello world
+
+        {Object.keys(ccesSectionList).map((section, index) => {
+          return (
+            <CustomTabPanel value={tab} index={index} key={index}>
+              <Stack direction={"column"} spacing={1}>
+                {Object.keys(questions.cces[section]).map((data, index) => (
+                  <QuestionListCces
+                    index={index}
+                    data={questions}
+                    section={section}
+                    questionId={data}
+                    school={formData}
+                    key={index}
+                  />
+                ))}
+              </Stack>
+              <Stack direction={"row"} spacing={2}>
+                <NextButton
+                  title={"Edit"}
+                  onClick={() => {
+                    set_open(false);
+                    set_Expanded(section);
+                    window.scrollTo(0, 0);
+                  }}
+                />
+                <NextButton
+                  title={"Move to SAP"}
+                  onClick={() => {
+                    set_open(false);
+                    set_Expanded(false);
+                    set_SectionTab(1);
+                    window.scrollTo(0, 0);
+                  }}
+                />
+              </Stack>
+            </CustomTabPanel>
+          );
+        })}
       </Box>
     </Modal>
   );
@@ -517,4 +610,219 @@ const ccesSectionList = {
   sectionB7: "Environment",
   sectionB8: "O and M",
   sectionB9: "Capacity Building and Behaviour Change",
+};
+
+const SapPreviewModal = (props) => {
+  const navigate = useNavigate();
+  const { open, set_open, formData, set_Expanded, finalSubmitFunc } = props;
+  const [tab, set_tab] = useState(0);
+
+  return (
+    <Modal
+      open={open}
+      onClose={() => set_open(false)}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          top: "8%",
+          left: "5%",
+          width: "90%",
+          bgcolor: "#E6F4F1",
+          border: "2px solid #000",
+          borderRadius: "1rem",
+          boxShadow: 24,
+          p: 3,
+          height: "80vh",
+          overflow: "auto",
+        }}
+      >
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+        >
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Sap Section Data Preview
+          </Typography>
+
+          <Button
+            variant="text"
+            size="small"
+            color="error"
+            onClick={() => set_open(false)}
+            sx={{ padding: ".5rem" }}
+          >
+            <CloseIcon />
+          </Button>
+        </Stack>
+
+        <Box sx={{ marginTop: ".5rem" }}>
+          <Tabs
+            value={tab}
+            onChange={(e, newValue) => set_tab(newValue)}
+            aria-label="basic tabs"
+            scrollButtons="auto"
+            variant="scrollable"
+          >
+            {Object.values(sapSectionList).map((value, index) => (
+              <Tab label={value} key={index} />
+            ))}
+          </Tabs>
+        </Box>
+
+        {/* data */}
+        {Object.keys(sapSectionList).map((section, index) => {
+          return (
+            <CustomTabPanel value={tab} index={index} key={index}>
+              <Stack direction={"column"} spacing={1}>
+                {Object.keys(questions.sap[section]).map((data, index) => (
+                  <QuestionListSap
+                    index={index}
+                    data={questions}
+                    section={section}
+                    questionId={data}
+                    school={formData}
+                    key={index}
+                  />
+                ))}
+              </Stack>
+              <Stack direction={"row"} spacing={2}>
+                <NextButton
+                  title={"Edit"}
+                  onClick={() => {
+                    set_open(false);
+                    set_Expanded(section);
+                    window.scrollTo(0, 0);
+                  }}
+                />
+                <NextButton
+                  title={"Final Submit"}
+                  onClick={(e) => {
+                    set_open(false);
+                    set_Expanded(false);
+                    finalSubmitFunc(e);
+                    navigate({ pathname: "/successfulsubmission" });
+                  }}
+                />
+              </Stack>
+            </CustomTabPanel>
+          );
+        })}
+      </Box>
+    </Modal>
+  );
+};
+
+const sapSectionList = {
+  section1: "Risk assessment, analysis, preventive measures, Plan",
+  section2: "Water",
+  section3: "Sanitation",
+  section4: "Handwashing with soap & water",
+  section5: "Waste Management",
+  section6: "O and M",
+  section7: "Energy",
+  section8: "Environment",
+  section9: "Behaviour Change and Capacity Building",
+};
+
+function QuestionListCces({ data, section, questionId, school, index }) {
+  const schoolData = school.cces[section][questionId];
+  const questionData = data.cces[section][questionId];
+  // console.log(schoolData, questionData);
+  return (
+    <Box
+      sx={{ background: "#cef6ff", padding: ".5rem", borderRadius: ".5rem" }}
+    >
+      <Typography fontWeight={"bold"}>
+        Q{index + 1}){" "}
+        {typeof questionData === "object" ? questionData.title : questionData}
+      </Typography>
+
+      <Box
+        sx={{
+          background: "#ceddff",
+          marginLeft: "1.5rem",
+          padding: ".125rem .75rem",
+          borderRadius: ".25rem",
+        }}
+      >
+        {typeof schoolData === "object" ? (
+          Object.keys(schoolData).map((fieldId, index) => {
+            return (
+              <Stack direction={"row"} spacing={1} key={index}>
+                <Typography variant="subtitle1" fontWeight={"bold"}>
+                  {questionData[fieldId]}
+                </Typography>
+                <span>:</span>
+                <Typography variant="subtitle1">
+                  {schoolData[fieldId]}
+                </Typography>
+              </Stack>
+            );
+          })
+        ) : (
+          <Typography>{schoolData}</Typography>
+        )}
+      </Box>
+    </Box>
+  );
+}
+
+function QuestionListSap({ data, section, questionId, school, index }) {
+  const schoolData = school.sap[section][questionId];
+  const questionData = data.sap[section][questionId];
+  console.log(schoolData, questionData);
+  if (schoolData === "" || schoolData === null) {
+    return null;
+  }
+  return (
+    <Box
+      sx={{ background: "#cef6ff", padding: ".5rem", borderRadius: ".5rem" }}
+    >
+      <Typography fontWeight={"bold"}>
+        Q) {data.sap[section][questionId]}
+      </Typography>
+
+      <Box
+        sx={{
+          background: "#ceddff",
+          marginLeft: "1.5rem",
+          padding: ".125rem .75rem",
+          borderRadius: ".25rem",
+        }}
+      >
+        <Typography>{schoolData}</Typography>
+      </Box>
+    </Box>
+  );
+}
+
+SapPreviewModal.propTypes = {
+  open: PropTypes.object.isRequired,
+  set_open: PropTypes.func.isRequired,
+  formData: PropTypes.array.isRequired,
+};
+
+CcesPreviewModal.propTypes = {
+  open: PropTypes.object.isRequired,
+  set_open: PropTypes.func.isRequired,
+  formData: PropTypes.array.isRequired,
+};
+QuestionListSap.propTypes = {
+  index: PropTypes.number.isRequired,
+  data: PropTypes.object.isRequired,
+  section: PropTypes.string.isRequired,
+  questionId: PropTypes.string.isRequired,
+  school: PropTypes.object.isRequired,
+};
+QuestionListCces.propTypes = {
+  index: PropTypes.number.isRequired,
+  data: PropTypes.object.isRequired,
+  section: PropTypes.string.isRequired,
+  questionId: PropTypes.string.isRequired,
+  school: PropTypes.object.isRequired,
 };

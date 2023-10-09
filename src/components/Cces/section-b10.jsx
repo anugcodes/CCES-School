@@ -3,10 +3,10 @@ import FormControl from "@mui/material/FormControl";
 import Typography from "@mui/material/Typography";
 import FormHelperText from "@mui/material/FormHelperText";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button"
 import { useState, useContext } from "react";
 
 import { ccesformStatus } from "../../contexts/formContexts";
+import NextButton from "../next-button";
 
 const SectionB10 = () => {
   const { formStatus_cces, set_formStatus_cces, setExpanded_cces, formData } =
@@ -51,7 +51,7 @@ const SectionB10 = () => {
           <ImageInputField file={imageFile3} set_file={set_imageFile3} />
           <ImageInputField file={imageFile4} set_file={set_imageFile4} />
         </Stack>
-        <Button variant="contained" color="primary" type="submit">Next</Button>
+        <NextButton  type="submit" />
       </form>
     </div>
   );

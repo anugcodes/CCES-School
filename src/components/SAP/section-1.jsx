@@ -8,12 +8,8 @@ import { sapformStatus } from "../../contexts/formContexts";
 import NextButton from "../next-button";
 
 const Section1 = () => {
-  const {
-    formStatus_sap,
-    set_formStatus_sap,
-    setExpanded_sap,
-    formData,
-  } = useContext(sapformStatus);
+  const { formStatus_sap, set_formStatus_sap, setExpanded_sap, formData } =
+    useContext(sapformStatus);
 
   const [a11, set_a11] = useState("");
   const [a12, set_a12] = useState("");
@@ -57,16 +53,14 @@ const Section1 = () => {
   };
 
   const checkfield = (field) => {
-    if (field && field !== "") {
+    if (field || field === "") {
       return true;
     } else return false;
   };
 
-  console.log(sectionB1Data)
-
   return (
     <div>
-      <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
+      <form onSubmit={(e) => handleNext(e)}>
         <Stack direction={"column"} spacing={2}>
           {sectionB1Data.b11 !== "no" && (
             <OptionForm
@@ -87,7 +81,7 @@ const Section1 = () => {
               " Are any of the school cabinet members part of the School safety committee?"
             }
           />
-          {sectionB1Data.b13  && (
+          {sectionB1Data.b13 && (
             <OptionForm
               question={a13}
               set_question={set_a13}
