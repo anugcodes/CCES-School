@@ -8,8 +8,12 @@ import { sapformStatus } from "../../contexts/formContexts";
 import NextButton from "../next-button";
 
 const Section1 = () => {
-  const { formStatus_sap, set_formStatus_sap, setExpanded_sap, formData } =
-    useContext(sapformStatus);
+  const {
+    formStatus_sap,
+    set_formStatus_sap,
+    setExpanded_sap,
+    formData,
+  } = useContext(sapformStatus);
 
   const [a11, set_a11] = useState("");
   const [a12, set_a12] = useState("");
@@ -20,7 +24,7 @@ const Section1 = () => {
   const [a17, set_a17] = useState("");
   const [a18, set_a18] = useState("");
 
-  const sectionB1Data = formData.cces.sectionB1;
+  const sectionB1Data = formData.current.cces.sectionB1;
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -58,11 +62,13 @@ const Section1 = () => {
     } else return false;
   };
 
+  console.log(sectionB1Data)
+
   return (
     <div>
       <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
         <Stack direction={"column"} spacing={2}>
-          {sectionB1Data.a1 === "no" && (
+          {sectionB1Data.b11 !== "no" && (
             <OptionForm
               question={a11}
               set_question={set_a11}
@@ -81,7 +87,7 @@ const Section1 = () => {
               " Are any of the school cabinet members part of the School safety committee?"
             }
           />
-          {sectionB1Data.a2 && (
+          {sectionB1Data.b13  && (
             <OptionForm
               question={a13}
               set_question={set_a13}
@@ -91,12 +97,14 @@ const Section1 = () => {
               }
             />
           )}
-          <OptionForm
-            question={a14}
-            set_question={set_a14}
-            options={["Yes", "No"]}
-            label={"Is your school vulnerable to any natural disasters ? "}
-          />
+          {sectionB1Data.b14 && (
+            <OptionForm
+              question={a14}
+              set_question={set_a14}
+              options={["Yes", "No"]}
+              label={"Is your school vulnerable to any natural disasters ? "}
+            />
+          )}
           <OptionForm
             question={a15}
             set_question={set_a15}
