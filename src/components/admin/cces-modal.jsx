@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 import { useState } from "react";
@@ -17,6 +18,8 @@ export default function CcesFormDataModal(props) {
   const uDiseCode = open.uDiseCode;
   const school = formData.filter((item) => item.uDiseCode === uDiseCode)[0];
   const [tab, set_tab] = useState(0);
+
+  console.log("School data ", school.sectionB10["imageFile1"].downloadURL);
 
   return (
     <Modal
@@ -72,6 +75,7 @@ export default function CcesFormDataModal(props) {
             {Object.values(ccesSectionList).map((value, index) => (
               <Tab label={value} key={index} />
             ))}
+            <Tab label="Photographs" value={10} />
           </Tabs>
         </Box>
 
@@ -94,6 +98,24 @@ export default function CcesFormDataModal(props) {
             </CustomTabPanel>
           );
         })}
+
+        <CustomTabPanel value={tab} index={10}>
+          <Box>
+            <Grid container spacing={4}>
+              {Object.keys(school.sectionB10).map((image, index) => {
+                return (
+                  <Grid item xs={12} md={6} key={index}>
+                    <img
+                      src={school.sectionB10[image]?.downloadURL}
+                      alt=""
+                      width={"100%"}
+                    />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Box>
+        </CustomTabPanel>
       </Box>
     </Modal>
   );
@@ -120,7 +142,6 @@ const ccesSectionList = {
 function QuestionListCces({ data, section, questionId, school, index }) {
   const schoolData = school[section][questionId];
   const questionData = data.cces[section][questionId];
-  console.log(schoolData, questionData);
   return (
     <Box
       sx={{ background: "#cef6ff", padding: ".5rem", borderRadius: ".5rem" }}
