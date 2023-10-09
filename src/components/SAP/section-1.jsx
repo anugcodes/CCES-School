@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Stack } from "@mui/material";
-import OptionForm from "../Cces/section-b10";
+
+import OptionForm from "../option-form";
 
 import { sapformStatus } from "../../contexts/formContexts";
 
@@ -18,6 +19,8 @@ const Section1 = () => {
   const [a16, set_a16] = useState("");
   const [a17, set_a17] = useState("");
   const [a18, set_a18] = useState("");
+
+  const sectionB1Data = formData.cces.sectionB1;
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -59,14 +62,17 @@ const Section1 = () => {
     <div>
       <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
         <Stack direction={"column"} spacing={2}>
-          <OptionForm
-            question={a11}
-            set_question={set_a11}
-            options={["Yes", "No"]}
-            label={
-              " Whether the school has a school safety or equivalent committee? "
-            }
-          />
+          {sectionB1Data.a1 === "no" && (
+            <OptionForm
+              question={a11}
+              set_question={set_a11}
+              options={["Yes", "No"]}
+              label={
+                " Whether the school has a school safety or equivalent committee? "
+              }
+            />
+          )}
+
           <OptionForm
             question={a12}
             set_question={set_a12}
@@ -75,14 +81,16 @@ const Section1 = () => {
               " Are any of the school cabinet members part of the School safety committee?"
             }
           />
-          <OptionForm
-            question={a13}
-            set_question={set_a13}
-            options={["Yes", "No"]}
-            label={
-              " Whether school has developed School Safety Plan (SSP) or equivalent and WASH is included ? "
-            }
-          />
+          {sectionB1Data.a2 && (
+            <OptionForm
+              question={a13}
+              set_question={set_a13}
+              options={["Yes", "No"]}
+              label={
+                " Whether school has developed School Safety Plan (SSP) or equivalent and WASH is included ? "
+              }
+            />
+          )}
           <OptionForm
             question={a14}
             set_question={set_a14}

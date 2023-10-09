@@ -6,8 +6,7 @@ import FormLabel from "@mui/material/FormLabel";
 import Stack from "@mui/material/Stack";
 
 // components
-import OptionForm from "./section-b10";
-
+import OptionForm from "../option-form";
 import NextButton from "../next-button";
 
 // context api

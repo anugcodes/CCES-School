@@ -3,7 +3,7 @@ import Stack from "@mui/material/Stack";
 import PropTypes from "prop-types";
 
 // components
-import OptionForm from "./section-b10";
+import OptionForm from "../option-form";
 import NextButton from "../next-button";
 import TextFieldComponent from "../text-field";
 
