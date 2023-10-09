@@ -60,7 +60,7 @@ const Section2 = () => {
         a112: a112,
         a113: a113,
       };
-      console.log("sap - section6:", formData);
+      // console.log("sap - section6:", formData);
       formData.current.sap.section6 = section_data;
       set_formStatus_sap({ ...formStatus_sap, section6: true });
       setExpanded_sap("section7");

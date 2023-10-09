@@ -15,9 +15,7 @@ export default function SectionB6() {
   const [b64, set_b64] = useState("");
 
   const handleNext = (e) => {
-    console.log(e);
     e.preventDefault();
-    console.log("next clicked");
     if (
       checkfield(b61) &&
       checkfield(b62) &&
@@ -30,7 +28,6 @@ export default function SectionB6() {
         b63: b63,
         b64: b64,
       };
-      console.log("section b6:", formData);
       formData.current.cces.sectionB6 = section_data;
       set_formStatus_cces({ ...formStatus_cces, sectionB6: true });
       setExpanded_cces("sectionB7");

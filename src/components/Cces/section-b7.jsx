@@ -28,7 +28,7 @@ export default function SectionB7() {
         b73: b73,
         b74: b74,
       };
-      console.log("section b7:", formData);
+      // console.log("section b7:", formData);
       formData.current.cces.sectionB7 = section_data;
       set_formStatus_cces({ ...formStatus_cces, sectionB7: true });
       setExpanded_cces("sectionB8");

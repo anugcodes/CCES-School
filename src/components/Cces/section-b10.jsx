@@ -27,7 +27,7 @@ const SectionB10 = () => {
       imageFile4: imageFile4,
     };
 
-    console.log("section b10:", formData);
+    // console.log("section b10:", formData);
     formData.current.cces.sectionB10 = section_data;
     set_formStatus_cces({ ...formStatus_cces, sectionB10: true });
     setExpanded_cces(false);

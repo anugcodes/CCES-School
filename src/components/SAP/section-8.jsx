@@ -15,16 +15,16 @@ const Section2 = () => {
   const [a13, set_a13] = useState("");
 
   const handleNext = (e) => {
-    console.log(e);
+    // console.log(e);
     e.preventDefault();
-    console.log("next clicked");
+    // console.log("next clicked");
     if (checkfield(a11) && checkfield(a12) && checkfield(a13)) {
       const section_data = {
         a11: a11,
         a12: a12,
         a13: a13,
       };
-      console.log("sap - section8:", formData);
+      // console.log("sap - section8:", formData);
       formData.current.sap.section8 = section_data;
       set_formStatus_sap({ ...formStatus_sap, section8: true });
       setExpanded_sap("section9");

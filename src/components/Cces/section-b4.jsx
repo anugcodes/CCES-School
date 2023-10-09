@@ -40,7 +40,6 @@ export default function SectionB4() {
         b47: b47,
         b48: b48,
       };
-      console.log("section b4:", formData);
       formData.current.cces.sectionB4 = section_data;
       set_formStatus_cces({ ...formStatus_cces, sectionB4: true });
       setExpanded_cces("sectionB5");

@@ -87,7 +87,7 @@ const SectionA = () => {
       a17: a17,
       a18: a18,
     };
-    console.log("sectionA:", formData);
+    // console.log("sectionA:", formData);
     formData.current.uDiseCode = a1;
     formData.current.cces.sectionA = seciton_data;
     set_formStatus_cces({ ...formStatus_cces, sectionA: true });

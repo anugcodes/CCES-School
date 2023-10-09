@@ -37,7 +37,7 @@ const Section2 = () => {
         a15: a15,
         a16: a16,
       };
-      console.log("sap - section5:", formData);
+      // console.log("sap - section5:", formData);
       formData.current.sap.section5 = section_data;
       set_formStatus_sap({ ...formStatus_sap, section5: true });
       setExpanded_sap("section6");

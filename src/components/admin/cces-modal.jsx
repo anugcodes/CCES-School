@@ -19,8 +19,6 @@ export default function CcesFormDataModal(props) {
   const school = formData.filter((item) => item.uDiseCode === uDiseCode)[0];
   const [tab, set_tab] = useState(0);
 
-  console.log("School data ", school.sectionB10["imageFile1"].downloadURL);
-
   return (
     <Modal
       open={open.open}
@@ -79,7 +77,6 @@ export default function CcesFormDataModal(props) {
         </Box>
 
         {Object.keys(ccesSectionList).map((section, index) => {
-          // console.log(questions.cces[section])
           return (
             <CustomTabPanel value={tab} index={index} key={index}>
               <Stack direction={"column"} spacing={1}>

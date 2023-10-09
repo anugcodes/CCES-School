@@ -17,7 +17,6 @@ import SapFormDataModal from "./sap-modal";
 
 export default function SchoolDataTab() {
   const { primaryData, ccesData, sapData } = useContext(serverData);
-  console.log(ccesData, sapData);
 
   const [ccesformModal, set_ccesformModal] = useState({
     open: false,
@@ -85,13 +84,11 @@ export default function SchoolDataTab() {
   };
   // delete a particular school record
   const deleteSchool = async (uDiseCode) => {
-    console.log("deleting data for uDise code: ", uDiseCode);
     try {
       await deleteDoc(doc(db, "SchoolInfo", String(uDiseCode)));
       await deleteDoc(doc(db, "UnicefSurveyCces", String(uDiseCode)));
       await deleteDoc(doc(db, "UnicefSurveySap", String(uDiseCode)));
     } catch (error) {
-      console.error(error);
       error("error in deleting data");
     }
   };

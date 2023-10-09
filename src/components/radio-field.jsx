@@ -20,7 +20,7 @@ const RadioField = ({ question, set_question, label, options }) => {
     } else {
       set_question(event.target.value);
     }
-    console.log(question, value);
+    // console.log(question, value);
   };
   return (
     <FormControl>

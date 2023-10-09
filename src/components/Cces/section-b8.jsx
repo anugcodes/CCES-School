@@ -34,7 +34,7 @@ const SectionB8 = () => {
         b85: b85,
         b86: b86,
       };
-      console.log("section b8:", formData);
+      // console.log("section b8:", formData);
       formData.current.cces.sectionB8 = section_data;
       set_formStatus_cces({ ...formStatus_cces, sectionB8: true });
       setExpanded_cces("sectionB9");

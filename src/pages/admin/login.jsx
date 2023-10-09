@@ -34,7 +34,7 @@ export default function AdminLogin() {
       navigate("/admin/dashboard");
     } catch (err) {
       let errmsg = err.code.replace("auth/", "").replaceAll("-", " ");
-      console.error(errmsg);
+      // console.error(errmsg);
       setFormState({ loading: false, error: errmsg });
     }
   };

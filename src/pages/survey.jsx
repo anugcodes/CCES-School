@@ -152,7 +152,7 @@ export default function SurveyForm() {
 
   // handle cces preview
   const handleCcesPreview = () => {
-    console.log("cces preview");
+    // console.log("cces preview");
     set_ccesModal(true);
   };
 
@@ -163,7 +163,7 @@ export default function SurveyForm() {
 
   // final submit button function
   const handleFinalSubmit = async () => {
-    console.log("final submit");
+    // console.log("final submit");
     const uid = formData.current.cces.sectionA.a1.toLowerCase();
     const schoolPrimaryInfo = {
       uDiseCode: uid,
@@ -174,7 +174,7 @@ export default function SurveyForm() {
     };
     formData.current.cces["uDiseCode"] = uid;
     formData.current.sap["uDiseCode"] = uid;
-    console.log(formData.current.cces, formData.current.sap);
+    // console.log(formData.current.cces, formData.current.sap);
 
     let images = formData.current.cces.sectionB10;
 
@@ -187,7 +187,7 @@ export default function SurveyForm() {
       );
       const uploadTask = uploadBytesResumable(storageRef, images[image]);
       uploadTask.then(async () => {
-        console.log("file upload successfully");
+        // console.log("file upload successfully");
         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
         images[image]["downloadUrl"] = downloadURL;
       });
@@ -198,7 +198,7 @@ export default function SurveyForm() {
       await setDoc(doc(db, "UnicefSurveyCces", uid), formData.current.cces);
       await setDoc(doc(db, "UnicefSurveySap", uid), formData.current.sap);
       await setDoc(doc(db, "SchoolInfo", uid), schoolPrimaryInfo);
-      console.log("Database updated successfully!");
+      // console.log("Database updated successfully!");
     } catch (error) {
       console.error("Error updating database:", error);
     }
@@ -775,7 +775,7 @@ function QuestionListCces({ data, section, questionId, school, index }) {
 function QuestionListSap({ data, section, questionId, school, index }) {
   const schoolData = school.sap[section][questionId];
   const questionData = data.sap[section][questionId];
-  console.log(schoolData, questionData);
+  // console.log(schoolData, questionData);
   if (schoolData === "" || schoolData === null) {
     return null;
   }
