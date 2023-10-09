@@ -45,39 +45,51 @@ const Section2 = () => {
   };
 
   const checkfield = (field) => {
-    if (field && field !== "") {
+    if (field || field == "") {
       return true;
     } else return false;
   };
 
+  const sectionB5Data = formData.current.cces.sectionB5;
+
   return (
     <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
       <Stack direction={"column"} spacing={2}>
+        {sectionB5Data.b52 === "No" && (
         <TextFieldComponent
           question={a11}
           set_question={set_a11}
           label="School provide dustbins in each class room, kitchen area, toilets and at other appropriate locations for collection of waste"
         />
+        )}
+        {sectionB5Data.b53 === "No" && (
         <TextFieldComponent
           question={a12}
           set_question={set_a12}
           label="Does the school segregate wet waste (bio-degradable waste) and dry waste (non- biodegradable waste)?"
         />
+        )}
+        {sectionB5Data.b54 === "No specific measure" && (
         <TextFieldComponent
           question={a13}
           set_question={set_a13}
           label=" How does the school compost its own biodegradable waste (wet waste)? (Yes in school premises)"
         />
+        )}
+        {sectionB5Data.b55 === "Buried on school premises" && (
         <TextFieldComponent
           question={a14}
           set_question={set_a14}
           label="How does the school dispose its, non- biodegradable waste"
         />
+        )}
+        {sectionB5Data.b56 === "no" && (
         <TextFieldComponent
           question={a15}
           set_question={set_a15}
           label="Is the school premises clean (free from littering)?"
         />
+        )}
         <TextFieldComponent
           question={a16}
           set_question={set_a16}

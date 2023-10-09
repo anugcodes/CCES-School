@@ -58,6 +58,8 @@ const Section1 = () => {
     } else return false;
   };
 
+  console.log(sectionB1Data);
+
   return (
     <div>
       <form onSubmit={(e) => handleNext(e)}>
@@ -72,16 +74,17 @@ const Section1 = () => {
               }
             />
           )}
-
-          <OptionForm
-            question={a12}
-            set_question={set_a12}
-            options={["Yes", "No"]}
-            label={
-              " Are any of the school cabinet members part of the School safety committee?"
-            }
-          />
-          {sectionB1Data.b13 && (
+          {sectionB1Data.b13 === "no" && (
+            <OptionForm
+              question={a12}
+              set_question={set_a12}
+              options={["Yes", "No"]}
+              label={
+                " Are any of the school cabinet members part of the School safety committee?"
+              }
+            />
+          )}
+          {sectionB1Data.b14 === "no" && (
             <OptionForm
               question={a13}
               set_question={set_a13}
@@ -91,7 +94,7 @@ const Section1 = () => {
               }
             />
           )}
-          {sectionB1Data.b14 && (
+          {sectionB1Data.b18 === "no" && (
             <OptionForm
               question={a14}
               set_question={set_a14}
@@ -99,22 +102,26 @@ const Section1 = () => {
               label={"Is your school vulnerable to any natural disasters ? "}
             />
           )}
-          <OptionForm
-            question={a15}
-            set_question={set_a15}
-            options={["Yes", "No"]}
-            label={
-              " Has school done identified the impact of the above disasters on the WASH infrastructure in schools ? "
-            }
-          />
-          <OptionForm
-            question={a16}
-            set_question={set_a16}
-            options={["Yes", "No"]}
-            label={
-              "Does your school have a practice of conducting mock drills for disaster response?"
-            }
-          />
+          {sectionB1Data.b110 === "no" && (
+            <OptionForm
+              question={a15}
+              set_question={set_a15}
+              options={["Yes", "No"]}
+              label={
+                " Has school done identified the impact of the above disasters on the WASH infrastructure in schools ? "
+              }
+            />
+          )}
+          {sectionB1Data.b112 === "no" && (
+            <OptionForm
+              question={a16}
+              set_question={set_a16}
+              options={["Yes", "No"]}
+              label={
+                "Does your school have a practice of conducting mock drills for disaster response?"
+              }
+            />
+          )}
           <OptionForm
             question={a17}
             set_question={set_a17}
@@ -123,14 +130,16 @@ const Section1 = () => {
               "Is the Swachata action plan effective during  cyclone, heatwave, cold wave, floods, etc.?"
             }
           />
-          <OptionForm
-            question={a18}
-            set_question={set_a18}
-            options={["Yes", "No"]}
-            label={
-              "Whether the WASH facilities in Schools are able to be effective during  drought, floods, cyclones, forest fire, landslide, etc"
-            }
-          />
+          {sectionB1Data.b113 === "no" && (
+            <OptionForm
+              question={a18}
+              set_question={set_a18}
+              options={["Yes", "No"]}
+              label={
+                "Whether the WASH facilities in Schools are able to be effective during  drought, floods, cyclones, forest fire, landslide, etc"
+              }
+            />
+          )}
           <NextButton type="submit" />
         </Stack>
       </form>

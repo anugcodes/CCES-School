@@ -6,8 +6,12 @@ import { sapformStatus } from "../../contexts/formContexts";
 import NextButton from "../next-button";
 
 const Section2 = () => {
-  const { formStatus_sap, set_formStatus_sap, setExpanded_sap, formData } =
-    useContext(sapformStatus);
+  const {
+    formStatus_sap,
+    set_formStatus_sap,
+    setExpanded_sap,
+    formData,
+  } = useContext(sapformStatus);
 
   const [a11, set_a11] = useState("");
   const [a12, set_a12] = useState("");
@@ -64,9 +68,11 @@ const Section2 = () => {
   };
 
   const checkField = (field) => {
-    if (field && field !== "") return true;
+    if (field || field == "") return true;
     else return false;
   };
+
+  const sectionB6Data = formData.current.cces.sectionB6;
 
   return (
     <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
@@ -76,21 +82,27 @@ const Section2 = () => {
           set_question={set_a11}
           label="The classrooms and teaching areas cleaned daily"
         />
-        <TextFieldComponent
-          question={a12}
-          set_question={set_a12}
-          label="The frequency of cleaning toilets – Daily"
-        />
-        <TextFieldComponent
-          question={a13}
-          set_question={set_a13}
-          label="Toilets cleaned with appropriate cleaning material - Cleaned daily with soaping agent and disinfectant"
-        />
-        <TextFieldComponent
-          question={a14}
-          set_question={set_a14}
-          label="Who supervises the cleaning and maintenance of the toilets in the school?"
-        />
+        {sectionB6Data.b61 === "no" && (
+          <TextFieldComponent
+            question={a12}
+            set_question={set_a12}
+            label="The frequency of cleaning toilets – Daily"
+          />
+        )}
+        {sectionB6Data.b62 === "Biogas" && (
+          <TextFieldComponent
+            question={a13}
+            set_question={set_a13}
+            label="Toilets cleaned with appropriate cleaning material - Cleaned daily with soaping agent and disinfectant"
+          />
+        )}
+        {sectionB6Data.b64 === "no" && (
+          <TextFieldComponent
+            question={a14}
+            set_question={set_a14}
+            label="Who supervises the cleaning and maintenance of the toilets in the school? "
+          />
+        )}
         <TextFieldComponent
           question={a15}
           set_question={set_a15}
