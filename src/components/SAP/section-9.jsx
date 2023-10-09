@@ -60,9 +60,11 @@ const Section9 = () => {
   };
 
   const checkField = (field) => {
-    if (field && field !== "") return true;
+    if (field || field == "") return true;
     else return false;
   };
+
+  const section9Data = formData.current.cces.sectionB9;
 
   return (
     <form autoComplete="off" onSubmit={(e) => handleNext(e)}>
@@ -89,6 +91,7 @@ const Section9 = () => {
         />
 
         {/* menstural health management  */}
+        {section9Data.b94 === "No" && (
         <FormControl>
           <FormLabel id="demo-controlled-radio-buttons-group">
             Menstrual health management discussed with girl students - At least
@@ -116,32 +119,40 @@ const Section9 = () => {
             />
           )}
         </FormControl>
-
+        )}
+        {section9Data.b97 === "no" && (
         <TextFieldComponent
           question={a16}
           set_question={set_a16}
           label="School regularly conducts cultural programs and competitions (Essay, painting, debate) on hygiene and sanitation"
         />
+        )}
         <TextFieldComponent
           question={a17}
           set_question={set_a17}
           label="School display and use Water, Sanitation and Hygiene related posters and materials for promoting hygiene education"
         />
+        {section9Data.b96 === "no" && (
         <TextFieldComponent
           question={a18}
           set_question={set_a18}
           label="  Has the school taken any community outreach activities on climate-resilient WASH services in schools/ local settings?"
         />
+        )}
+        {section9Data.b98 === "no" && (
         <TextFieldComponent
           question={a19}
           set_question={set_a19}
           label=" Does the school display and use climate resilient water, Sanitation and Hygiene related posters and materials for promoting environmental and hygiene education? "
         />
+        )}
+        {section9Data.b99 === "no" && (
         <TextFieldComponent
           question={a110}
           set_question={set_a110}
           label="Does the school observe special days/ fortnights actively- such as World Env. Day, Earth Day, World Water Day, World Toilet Day/GHD/ World Hand Hygiene/ Swachhata Pakhwada? "
         />
+        )}
         <NextButton type="submit" />
       </Stack>
     </form>
