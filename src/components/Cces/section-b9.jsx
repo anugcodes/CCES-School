@@ -111,7 +111,12 @@ const SectionB9 = () => {
             label={
               "Is menstrual health management regularly discussed with or taught to students of appropriate age (at least once in 3 months)?"
             }
-            options={["No", "Only with girls", "With both girls and boys"]}
+            options={[
+              "No",
+              "Only with girls",
+              "With both girls and boys",
+              "Not Applicable",
+            ]}
           />
 
           <OptionForm

@@ -1,5 +1,12 @@
-import React, { useState, useContext } from "react";
+import  { useState, useContext } from "react";
 import { Stack } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import TextField from "@mui/material/TextField";
+
 import TextFieldComponent from "../text-field";
 import { sapformStatus } from "../../contexts/formContexts";
 
@@ -80,11 +87,36 @@ const Section9 = () => {
           set_question={set_a14}
           label="School take up safe hygiene and sanitation education including awareness on hand-washing during morning assembly and in school clubs"
         />
-        <TextFieldComponent
-          question={a15}
-          set_question={set_a15}
-          label="Menstrual health management discussed with girl students - At least once every month "
-        />
+
+        {/* menstural health management  */}
+        <FormControl>
+          <FormLabel id="demo-controlled-radio-buttons-group">
+            Menstrual health management discussed with girl students - At least
+            once every month
+          </FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="controlled-radio-buttons-group"
+            value={a15}
+            onChange={(e) => set_a15(e.target.value)}
+          >
+            <FormControlLabel value={"yes"} control={<Radio />} label={"Yes"} />
+            <FormControlLabel
+              value={String("Not Applicable")}
+              control={<Radio />}
+              label={"Not Applicable"}
+            />
+          </RadioGroup>
+          {a15 === "yes" && (
+            <TextField
+              value={a15}
+              onChange={(e) => set_a15(e.target.value)}
+              placeholder="specify"
+              size="small"
+            />
+          )}
+        </FormControl>
+
         <TextFieldComponent
           question={a16}
           set_question={set_a16}
