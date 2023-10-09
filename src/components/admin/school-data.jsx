@@ -17,6 +17,7 @@ import SapFormDataModal from "./sap-modal";
 
 export default function SchoolDataTab() {
   const { primaryData, ccesData, sapData } = useContext(serverData);
+  // console.log(ccesData, sapData);
 
   const [ccesformModal, set_ccesformModal] = useState({
     open: false,
@@ -48,21 +49,27 @@ export default function SchoolDataTab() {
       field: "col6",
       headerName: "Cces Data",
       width: 120,
-      renderCell: () => <OpenInNewIcon />,
+      renderCell: () => <OpenInNewIcon sx={{":hover": {
+        cursor: 'pointer',
+      }}} />,
       disableClickEventBubbling: true,
     },
     {
       field: "col7",
       headerName: "Sap Data",
       width: 120,
-      renderCell: () => <OpenInNewIcon />,
+      renderCell: () => <OpenInNewIcon sx={{":hover": {
+        cursor: 'pointer',
+      }}}/>,
       disableClickEventBubbling: true,
     },
     {
       field: "col8",
       headerName: "Delete School",
       width: 120,
-      renderCell: () => <DeleteIcon sx={{ color: "red" }} />,
+      renderCell: () => <DeleteIcon sx={{ color: "red",":hover": {
+        cursor: 'pointer',
+      } }} />,
       disableClickEventBubbling: true,
     },
   ];
@@ -84,6 +91,7 @@ export default function SchoolDataTab() {
   };
   // delete a particular school record
   const deleteSchool = async (uDiseCode) => {
+    // console.log("deleting data for uDise code: ", uDiseCode);
     try {
       await deleteDoc(doc(db, "SchoolInfo", String(uDiseCode)));
       await deleteDoc(doc(db, "UnicefSurveyCces", String(uDiseCode)));

@@ -116,12 +116,13 @@ SapFormDataModal.propTypes = {
 
 function QuestionListSap({ data, section, questionId, school, index }) {
   const schoolData = school[section][questionId];
+  if (schoolData === "" || schoolData === null) return;
   return (
     <Box
       sx={{ background: "#cef6ff", padding: ".5rem", borderRadius: ".5rem" }}
     >
       <Typography fontWeight={"bold"}>
-        Q{index + 1}) {data.sap[section][questionId]}
+        Q) {data.sap[section][questionId]}
       </Typography>
 
       <Box
