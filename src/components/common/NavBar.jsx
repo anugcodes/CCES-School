@@ -5,9 +5,9 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 
-import logo1 from '../../img/logo1.png'
-import logo2 from '../../img/logo2.png'
-import logo3 from '../../img/logo3.jpg'
+import logo1 from "../../assets/logo1.png"
+import logo2 from "../../assets/logo2.png"
+import logo3 from '../../assets/logo3.jpg'
 
 
 export default function NavBar() {
