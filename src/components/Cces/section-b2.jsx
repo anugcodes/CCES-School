@@ -195,18 +195,6 @@ export default function SectionB2() {
               "Yes, both rainwater storage and groundwater recharge system",
             ]}
           />
-          <TextFieldComponent
-            question={b214}
-            set_question={set_b214}
-            label="If school has a storage structure/ tank for the RWH? What is the capacity in litres?"
-            type="number"
-          />
-          <OptionForm
-            question={b215}
-            set_question={set_b215}
-            label="Whether the school use rainwater for drinking water and other purposes (wherever applicable)?"
-            options={["Yes", "No"]}
-          />
 
           <OptionForm
             question={b213}

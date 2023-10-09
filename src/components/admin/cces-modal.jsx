@@ -69,6 +69,7 @@ export default function CcesFormDataModal(props) {
             scrollButtons="auto"
             variant="scrollable"
           >
+            
             {Object.values(ccesSectionList).map((value, index) => (
               <Tab label={value} key={index} />
             ))}

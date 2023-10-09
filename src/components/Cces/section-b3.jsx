@@ -84,13 +84,13 @@ export default function SectionB3() {
           <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
             <TextField
               value={b32.boys}
-              placeholder=""
+              placeholder="boys"
               onChange={(e) => set_b32({ ...b32, boys: e.target.value })}
               size="small"
             />
             <TextField
               value={b32.girls}
-              placeholder=""
+              placeholder="girls"
               onChange={(e) => set_b32({ ...b32, girls: e.target.value })}
               size="small"
             />
@@ -105,13 +105,13 @@ export default function SectionB3() {
           <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
             <TextField
               value={b33.boys}
-              placeholder=""
+              placeholder="boys"
               onChange={(e) => set_b33({ ...b33, boys: e.target.value })}
               size="small"
             />
             <TextField
               value={b33.girls}
-              placeholder=""
+              placeholder="girls"
               onChange={(e) => set_b33({ ...b33, girls: e.target.value })}
               size="small"
             />
