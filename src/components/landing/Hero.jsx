@@ -3,19 +3,17 @@ import { Carousel } from "react-bootstrap";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
-import bg1 from "../../assets/bg1.jpg";
-import bg2 from "../../assets/bg2.jpg";
-import bg3 from "../../assets/bg3.jpg";
-import bg4 from "../../assets/bg4.jpg";
-import bg5 from "../../assets/bg5.jpg";
-import bg6 from "../../assets/bg6.jpg";
+import bg3 from "../../assets/bg9.jpg";
+import bg4 from "../../assets/bg10.jpeg";
+import bg5 from "../../assets/bg11.jpeg";
+import bg6 from "../../assets/bg12.jpeg";
 
 function Hero() {
   return (
     <Carousel slide={false} controls={false} indicators={false}>
       {heroImages.map((image, index) => (
         <Carousel.Item key={index}>
-          <img src={image} alt="" style={{ width: "100vw" }} />
+          <img src={image} alt="" style={{ width: "100%" }} />
           <Carousel.Caption style={{ marginBottom: "1vh" }}>
             <LinkToSurvey />
           </Carousel.Caption>
@@ -47,4 +45,4 @@ const LinkToSurvey = () => {
   );
 };
 
-const heroImages = [bg1, bg2, bg3, bg4, bg5, bg6];
+const heroImages = [bg3, bg4, bg5, bg6];

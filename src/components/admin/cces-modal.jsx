@@ -99,7 +99,7 @@ export default function CcesFormDataModal(props) {
         <CustomTabPanel value={tab} index={10}>
           <Box>
             <Grid container spacing={4}>
-              {Object.keys(school.sectionB10).map((image, index) => {
+              {Object?.keys(school.sectionB10).map((image, index) => {
                 return (
                   <Grid item xs={12} md={6} key={index}>
                     <img
