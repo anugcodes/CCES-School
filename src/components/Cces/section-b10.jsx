@@ -19,26 +19,19 @@ const SectionB10 = () => {
 
   const handleSelectPhotos = (e) => {
     e.preventDefault();
-    if (
-      imageFile1 === null ||
-      imageFile2 === null ||
-      imageFile3 === null ||
-      imageFile4 === null
-    )
-      return;
-    else {
-      const section_data = {
-        imageFile1: imageFile1,
-        imageFile2: imageFile2,
-        imageFile3: imageFile3,
-        imageFile4: imageFile4,
-      };
 
-      // console.log("section b10:", formData);
-      formData.current.cces.sectionB10 = section_data;
-      set_formStatus_cces({ ...formStatus_cces, sectionB10: true });
-      setExpanded_cces(false);
-    }
+    const section_data = {
+      imageFile1: imageFile1,
+      imageFile2: imageFile2,
+      imageFile3: imageFile3,
+      imageFile4: imageFile4,
+    };
+
+
+    // console.log("section b10:", formData);
+    formData.current.cces.sectionB10 = section_data;
+    set_formStatus_cces({ ...formStatus_cces, sectionB10: true });
+    setExpanded_cces(false);
   };
 
   return (
@@ -88,7 +81,6 @@ const ImageInputField = (props) => {
         placeholder="Insert Photograph"
         inputProps={{ accept: ".png, .jpeg, .jpg" }}
         error={error !== null}
-        required
       />
       <FormHelperText sx={{ color: "red" }}>{error}</FormHelperText>
     </FormControl>
