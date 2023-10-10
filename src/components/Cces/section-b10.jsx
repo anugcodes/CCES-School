@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import FormHelperText from "@mui/material/FormHelperText";
 import Stack from "@mui/material/Stack";
 import { useState, useContext } from "react";
-
+import PropTypes from "prop-types";
 import { ccesformStatus } from "../../contexts/formContexts";
 import NextButton from "../next-button";
 
@@ -19,26 +19,26 @@ const SectionB10 = () => {
 
   const handleSelectPhotos = (e) => {
     e.preventDefault();
+    if (
+      imageFile1 === null ||
+      imageFile2 === null ||
+      imageFile3 === null ||
+      imageFile4 === null
+    )
+      return;
+    else {
+      const section_data = {
+        imageFile1: imageFile1,
+        imageFile2: imageFile2,
+        imageFile3: imageFile3,
+        imageFile4: imageFile4,
+      };
 
-    const section_data = {
-      imageFile1: imageFile1,
-      imageFile2: imageFile2,
-      imageFile3: imageFile3,
-      imageFile4: imageFile4,
-    };
-
-    // console.log("section b10:", formData);
-    formData.current.cces.sectionB10 = section_data;
-    set_formStatus_cces({ ...formStatus_cces, sectionB10: true });
-    setExpanded_cces(false);
-
-    // how to upload the image files to firestore storeage
-    // const storageRef = firebase.storage().ref();
-    // const fileRef = storageRef.child(imageFile1.name);
-    // fileRef.put(imageFile1).then(() => {
-    //   console.log("Uploaded a file");
-    // });
-    
+      // console.log("section b10:", formData);
+      formData.current.cces.sectionB10 = section_data;
+      set_formStatus_cces({ ...formStatus_cces, sectionB10: true });
+      setExpanded_cces(false);
+    }
   };
 
   return (
@@ -51,7 +51,7 @@ const SectionB10 = () => {
           <ImageInputField file={imageFile3} set_file={set_imageFile3} />
           <ImageInputField file={imageFile4} set_file={set_imageFile4} />
         </Stack>
-        <NextButton  type="submit" />
+        <NextButton type="submit" />
       </form>
     </div>
   );
@@ -88,8 +88,13 @@ const ImageInputField = (props) => {
         placeholder="Insert Photograph"
         inputProps={{ accept: ".png, .jpeg, .jpg" }}
         error={error !== null}
+        required
       />
       <FormHelperText sx={{ color: "red" }}>{error}</FormHelperText>
     </FormControl>
   );
+};
+ImageInputField.propTypes = {
+  file: PropTypes.any,
+  set_file: PropTypes.func,
 };
