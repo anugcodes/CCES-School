@@ -69,11 +69,10 @@ export default function CcesFormDataModal(props) {
             scrollButtons="auto"
             variant="scrollable"
           >
-            
             {Object.values(ccesSectionList).map((value, index) => (
               <Tab label={value} key={index} />
             ))}
-            <Tab label="Photographs" value={10} />
+            {school.sectionB10 && <Tab label="Photographs" value={10} />}
           </Tabs>
         </Box>
 
@@ -96,23 +95,25 @@ export default function CcesFormDataModal(props) {
           );
         })}
 
-        <CustomTabPanel value={tab} index={10}>
-          <Box>
-            <Grid container spacing={4}>
-              {Object?.keys(school.sectionB10).map((image, index) => {
-                return (
-                  <Grid item xs={12} md={6} key={index}>
-                    <img
-                      src={school.sectionB10[image]?.downloadURL}
-                      alt=""
-                      width={"100%"}
-                    />
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </Box>
-        </CustomTabPanel>
+        {school.sectionB10 && (
+          <CustomTabPanel value={tab} index={10}>
+            <Box>
+              <Grid container spacing={4}>
+                {Object.keys(school.sectionB10).map((image, index) => {
+                  return (
+                    <Grid item xs={12} md={6} key={index}>
+                      <img
+                        src={school.sectionB10[image]?.downloadURL}
+                        alt=""
+                        width={"100%"}
+                      />
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </Box>
+          </CustomTabPanel>
+        )}
       </Box>
     </Modal>
   );
