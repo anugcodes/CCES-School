@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaLinkedinIn } from 'react-icons/fa'
-import { AiOutlineMail } from 'react-icons/ai'
+import { AiOutlineMail, AiTwotonePhone } from 'react-icons/ai'
 
 function Footer() {
   return (
@@ -10,7 +10,11 @@ function Footer() {
           {/* <a href='https://www.unicef.org/about-unicef/contact-us' style={{ textDecoration: "none", color: "white" }}>Contact Us</a> | <a href='https://www.unicef.org/legal' style={{ textDecoration: "none", color: "white" }}>Legal</a> */}
           <p>For technical support,<br />
             <AiOutlineMail color='white' size={20} />&nbsp;
-            mskhan2621957@gmail.com
+            mskhan2621957@gmail.com <br />
+            <AiOutlineMail color='white' size={20} />&nbsp;
+            slok.punyas@gmail.com <br />
+            <AiTwotonePhone color='white' size={20} />&nbsp;
+            +91 94398 57425
           </p>
         </div>
         <div className='d-flex flex-wrap'>
