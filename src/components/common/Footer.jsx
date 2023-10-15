@@ -1,11 +1,16 @@
 import React from 'react'
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaLinkedinIn } from 'react-icons/fa'
 import { AiOutlineMail, AiTwotonePhone } from 'react-icons/ai'
+import logo2 from "../../assets/logo2.png"
 
 function Footer() {
   return (
     <>
-      <div style={{ background: '#00aeef' }} className='py-2 text-white d-flex justify-content-around px-5 flex-wrap'>
+      <div style={{ background: '#00aeef' }} className='py-2 text-white d-flex justify-content-evenly px-5 flex-wrap'>
+        <div>
+          <img src={logo2} alt="" width={"100%"}/>
+        </div>
+        <div>
         <div>
           {/* <a href='https://www.unicef.org/about-unicef/contact-us' style={{ textDecoration: "none", color: "white" }}>Contact Us</a> | <a href='https://www.unicef.org/legal' style={{ textDecoration: "none", color: "white" }}>Legal</a> */}
           <p>For technical support,<br />
@@ -35,6 +40,7 @@ function Footer() {
             <FaLinkedinIn color='white' size={20} className='mx-1' />
           </a>
         </div>
+      </div>
       </div>
 
       <div style={{ background: 'grey' }} className='p-2 text-white text-center'>
